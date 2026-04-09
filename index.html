@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4everacy™ — Your Digital Universe. Forever.</title>
+  <meta name="description" content="4everacy is the world's first Digital Life Operating System — 6 interconnected universes that organize every dimension of your life, forever. Join the Founders 5000™ and lock in your legacy today." />
+  <meta property="og:title" content="4everacy™ — Your Digital Universe. Forever." />
+  <meta property="og:description" content="Join the Founders 5000™. Lock in lifetime access before the first 5,000 seats are gone." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep: #030508;
+      --bg-card: #080d14;
+      --bg-card2: #060a10;
+      --purple: #8B5CF6;
+      --purple-light: #a78bfa;
+      --teal: #10B981;
+      --blue: #3B82F6;
+      --gold: #D4AF37;
+      --white: #ffffff;
+      --gray: rgba(255,255,255,0.55);
+      --border: rgba(139,92,246,0.15);
+      --border-soft: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── Stars background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139,92,246,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16,185,129,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 20% 60%, rgba(59,130,246,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,5,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(139,92,246,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      color: #fff !important;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s !important;
+      letter-spacing: 0.03em !important;
+    }
+    .nav-cta:hover { opacity: 0.85; color: #fff !important; }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-inner { max-width: 860px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #8B5CF6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+      box-shadow: 0 0 40px rgba(139,92,246,0.3);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(139,92,246,0.45); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); }
+
+    /* ── STATS ── */
+    #stats {
+      padding: 60px 24px;
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── UNIVERSES ── */
+    #universes { padding: 100px 24px; }
+
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 64px;
+      line-height: 1.7;
+    }
+
+    .universes-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .universe-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .universe-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-3px); }
+
+    .universe-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .universe-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .universe-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── FOUNDERS 5000 SECTION ── */
+    #founders { padding: 100px 24px; background: rgba(139,92,246,0.03); }
+
+    .founders-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #D4AF37;
+      margin-bottom: 24px;
+    }
+
+    .slots-bar-wrapper {
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    .slots-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+
+    .slots-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .slots-fill {
+      height: 100%;
+      width: 3%;
+      background: linear-gradient(90deg, #10B981, #8B5CF6);
+      border-radius: 100px;
+      transition: width 1s ease;
+    }
+
+    /* Early adoption tiers */
+    .ea-tiers {
+      max-width: 700px;
+      margin: 0 auto 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .ea-tier {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .ea-tier.active {
+      border-color: rgba(212,175,55,0.5);
+      background: rgba(212,175,55,0.06);
+    }
+
+    .ea-tier .bonus {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .ea-tier .range { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+    .ea-tier .ea-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .ea-tier .active-badge {
+      position: absolute;
+      top: -10px; left: 50%; transform: translateX(-50%);
+      background: #D4AF37;
+      color: #000;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    /* Pricing tiers */
+    .tiers-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .tier-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tier-card:hover { transform: translateY(-4px); }
+
+    .tier-card.featured {
+      border-color: rgba(139,92,246,0.4);
+      background: rgba(139,92,246,0.07);
+    }
+
+    .tier-card.legend {
+      border-color: rgba(212,175,55,0.45);
+      background: rgba(212,175,55,0.05);
+    }
+
+    .tier-popular {
+      position: absolute;
+      top: -12px; left: 50%; transform: translateX(-50%);
+      padding: 3px 14px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tier-emoji { font-size: 28px; margin-bottom: 12px; }
+
+    .tier-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tier-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+
+    .tier-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .tier-price-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+
+    .tier-multiplier {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .tier-features { list-style: none; flex: 1; margin-bottom: 24px; }
+    .tier-features li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tier-features li::before {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 700;
+      color: #10B981;
+      flex-shrink: 0;
+    }
+
+    .tier-cta {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how { padding: 100px 24px; }
+
+    .steps-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    .step-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--purple-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* ── WAITLIST ── */
+    #waitlist {
+      padding: 100px 24px;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(139,92,246,0.08) 0%, transparent 70%);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .waitlist-box {
+      max-width: 520px;
+      margin: 48px auto 0;
+    }
+
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .waitlist-input {
+      flex: 1;
+      min-width: 220px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .waitlist-input:focus { border-color: rgba(139,92,246,0.5); }
+    .waitlist-input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .waitlist-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 14px;
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 12px;
+      padding: 20px;
+      color: #10B981;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.8; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 300px; justify-content: center; }
+      .waitlist-form { flex-direction: column; }
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">4EVERACY™</div>
+  <div class="nav-links">
+    <a href="#universes">Platform</a>
+    <a href="#founders">Founders 5000</a>
+    <a href="#how">How It Works</a>
+    <a href="#waitlist" class="nav-cta">Join Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb" style="width:600px;height:600px;background:rgba(139,92,246,0.08);top:-100px;left:50%;transform:translateX(-50%);"></div>
+  <div class="hero-inner">
+    <div style="text-align:center;margin-bottom:16px;">
+      <span class="hero-badge">
+        <span class="dot"></span>
+        Founding 5000™ Now Open — 4,987 Seats Remaining
+      </span>
+    </div>
+    <h1 class="hero-title">
+      <span class="gradient-text">Your life is not a feed.</span><br/>
+      It is a universe.
+    </h1>
+    <p class="hero-subtitle">
+      4everacy™ is the world's first Digital Life Operating System — six interconnected universes that organize, protect, and preserve every dimension of who you are. Forever.
+    </p>
+    <div class="hero-actions">
+      <a href="#founders" class="btn-primary">
+        ⚡ Claim Your Founding Seat
+      </a>
+      <a href="#universes" class="btn-secondary">
+        Explore the Platform →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">6</div>
+      <div class="stat-label">Life Universes</div>
+    </div>
+    <div>
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Platform Features</div>
+    </div>
+    <div>
+      <div class="stat-number">308+</div>
+      <div class="stat-label">Patents Filed</div>
+    </div>
+    <div>
+      <div class="stat-number">5,000</div>
+      <div class="stat-label">Founding Seats Total</div>
+    </div>
+    <div>
+      <div class="stat-number">Forever</div>
+      <div class="stat-label">Lifetime Access Lock-in</div>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSES -->
+<section id="universes">
+  <div class="section-label">The Platform</div>
+  <h2 class="section-title">Six Universes.<br/>One Life OS.</h2>
+  <p class="section-sub">Everything that matters in your life — organized into six intelligent, interconnected universes that work together.</p>
+
+  <div class="universes-grid">
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(139,92,246,0.12);">🌌</div>
+      <div class="universe-name" style="color:#a78bfa;">NovaSelf™</div>
+      <p class="universe-desc">Your personal universe. Journaling, goals, mood intelligence, life momentum, and the AI that knows your inner world better than any app ever has.</p>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(16,185,129,0.12);">👨‍👩‍👧‍👦</div>
+      <div class="universe-name" style="color:#10B981;">KinSphere™</div>
+      <p class="universe-desc">Your family universe. Living family trees, TruthMails™ for future generations, ChronoVault™ for memories, and tools that keep every story alive forever.</p>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(59,130,246,0.12);">💼</div>
+      <div class="universe-name" style="color:#3B82F6;">BizNova™</div>
+      <p class="universe-desc">Your business universe. Strategy, CRM, pitch tools, financial tracking, and the operating system built for founders who live ten lives at once.</p>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(245,158,11,0.12);">👥</div>
+      <div class="universe-name" style="color:#F59E0B;">CrewBase™</div>
+      <p class="universe-desc">Your friends universe. Real connection — not a highlight reel. Shared memories, mutual goals, and bonds that grow stronger over time.</p>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(236,72,153,0.12);">📡</div>
+      <div class="universe-name" style="color:#EC4899;">SignalVerse™</div>
+      <p class="universe-desc">Your social universe. Your public identity, creator tools, and the network that amplifies your voice — on your terms, not an algorithm's.</p>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon" style="background:rgba(139,92,246,0.12);">⏳</div>
+      <div class="universe-name" style="color:#a78bfa;">ChronoVault™</div>
+      <p class="universe-desc">Your legacy universe. Time capsules, eternal protocols, AI-preserved memories, and the tools that make sure your story reaches the people who need it — no matter when.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS 5000 -->
+<section id="founders">
+  <div class="orb" style="width:500px;height:500px;background:rgba(212,175,55,0.04);top:20%;right:-100px;"></div>
+
+  <div style="text-align:center;margin-bottom:24px;">
+    <span class="founders-badge">⚡ Founders 5000™ Program — Now Open</span>
+  </div>
+  <h2 class="section-title">Lock In Your Legacy.<br/>Before the Seats Are Gone.</h2>
+  <p class="section-sub">The first 5,000 people who join 4everacy become Founding Members — with lifetime access, locked pricing, a permanent FM Serial Number, and FSU™ multipliers that grow with the platform forever.</p>
+
+  <!-- Slots bar -->
+  <div class="slots-bar-wrapper" style="text-align:center;">
+    <div class="slots-label">
+      <span>0 / 5,000 slots claimed</span>
+      <span style="color:#10B981;font-weight:600;">4,987 remaining</span>
+    </div>
+    <div class="slots-bar"><div class="slots-fill" id="slotsBar"></div></div>
+    <p style="font-size:12px;color:rgba(212,175,55,0.7);margin-top:10px;font-weight:600;">⚡ You are currently in Tier 1 — Maximum Bonus window (#1–500)</p>
+  </div>
+
+  <!-- Early Adoption Bonus Tiers -->
+  <div style="text-align:center;margin-bottom:24px;">
+    <div class="section-label">Early Adoption Multipliers</div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;">Your FSU™ multiplier compounds based on when you join. First movers win the most.</p>
+  </div>
+
+  <div class="ea-tiers">
+    <div class="ea-tier active" style="border-color:rgba(212,175,55,0.5);background:rgba(212,175,55,0.06);">
+      <span class="active-badge">ACTIVE NOW</span>
+      <div class="bonus" style="color:#D4AF37;">3.0×</div>
+      <div class="range">#1 – 500</div>
+      <div class="ea-label" style="color:#D4AF37;">Maximum Bonus</div>
+    </div>
+    <div class="ea-tier">
+      <div class="bonus" style="color:#10B981;">2.0×</div>
+      <div class="range">#501 – 1,000</div>
+      <div class="ea-label" style="color:#10B981;">High Bonus</div>
+    </div>
+    <div class="ea-tier">
+      <div class="bonus" style="color:#3B82F6;">1.5×</div>
+      <div class="range">#1,001 – 2,500</div>
+      <div class="ea-label" style="color:#3B82F6;">Elevated Bonus</div>
+    </div>
+    <div class="ea-tier">
+      <div class="bonus" style="color:rgba(255,255,255,0.4);">1.0×</div>
+      <div class="range">#2,501 – 5,000</div>
+      <div class="ea-label" style="color:rgba(255,255,255,0.4);">Base</div>
+    </div>
+  </div>
+
+  <!-- Pricing Tiers -->
+  <div style="text-align:center;margin-bottom:32px;">
+    <div class="section-label">Choose Your Founding Tier</div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);">One-time lifetime payment. No subscriptions. No renewals. Ever.</p>
+  </div>
+
+  <div class="tiers-grid">
+    <!-- Pioneer -->
+    <div class="tier-card">
+      <div class="tier-emoji">🌱</div>
+      <div class="tier-name" style="color:#10B981;">Pioneer</div>
+      <div class="tier-desc">Pro-level access — the foundation of a legacy</div>
+      <div class="tier-price" style="color:#10B981;">$497</div>
+      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-multiplier" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:#10B981;">⚡ 1.0× FSU™ Multiplier</div>
+      <ul class="tier-features">
+        <li>Pro-tier feature access</li>
+        <li>FM Serial Number</li>
+        <li>Founding Badge</li>
+        <li>Lifetime access lock-in</li>
+        <li>1.0× FSU™ base multiplier</li>
+      </ul>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:#10B981;">Claim Pioneer Seat</a>
+    </div>
+
+    <!-- Pathfinder -->
+    <div class="tier-card">
+      <div class="tier-emoji">🧭</div>
+      <div class="tier-name" style="color:#3B82F6;">Pathfinder</div>
+      <div class="tier-desc">Business-level access — built to grow</div>
+      <div class="tier-price" style="color:#3B82F6;">$997</div>
+      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-multiplier" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:#3B82F6;">⚡ 2.0× FSU™ Multiplier</div>
+      <ul class="tier-features">
+        <li>Business-tier feature access</li>
+        <li>FM Serial Number</li>
+        <li>Founding Badge</li>
+        <li>Lifetime access lock-in</li>
+        <li>2.0× FSU™ multiplier</li>
+      </ul>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Claim Pathfinder Seat</a>
+    </div>
+
+    <!-- Visionary (featured) -->
+    <div class="tier-card featured">
+      <div class="tier-popular" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Most Popular</div>
+      <div class="tier-emoji">👁️</div>
+      <div class="tier-name" style="color:#a78bfa;">Visionary</div>
+      <div class="tier-desc">Enterprise-level access — for those who lead</div>
+      <div class="tier-price" style="color:#a78bfa;">$1,997</div>
+      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-multiplier" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);color:#a78bfa;">⚡ 3.5× FSU™ Multiplier</div>
+      <ul class="tier-features">
+        <li>Enterprise-tier feature access</li>
+        <li>FM Serial Number</li>
+        <li>Founding Badge</li>
+        <li>Lifetime access lock-in</li>
+        <li>3.5× FSU™ multiplier</li>
+      </ul>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Claim Visionary Seat</a>
+    </div>
+
+    <!-- Legend -->
+    <div class="tier-card legend">
+      <div class="tier-popular" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;">Ultimate Tier</div>
+      <div class="tier-emoji">⚡</div>
+      <div class="tier-name" style="color:#D4AF37;">Legend</div>
+      <div class="tier-desc">Enterprise + exclusive badge — the founding peak</div>
+      <div class="tier-price" style="color:#D4AF37;">$4,997</div>
+      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-multiplier" style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">⚡ 6.0× FSU™ Multiplier — Highest</div>
+      <ul class="tier-features">
+        <li>Enterprise-tier feature access</li>
+        <li>Exclusive Legend™ badge</li>
+        <li>FM Serial Number</li>
+        <li>Lifetime access lock-in</li>
+        <li>6.0× FSU™ multiplier — maximum</li>
+      </ul>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;font-weight:800;">Claim Legend Seat</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">From Waitlist to Legacy<br/>in Three Steps</h2>
+  <p class="section-sub">Getting started is simple. Your universe is waiting.</p>
+
+  <div class="steps-grid">
+    <div>
+      <div class="step-num">STEP 01</div>
+      <div class="step-title">Join the Waitlist</div>
+      <p class="step-desc">Enter your email below to secure your position in the Founders 5000™ queue. Your slot number is locked the moment you sign up.</p>
+    </div>
+    <div>
+      <div class="step-num">STEP 02</div>
+      <div class="step-title">Choose Your Tier</div>
+      <p class="step-desc">Select the founding tier that fits your vision — Pioneer, Pathfinder, Visionary, or Legend. Each is a one-time payment with lifetime access, forever.</p>
+    </div>
+    <div>
+      <div class="step-num">STEP 03</div>
+      <div class="step-title">Receive Your Universe</div>
+      <p class="step-desc">Get your FM Serial Number, Founding Badge, and early access to all six universes. Your digital legacy starts the day we launch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist">
+  <div style="max-width:700px;margin:0 auto;position:relative;z-index:1;">
+    <div class="orb" style="width:400px;height:400px;background:rgba(139,92,246,0.09);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+    <div class="section-label">Get Early Access</div>
+    <h2 class="section-title">Your Forever Starts<br/>Right Here.</h2>
+    <p class="section-sub">Join the Founders 5000™ waitlist. When we launch, you'll be first — with your slot number locked, your tier reserved, and your early adoption bonus active.</p>
+
+    <div class="waitlist-box">
+      <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+        <input type="email" class="waitlist-input" placeholder="Enter your email address" required />
+        <button type="submit" class="btn-primary" style="white-space:nowrap;">⚡ Secure My Seat</button>
+      </form>
+      <p class="waitlist-note">No spam. No subscriptions. Just your spot in history. © 2026 Jeffrey W Williams LLC</p>
+      <div class="success-msg" id="successMsg">
+        ✓ You're on the list. Welcome to 4everacy™. Your slot is reserved — watch your inbox.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">4EVERACY™</div>
+  <p class="footer-copy">
+    © 2024–2026 Jeffrey W Williams LLC. All Rights Reserved.<br/>
+    4everacy™, NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™, TruthMails™, FSU™, Founders 5000™ are trademarks of Jeffrey W Williams LLC.<br/>
+    <span style="color:rgba(255,255,255,0.15);margin-top:8px;display:inline-block;">4everacy.com · Built to Last Forever</span>
+  </p>
+</footer>
+
+<script>
+  function handleWaitlist(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input[type="email"]');
+    const btn = e.target.querySelector('button');
+    const success = document.getElementById('successMsg');
+    btn.textContent = '✓ Secured!';
+    btn.style.background = 'linear-gradient(135deg,#10B981,#059669)';
+    input.disabled = true;
+    btn.disabled = true;
+    success.style.display = 'block';
+    // Animate slots bar
+    document.getElementById('slotsBar').style.width = '3.5%';
+  }
+
+  // Animate slots bar on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('slotsBar').style.width = '0.26%';
+    }, 500);
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
