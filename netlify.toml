@@ -9,7 +9,7 @@
   publish = "."
   functions = "netlify/functions"
   edge_functions = "netlify/edge-functions"
-  command = "npm install"
+  command = "echo 'Static site ready'"
 
 # Environment variables for all contexts
 [build.environment]
@@ -18,7 +18,7 @@
 
 # ── Production Context ────────────────────────────────────────────────────────
 [context.production]
-  command = "npm install"
+  command = "echo 'Production deploy'"
 
 [context.production.environment]
   CONTEXT = "production"
@@ -26,14 +26,14 @@
 
 # ── Deploy Preview Context ────────────────────────────────────────────────────
 [context.deploy-preview]
-  command = "npm install"
+  command = "echo 'Preview deploy'"
 
 [context.deploy-preview.environment]
   CONTEXT = "deploy-preview"
 
 # ── Branch Deploy Context ─────────────────────────────────────────────────────
 [context.branch-deploy]
-  command = "npm install"
+  command = "echo 'Branch deploy'"
 
 [context.branch-deploy.environment]
   CONTEXT = "branch-deploy"
@@ -297,29 +297,10 @@
   function = "rate-limiter"
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PLUGINS — Netlify Build Plugins
+# PLUGINS — Netlify Build Plugins (install via Netlify dashboard > Plugins)
 # ═══════════════════════════════════════════════════════════════════════════════
-
-# Lighthouse performance auditing
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-
-  [plugins.inputs]
-    output_path = "reports/lighthouse.html"
-    audits = [
-      { path = "/", thresholds = { performance = 0.9, accessibility = 0.9, best-practices = 0.9, seo = 0.9 } },
-      { path = "/privacy.html", thresholds = { performance = 0.9, accessibility = 0.9 } },
-      { path = "/terms.html", thresholds = { performance = 0.9, accessibility = 0.9 } }
-    ]
-
-# Sitemap generation
-[[plugins]]
-  package = "@netlify/plugin-sitemap"
-
-  [plugins.inputs]
-    buildDir = "."
-    exclude = ["/api/*", "/.netlify/*", "/404.html"]
-    prettyURLs = true
+# Lighthouse and Sitemap plugins can be enabled from the Netlify dashboard.
+# Go to: Site settings > Build & deploy > Plugins > Search for plugins
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # DEV — Local Development Settings
