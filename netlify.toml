@@ -118,7 +118,7 @@
   status = 302
 
 [[redirects]]
-  from = "/app/novariv als"
+  from = "/app/novarivials"
   to = "https://novarivials.4everacy.com"
   status = 302
 

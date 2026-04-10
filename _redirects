@@ -23,7 +23,7 @@ https://www.4everacy.com/*    https://4everacy.com/:splat    301!
 /app/tree-ai                  https://tree-ai.4everacy.com       302
 /app/novashield               https://novashield.4everacy.com    302
 /app/novamusic                https://novamusic.4everacy.com     302
-/app/novariv als              https://novarivials.4everacy.com   302
+/app/novarivials              https://novarivials.4everacy.com   302
 /app/tradenova                https://tradenova.4everacy.com     302
 
 # 404 fallback
