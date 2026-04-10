@@ -1,0 +1,14 @@
+{
+  "name": "4everacy-landing",
+  "version": "1.0.0",
+  "description": "4everacy™ — Digital Life Operating System Landing Page",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site — no build step required'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@netlify/plugin-lighthouse": "^6.0.0",
+    "@netlify/plugin-sitemap": "^0.8.0"
+  }
+}

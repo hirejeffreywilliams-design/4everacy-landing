@@ -9,7 +9,7 @@
   publish = "."
   functions = "netlify/functions"
   edge_functions = "netlify/edge-functions"
-  command = "echo 'Static site — no build step required'"
+  command = "npm install"
 
 # Environment variables for all contexts
 [build.environment]
@@ -18,7 +18,7 @@
 
 # ── Production Context ────────────────────────────────────────────────────────
 [context.production]
-  command = "echo 'Deploying 4everacy™ to production'"
+  command = "npm install"
 
 [context.production.environment]
   CONTEXT = "production"
@@ -26,14 +26,14 @@
 
 # ── Deploy Preview Context ────────────────────────────────────────────────────
 [context.deploy-preview]
-  command = "echo 'Deploy preview build'"
+  command = "npm install"
 
 [context.deploy-preview.environment]
   CONTEXT = "deploy-preview"
 
 # ── Branch Deploy Context ─────────────────────────────────────────────────────
 [context.branch-deploy]
-  command = "echo 'Branch deploy build'"
+  command = "npm install"
 
 [context.branch-deploy.environment]
   CONTEXT = "branch-deploy"
