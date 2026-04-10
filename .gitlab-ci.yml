@@ -1,0 +1,353 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# 4EVERACY™ — GitLab CI/CD → Netlify Deployment Pipeline
+# OmniDLOS Digital Life Operating System
+# Integrates GitLab CI/CD with Netlify Pro for automated deployments
+# ═══════════════════════════════════════════════════════════════════════════════
+
+stages:
+  - validate
+  - security
+  - test
+  - build
+  - deploy-preview
+  - deploy-production
+  - post-deploy
+
+# ── Global Variables ──────────────────────────────────────────────────────────
+variables:
+  NETLIFY_CLI_VERSION: "17"
+  NODE_VERSION: "20"
+
+# ── Cache Configuration ──────────────────────────────────────────────────────
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .netlify/
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 1: VALIDATE — Check configuration and file integrity
+# ═══════════════════════════════════════════════════════════════════════════════
+
+validate:config:
+  stage: validate
+  image: node:20-alpine
+  script:
+    - echo "═══ 4everacy™ Pipeline Starting ═══"
+    - echo "Commit → $CI_COMMIT_SHA"
+    - echo "Branch → $CI_COMMIT_REF_NAME"
+    - echo "Author → $CI_COMMIT_AUTHOR"
+    - echo ""
+    - echo "Validating netlify.toml..."
+    - |
+      if [ -f "netlify.toml" ]; then
+        echo "✓ netlify.toml found"
+      else
+        echo "✗ netlify.toml missing!"
+        exit 1
+      fi
+    - echo "Validating required files..."
+    - |
+      for file in index.html privacy.html terms.html 404.html; do
+        if [ -f "$file" ]; then
+          echo "✓ $file found"
+        else
+          echo "✗ $file missing!"
+          exit 1
+        fi
+      done
+    - echo "Validating functions..."
+    - |
+      for func in netlify/functions/health.mjs netlify/functions/waitlist.mjs netlify/functions/stripe-webhook.mjs netlify/functions/ecosystem-status.mjs; do
+        if [ -f "$func" ]; then
+          echo "✓ $func found"
+        else
+          echo "✗ $func missing!"
+          exit 1
+        fi
+      done
+    - echo "Validating edge functions..."
+    - |
+      for edge in netlify/edge-functions/geo-personalize.js netlify/edge-functions/ab-testing.js netlify/edge-functions/rate-limiter.js; do
+        if [ -f "$edge" ]; then
+          echo "✓ $edge found"
+        else
+          echo "✗ $edge missing!"
+          exit 1
+        fi
+      done
+    - echo "═══ Validation Complete ═══"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+validate:html:
+  stage: validate
+  image: node:20-alpine
+  script:
+    - echo "Checking HTML structure..."
+    - |
+      for file in index.html privacy.html terms.html 404.html; do
+        if grep -q "<!DOCTYPE html>" "$file"; then
+          echo "✓ $file has valid DOCTYPE"
+        else
+          echo "✗ $file missing DOCTYPE"
+          exit 1
+        fi
+        if grep -q "</html>" "$file"; then
+          echo "✓ $file has closing html tag"
+        else
+          echo "✗ $file missing closing html tag"
+          exit 1
+        fi
+      done
+    - echo "HTML structure validated"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 2: SECURITY — Scan for secrets and vulnerabilities
+# ═══════════════════════════════════════════════════════════════════════════════
+
+security:secrets:
+  stage: security
+  image: node:20-alpine
+  script:
+    - echo "═══ Secret Detection Scan ═══"
+    - |
+      SECRETS_FOUND=0
+      # Check for common secret patterns
+      PATTERNS=(
+        "AKIA[0-9A-Z]{16}"
+        "sk_live_[0-9a-zA-Z]{24}"
+        "sk_test_[0-9a-zA-Z]{24}"
+        "ghp_[0-9a-zA-Z]{36}"
+        "glpat-[0-9a-zA-Z\-]{20}"
+        "password\s*=\s*['\"][^'\"]*['\"]"
+        "api_key\s*=\s*['\"][^'\"]*['\"]"
+        "secret\s*=\s*['\"][^'\"]*['\"]"
+      )
+      for pattern in "${PATTERNS[@]}"; do
+        if grep -rE "$pattern" --include="*.html" --include="*.js" --include="*.mjs" --include="*.toml" --include="*.json" . 2>/dev/null | grep -v node_modules | grep -v .git; then
+          echo "⚠ Potential secret found matching: $pattern"
+          SECRETS_FOUND=1
+        fi
+      done
+      if [ "$SECRETS_FOUND" -eq 1 ]; then
+        echo "✗ SECRETS DETECTED — Blocking deployment"
+        exit 1
+      else
+        echo "✓ No secrets detected in codebase"
+      fi
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+security:headers:
+  stage: security
+  image: node:20-alpine
+  script:
+    - echo "═══ Security Headers Verification ═══"
+    - |
+      REQUIRED_HEADERS=(
+        "X-Frame-Options"
+        "X-Content-Type-Options"
+        "Strict-Transport-Security"
+        "Content-Security-Policy"
+        "Referrer-Policy"
+        "Permissions-Policy"
+      )
+      for header in "${REQUIRED_HEADERS[@]}"; do
+        if grep -q "$header" netlify.toml; then
+          echo "✓ $header configured"
+        else
+          echo "✗ $header MISSING from netlify.toml"
+          exit 1
+        fi
+      done
+    - echo "All security headers verified"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 3: TEST — Run function tests
+# ═══════════════════════════════════════════════════════════════════════════════
+
+test:functions:
+  stage: test
+  image: node:20-alpine
+  script:
+    - echo "═══ Function Syntax Check ═══"
+    - |
+      for func in netlify/functions/*.mjs; do
+        echo "Checking $func..."
+        node --check "$func" && echo "✓ $func is valid" || { echo "✗ $func has syntax errors"; exit 1; }
+      done
+    - echo "All functions passed syntax check"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+test:edge-functions:
+  stage: test
+  image: node:20-alpine
+  script:
+    - echo "═══ Edge Function Syntax Check ═══"
+    - |
+      for func in netlify/edge-functions/*.js; do
+        echo "Checking $func..."
+        node --check "$func" && echo "✓ $func is valid" || { echo "✗ $func has syntax errors"; exit 1; }
+      done
+    - echo "All edge functions passed syntax check"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 4: BUILD — Prepare deploy bundle
+# ═══════════════════════════════════════════════════════════════════════════════
+
+build:
+  stage: build
+  image: node:20-alpine
+  script:
+    - echo "═══ Building 4everacy™ Deploy Bundle ═══"
+    - echo "Static site — cataloging files..."
+    - |
+      echo "Files to deploy:"
+      find . -not -path './.git/*' -not -path './node_modules/*' -not -path './.gitlab-ci.yml' -type f | sort
+    - echo ""
+    - |
+      TOTAL_FILES=$(find . -not -path './.git/*' -not -path './node_modules/*' -type f | wc -l)
+      echo "Total files: $TOTAL_FILES"
+    - echo "═══ Build Complete ═══"
+  artifacts:
+    paths:
+      - "*.html"
+      - netlify.toml
+      - _redirects
+      - _headers
+      - CNAME
+      - netlify/
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 5: DEPLOY PREVIEW — Deploy to preview URL for merge requests
+# ═══════════════════════════════════════════════════════════════════════════════
+
+deploy:preview:
+  stage: deploy-preview
+  image: node:20-alpine
+  before_script:
+    - npm install -g netlify-cli@${NETLIFY_CLI_VERSION}
+  script:
+    - echo "═══ Deploying Preview to Netlify ═══"
+    - |
+      netlify deploy \
+        --dir=. \
+        --functions=netlify/functions \
+        --site=$NETLIFY_SITE_ID \
+        --auth=$NETLIFY_AUTH_TOKEN \
+        --message="Preview: MR !${CI_MERGE_REQUEST_IID} — ${CI_COMMIT_TITLE}" \
+        --json > deploy-output.json
+    - |
+      DEPLOY_URL=$(cat deploy-output.json | node -e "process.stdin.on('data',d=>console.log(JSON.parse(d).deploy_url))")
+      echo "════════════════════════════════════════"
+      echo "Preview URL: $DEPLOY_URL"
+      echo "════════════════════════════════════════"
+  environment:
+    name: preview/$CI_MERGE_REQUEST_IID
+    url: $DEPLOY_URL
+    on_stop: stop:preview
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+
+stop:preview:
+  stage: deploy-preview
+  image: node:20-alpine
+  script:
+    - echo "Preview environment stopped"
+  environment:
+    name: preview/$CI_MERGE_REQUEST_IID
+    action: stop
+  when: manual
+  rules:
+    - if: $CI_MERGE_REQUEST_IID
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 6: DEPLOY PRODUCTION — Deploy to live site
+# ═══════════════════════════════════════════════════════════════════════════════
+
+deploy:production:
+  stage: deploy-production
+  image: node:20-alpine
+  before_script:
+    - npm install -g netlify-cli@${NETLIFY_CLI_VERSION}
+  script:
+    - echo "═══ Deploying 4everacy™ to PRODUCTION ═══"
+    - |
+      netlify deploy \
+        --dir=. \
+        --functions=netlify/functions \
+        --site=$NETLIFY_SITE_ID \
+        --auth=$NETLIFY_AUTH_TOKEN \
+        --prod \
+        --message="Production: ${CI_COMMIT_TITLE} (${CI_COMMIT_SHORT_SHA})" \
+        --json > deploy-output.json
+    - |
+      SITE_URL=$(cat deploy-output.json | node -e "process.stdin.on('data',d=>console.log(JSON.parse(d).url))")
+      echo "════════════════════════════════════════════"
+      echo "🌐 LIVE: $SITE_URL"
+      echo "════════════════════════════════════════════"
+  environment:
+    name: production
+    url: https://4everacy.com
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 7: POST-DEPLOY — Verify and notify
+# ═══════════════════════════════════════════════════════════════════════════════
+
+post-deploy:health:
+  stage: post-deploy
+  image: node:20-alpine
+  script:
+    - apk add --no-cache curl
+    - echo "═══ Post-Deploy Health Check ═══"
+    - sleep 10  # Wait for deploy to propagate
+    - |
+      if [ -n "$NETLIFY_SITE_URL" ]; then
+        HEALTH_URL="${NETLIFY_SITE_URL}/api/health"
+      else
+        HEALTH_URL="https://4everacy.com/api/health"
+      fi
+      echo "Checking: $HEALTH_URL"
+      RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$HEALTH_URL" || true)
+      if [ "$RESPONSE" = "200" ]; then
+        echo "✓ Health check passed (HTTP $RESPONSE)"
+      else
+        echo "⚠ Health check returned HTTP $RESPONSE (may need DNS propagation)"
+      fi
+    - echo "═══ Deployment Complete ═══"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+  allow_failure: true
+
+post-deploy:lighthouse:
+  stage: post-deploy
+  image: node:20-alpine
+  script:
+    - echo "Lighthouse audit will run via Netlify plugin"
+    - echo "Results available in Netlify deploy dashboard"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+  allow_failure: true
