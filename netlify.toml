@@ -8,46 +8,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
-  edge_functions = "netlify/edge-functions"
-  command = "echo 'Static site ready'"
-
-# Environment variables for all contexts
-[build.environment]
-  NODE_VERSION = "20"
-  NPM_VERSION = "10"
-
-# ── Production Context ────────────────────────────────────────────────────────
-[context.production]
-  command = "echo 'Production deploy'"
-
-[context.production.environment]
-  CONTEXT = "production"
-  DEPLOY_ENV = "production"
-
-# ── Deploy Preview Context ────────────────────────────────────────────────────
-[context.deploy-preview]
-  command = "echo 'Preview deploy'"
-
-[context.deploy-preview.environment]
-  CONTEXT = "deploy-preview"
-
-# ── Branch Deploy Context ─────────────────────────────────────────────────────
-[context.branch-deploy]
-  command = "echo 'Branch deploy'"
-
-[context.branch-deploy.environment]
-  CONTEXT = "branch-deploy"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # REDIRECTS — URL Routing & API Proxies
 # ═══════════════════════════════════════════════════════════════════════════════
-
-# ── SPA Fallback (if converting to SPA later) ────────────────────────────────
-# Uncomment when 4everacy becomes a full SPA:
-# [[redirects]]
-#   from = "/*"
-#   to = "/index.html"
-#   status = 200
 
 # ── Custom Domain Redirect (www → apex) ──────────────────────────────────────
 [[redirects]]
@@ -55,17 +19,6 @@
   to = "https://4everacy.com/:splat"
   status = 301
   force = true
-
-# ── Trailing Slash Normalization ──────────────────────────────────────────────
-[[redirects]]
-  from = "/privacy/"
-  to = "/privacy"
-  status = 301
-
-[[redirects]]
-  from = "/terms/"
-  to = "/terms"
-  status = 301
 
 # ── API Proxy to Serverless Functions ─────────────────────────────────────────
 [[redirects]]
@@ -81,22 +34,34 @@
   status = 200
   force = true
 
-# ── Waitlist API ──────────────────────────────────────────────────────────────
+# ── Clean URLs for Legal Pages ────────────────────────────────────────────────
 [[redirects]]
-  from = "/api/waitlist"
-  to = "/.netlify/functions/waitlist"
+  from = "/privacy"
+  to = "/privacy.html"
   status = 200
-  force = true
 
-# ── Health Check ──────────────────────────────────────────────────────────────
 [[redirects]]
-  from = "/api/health"
-  to = "/.netlify/functions/health"
+  from = "/terms"
+  to = "/terms.html"
   status = 200
-  force = true
+
+# ── Marketing Shortlinks ─────────────────────────────────────────────────────
+[[redirects]]
+  from = "/founders"
+  to = "/#waitlist"
+  status = 302
+
+[[redirects]]
+  from = "/join"
+  to = "/#waitlist"
+  status = 302
+
+[[redirects]]
+  from = "/invest"
+  to = "/#investor"
+  status = 302
 
 # ── OmniDLOS Ecosystem App Redirects ─────────────────────────────────────────
-# These redirect to individual app subdomains when they go live
 [[redirects]]
   from = "/app/sors-maxima"
   to = "https://sors-maxima.4everacy.com"
@@ -127,33 +92,6 @@
   to = "https://tradenova.4everacy.com"
   status = 302
 
-# ── Legal Pages (clean URLs) ─────────────────────────────────────────────────
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
-
-# ── Social / Marketing Shortlinks ────────────────────────────────────────────
-[[redirects]]
-  from = "/founders"
-  to = "/#waitlist"
-  status = 302
-
-[[redirects]]
-  from = "/join"
-  to = "/#waitlist"
-  status = 302
-
-[[redirects]]
-  from = "/invest"
-  to = "/#investor"
-  status = 302
-
 # ── 404 Fallback ─────────────────────────────────────────────────────────────
 [[redirects]]
   from = "/*"
@@ -168,7 +106,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
@@ -176,20 +113,18 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
-    # Cross-Origin Isolation
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
-    # Custom
-    X-Powered-By = "4everacy™ OmniDLOS"
+    X-Powered-By = "4everacy OmniDLOS"
     X-Robots-Tag = "index, follow"
 
-# ── HTML Pages — No Cache (always fresh) ──────────────────────────────────────
+# ── HTML Pages — No Cache ─────────────────────────────────────────────────────
 [[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# ── CSS & JS — Long Cache with Immutable ──────────────────────────────────────
+# ── Static Assets — Long Cache ────────────────────────────────────────────────
 [[headers]]
   for = "/*.css"
   [headers.values]
@@ -197,12 +132,6 @@
 
 [[headers]]
   for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# ── Images — Long Cache ───────────────────────────────────────────────────────
-[[headers]]
-  for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -227,24 +156,12 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.ico"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# ── Fonts — Long Cache ────────────────────────────────────────────────────────
-[[headers]]
   for = "/*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Access-Control-Allow-Origin = "*"
 
-[[headers]]
-  for = "/*.woff"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Access-Control-Allow-Origin = "*"
-
-# ── API Responses — No Cache ──────────────────────────────────────────────────
+# ── API Responses — No Cache + CORS ───────────────────────────────────────────
 [[headers]]
   for = "/api/*"
   [headers.values]
@@ -253,7 +170,7 @@
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type, Authorization"
 
-# ── Netlify Functions — CORS ──────────────────────────────────────────────────
+# ── Functions CORS ────────────────────────────────────────────────────────────
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
@@ -268,47 +185,12 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = ["netlify/functions/**"]
-
-# Function-specific configuration
-[functions.waitlist]
-  external_node_modules = ["@netlify/functions"]
-
-[functions.stripe-webhook]
-  external_node_modules = ["stripe"]
-
-[functions.health]
-  external_node_modules = ["@netlify/functions"]
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# EDGE FUNCTIONS — Run at the Edge (Deno-based)
-# ═══════════════════════════════════════════════════════════════════════════════
-
-[[edge_functions]]
-  path = "/*"
-  function = "geo-personalize"
-
-[[edge_functions]]
-  path = "/*"
-  function = "ab-testing"
-
-[[edge_functions]]
-  path = "/api/*"
-  function = "rate-limiter"
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# PLUGINS — Netlify Build Plugins (install via Netlify dashboard > Plugins)
-# ═══════════════════════════════════════════════════════════════════════════════
-# Lighthouse and Sitemap plugins can be enabled from the Netlify dashboard.
-# Go to: Site settings > Build & deploy > Plugins > Search for plugins
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # DEV — Local Development Settings
 # ═══════════════════════════════════════════════════════════════════════════════
 
 [dev]
-  command = "echo 'Static site served by Netlify Dev'"
   port = 8888
-  targetPort = 3000
   autoLaunch = false
   framework = "#static"
