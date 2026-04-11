@@ -11,6 +11,7 @@ stages:
   - build
   - deploy-preview
   - deploy-production
+  - load-test
   - post-deploy
 
 # ── Global Variables ──────────────────────────────────────────────────────────
@@ -312,7 +313,124 @@ deploy:production:
     - if: $CI_COMMIT_BRANCH == "main"
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# STAGE 7: POST-DEPLOY — Verify and notify
+# STAGE 7: LOAD TESTING — k6 Performance & Stress Tests
+# Validates the platform can handle high-traffic launch scenarios
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Smoke Test (Automatic — runs on every push) ─────────────────────────────
+load-test:smoke:
+  stage: load-test
+  image:
+    name: grafana/k6:latest
+    entrypoint: [""]
+  variables:
+    BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
+  script:
+    - echo "═══ 4everacy™ Smoke Test (5 Users) ═══"
+    - echo "Target: $BASE_URL"
+    - mkdir -p load-tests/results
+    - k6 run --out json=load-tests/results/smoke-raw.json load-tests/smoke-test.js
+    - echo "═══ Smoke Test Complete ═══"
+  artifacts:
+    paths:
+      - load-tests/results/
+    expire_in: 30 days
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: true
+
+# ── Load Test (Automatic — runs on main/master deploys) ─────────────────────
+load-test:standard:
+  stage: load-test
+  image:
+    name: grafana/k6:latest
+    entrypoint: [""]
+  variables:
+    BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
+  script:
+    - echo "═══ 4everacy™ Load Test (500 Users) ═══"
+    - echo "Target: $BASE_URL"
+    - echo "Duration: ~15 minutes"
+    - echo ""
+    - mkdir -p load-tests/results
+    - k6 run --out json=load-tests/results/load-raw.json load-tests/load-test.js
+    - echo "═══ Load Test Complete ═══"
+  artifacts:
+    paths:
+      - load-tests/results/
+    expire_in: 30 days
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+  allow_failure: true
+  timeout: 25m
+
+# ── Stress Test (Manual — run before big launches) ──────────────────────────
+load-test:stress:
+  stage: load-test
+  image:
+    name: grafana/k6:latest
+    entrypoint: [""]
+  variables:
+    BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
+  script:
+    - echo "═══════════════════════════════════════════════════════"
+    - echo "  4EVERACY™ STRESS TEST — Finding the Breaking Point  "
+    - echo "  Target: $BASE_URL"
+    - echo "  Max Users: 5,000 concurrent"
+    - echo "  Duration: ~16 minutes"
+    - echo "═══════════════════════════════════════════════════════"
+    - mkdir -p load-tests/results
+    - k6 run --out json=load-tests/results/stress-raw.json load-tests/stress-test.js
+    - echo "═══ Stress Test Complete ═══"
+  artifacts:
+    paths:
+      - load-tests/results/
+    expire_in: 30 days
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: manual
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
+  allow_failure: true
+  timeout: 30m
+
+# ── Spike Test (Manual — simulates viral traffic) ───────────────────────────
+load-test:spike:
+  stage: load-test
+  image:
+    name: grafana/k6:latest
+    entrypoint: [""]
+  variables:
+    BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
+  script:
+    - echo "═══════════════════════════════════════════════════════"
+    - echo "  4EVERACY™ SPIKE TEST — Viral Traffic Simulation     "
+    - echo "  Target: $BASE_URL"
+    - echo "  Peak: 5,000 users (sudden burst)"
+    - echo "  Duration: ~8 minutes"
+    - echo "═══════════════════════════════════════════════════════"
+    - mkdir -p load-tests/results
+    - k6 run --out json=load-tests/results/spike-raw.json load-tests/spike-test.js
+    - echo "═══ Spike Test Complete ═══"
+  artifacts:
+    paths:
+      - load-tests/results/
+    expire_in: 30 days
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: manual
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
+  allow_failure: true
+  timeout: 20m
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STAGE 8: POST-DEPLOY — Verify and notify
 # ═══════════════════════════════════════════════════════════════════════════════
 
 post-deploy:health:
