@@ -771,6 +771,99 @@
       max-width: 540px;
       margin: 0 auto;
     }
+
+    /* ── HOW PAYMENT WORKS CALLOUT ── */
+    .payment-explainer {
+      max-width: 800px;
+      margin: 0 auto 64px;
+      background: rgba(59,130,246,0.05);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+    .payment-explainer h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B82F6;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .payment-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .payment-step {
+      text-align: center;
+    }
+    .payment-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.15);
+      color: #3B82F6;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .payment-step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .payment-step-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .payment-notice {
+      background: rgba(212,175,55,0.06);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      text-align: center;
+    }
+    .payment-notice strong {
+      color: #D4AF37;
+    }
+
+    /* ── LEGAL DISCLAIMER SECTION ── */
+    .legal-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 24px 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .legal-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .legal-section .legal-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .legal-section .legal-text strong {
+      color: rgba(255,255,255,0.45);
+    }
   </style>
 </head>
 <body>
@@ -794,7 +887,7 @@
     <div style="text-align:center;margin-bottom:16px;">
       <span class="hero-badge">
         <span class="dot"></span>
-        Launching May 10, 2026 — Founders 5000™ Now Open
+        Reserve Now — Platform Launches May 10, 2026
       </span>
     </div>
     <h1 class="hero-title">
@@ -841,7 +934,7 @@
       </div>
     </div>
     <p style="font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Sunday, May 10, 2026 — Mother's Day</p>
-    <p style="font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 24px;">The universes open. Founding Member pricing locks in forever on launch day.</p>
+    <p style="font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 24px;">Pay now to reserve your Founding Member seat. Full platform access begins on launch day. Your price is locked forever.</p>
     <a href="#founders" class="btn-primary" style="font-size: 14px; padding: 13px 28px;">Reserve Your Founding Seat Before Launch →</a>
   </div>
 </section>
@@ -1043,10 +1136,35 @@
     </div>
   </div>
 
+  <!-- How Your Payment Works -->
+  <div class="payment-explainer">
+    <h3>🔒 How Your Payment Works</h3>
+    <div class="payment-steps">
+      <div class="payment-step">
+        <div class="payment-step-num">1</div>
+        <div class="payment-step-title">Pay Today to Reserve</div>
+        <div class="payment-step-desc">Your one-time payment made today secures and reserves your Founding Member seat, your FM Serial Number, your tier selection, and your FSU™ multiplier. This is a binding reservation — your spot is held exclusively for you.</div>
+      </div>
+      <div class="payment-step">
+        <div class="payment-step-num">2</div>
+        <div class="payment-step-title">Receive Confirmation</div>
+        <div class="payment-step-desc">Immediately after payment, you receive your FM Serial Number, your Founding Badge, and a confirmation email with your reserved tier details. Your seat is locked — no one else can claim it.</div>
+      </div>
+      <div class="payment-step">
+        <div class="payment-step-num">3</div>
+        <div class="payment-step-title">Full Access on May 10</div>
+        <div class="payment-step-desc">On launch day (Sunday, May 10, 2026 — Mother's Day), the platform goes live and you receive full access to all features included in your tier. Your FSU™ multipliers and earnings engine activate immediately.</div>
+      </div>
+    </div>
+    <div class="payment-notice">
+      <strong>Important:</strong> Your payment today is a <strong>pre-launch reservation purchase</strong>. You are paying now to permanently reserve your Founding Member seat at the current price. Platform access begins on the official launch date of <strong>May 10, 2026</strong>. This is not a subscription — it is a one-time lifetime payment. All sales are subject to our <a href="terms.html" style="color:#3B82F6;text-decoration:underline;">Terms of Service</a> and <a href="#legal" style="color:#3B82F6;text-decoration:underline;">Purchase Terms</a> below. A full refund is available within 30 days of launch if you are not satisfied.
+    </div>
+  </div>
+
   <!-- Pricing Tiers -->
   <div style="text-align:center;margin-bottom:32px;">
     <div class="section-label">Choose Your Founding Tier</div>
-    <p style="font-size:13px;color:rgba(255,255,255,0.4);max-width:520px;margin:0 auto;">One-time lifetime payment. No subscriptions. No renewals. Ever. Your price locks in on launch day and never increases.</p>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);max-width:560px;margin:0 auto;">One-time lifetime payment. No subscriptions. No renewals. Ever. Pay today to reserve your seat — full platform access begins on May 10, 2026. Your price is locked forever and never increases.</p>
   </div>
 
   <div class="tiers-grid">
@@ -1056,7 +1174,7 @@
       <div class="tier-name" style="color:#10B981;">Pioneer</div>
       <div class="tier-desc">Full platform access — the foundation of your digital legacy</div>
       <div class="tier-price" style="color:#10B981;">$997</div>
-      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-price-sub">one-time lifetime payment — reserve now, access May 10</div>
       <div class="tier-value">
         <strong>Replaces $2,250/yr</strong> in app subscriptions. Pays for itself in <strong>5 months</strong>. After that, it's free forever.
       </div>
@@ -1071,7 +1189,7 @@
         <li>15% lifetime referral revenue share</li>
         <li>MonetizationAcademy™ training included</li>
       </ul>
-      <a href="#waitlist" class="tier-cta" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:#10B981;">Claim Pioneer Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:#10B981;">Reserve Pioneer Seat — Pay Now</a>
     </div>
 
     <!-- Pathfinder -->
@@ -1080,7 +1198,7 @@
       <div class="tier-name" style="color:#3B82F6;">Pathfinder</div>
       <div class="tier-desc">Business-grade access — built for founders, creators, and builders</div>
       <div class="tier-price" style="color:#3B82F6;">$2,497</div>
-      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-price-sub">one-time lifetime payment — reserve now, access May 10</div>
       <div class="tier-value">
         <strong>2.0× FSU™ multiplier doubles your earnings.</strong> A Pathfinder earning $200/mo from DataSovereign™ receives <strong>$400/mo — $4,800/yr</strong>. ROI in under 7 months.
       </div>
@@ -1095,7 +1213,7 @@
         <li>Enhanced referral bonuses</li>
         <li>DigitalBoardOS™ AI executive council access</li>
       </ul>
-      <a href="#waitlist" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Claim Pathfinder Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Reserve Pathfinder Seat — Pay Now</a>
     </div>
 
     <!-- Visionary (featured) -->
@@ -1105,7 +1223,7 @@
       <div class="tier-name" style="color:#a78bfa;">Visionary</div>
       <div class="tier-desc">Enterprise-grade access — for those who lead, create, and build empires</div>
       <div class="tier-price" style="color:#a78bfa;">$4,997</div>
-      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-price-sub">one-time lifetime payment — reserve now, access May 10</div>
       <div class="tier-value">
         <strong>3.5× multiplier on everything.</strong> $200/mo base earnings becomes <strong>$700/mo — $8,400/yr</strong>. Add creator income and referrals: <strong>$20K–$50K+/yr</strong> is realistic for active Visionaries.
       </div>
@@ -1121,7 +1239,7 @@
         <li>Exclusive Visionary community + founder networking</li>
         <li>White-glove onboarding session</li>
       </ul>
-      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Claim Visionary Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Reserve Visionary Seat — Pay Now</a>
     </div>
 
     <!-- Legend -->
@@ -1131,7 +1249,7 @@
       <div class="tier-name" style="color:#D4AF37;">Legend</div>
       <div class="tier-desc">The absolute peak — maximum earnings, maximum access, maximum legacy</div>
       <div class="tier-price" style="color:#D4AF37;">$9,997</div>
-      <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-price-sub">one-time lifetime payment — reserve now, access May 10</div>
       <div class="tier-value">
         <strong>6.0× maximum multiplier.</strong> $200/mo base becomes <strong>$1,200/mo — $14,400/yr</strong>. Active Legends combining all revenue streams earn <strong>$50K–$100K+/yr</strong>. 10 referrals alone = <strong>$14,995 back</strong>.
       </div>
@@ -1148,14 +1266,14 @@
         <li>Unlimited cloud storage + API access</li>
         <li>Legacy immortalization — your story preserved in perpetuity</li>
       </ul>
-      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;font-weight:800;">Claim Legend Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;font-weight:800;">Reserve Legend Seat — Pay Now</a>
     </div>
   </div>
 
   <!-- Guarantee -->
   <div class="guarantee-section">
-    <h3>🛡️ 30-Day Full Refund Guarantee</h3>
-    <p>Not satisfied? Get 100% of your money back within 30 days of launch. No questions asked. We're that confident in what we've built — 308+ patents, 100+ features, and 3+ years of development. Your investment is protected.</p>
+    <h3>🛡️ 30-Day Post-Launch Full Refund Guarantee</h3>
+    <p>If the platform does not meet your expectations after launch, you may request a full 100% refund within 30 days of the launch date (May 10, 2026). No questions asked. If the launch date is delayed for any reason, you may also request a full refund at any time before launch. Your investment is fully protected. We're that confident in what we've built — 308+ patents, 100+ features, and 3+ years of development.</p>
   </div>
 </section>
 
@@ -1168,18 +1286,18 @@
   <div class="steps-grid">
     <div>
       <div class="step-num">STEP 01</div>
-      <div class="step-title">Choose Your Founding Tier</div>
-      <p class="step-desc">Select Pioneer, Pathfinder, Visionary, or Legend. Each is a one-time payment with lifetime access. The higher your tier, the higher your FSU™ earnings multiplier — permanently.</p>
+      <div class="step-title">Pay Now to Reserve Your Seat</div>
+      <p class="step-desc">Select your founding tier and make your one-time payment today. This reserves your Founding Member seat, locks in your price permanently, and secures your FSU™ multiplier. You are paying now to hold your spot — the platform is not yet live.</p>
     </div>
     <div>
       <div class="step-num">STEP 02</div>
-      <div class="step-title">Lock In Your Price Forever</div>
-      <p class="step-desc">Your Founding Member price never increases. You'll receive your FM Serial Number and Founding Badge immediately. Post-launch pricing will be significantly higher — these rates are exclusive to the first 5,000.</p>
+      <div class="step-title">Get Your Confirmation Instantly</div>
+      <p class="step-desc">Immediately after payment, you receive your FM Serial Number, your Founding Badge, and a confirmation email. Your seat is exclusively yours. Post-launch pricing will be significantly higher — these founding rates are only available to the first 5,000 members.</p>
     </div>
     <div>
       <div class="step-num">STEP 03</div>
-      <div class="step-title">Launch Day — May 10, 2026</div>
-      <p class="step-desc">On Mother's Day 2026, the universes open. You get first access to all six universes, your FSU™ multipliers start compounding, and your earnings engine activates from day one. Welcome to forever.</p>
+      <div class="step-title">Access Opens May 10, 2026</div>
+      <p class="step-desc">On Mother's Day 2026, the platform launches and full access to all six universes activates for Founding Members. Your FSU™ multipliers start compounding and your earnings engine goes live. If you're not satisfied, you have 30 days post-launch for a full refund.</p>
     </div>
   </div>
 </section>
@@ -1204,6 +1322,43 @@
     </div>
   </div>
 </section>
+
+<!-- LEGAL DISCLAIMERS -->
+<div class="legal-section" id="legal">
+  <h3>Purchase Terms &amp; Legal Disclosures</h3>
+
+  <div class="legal-text">
+    <strong>Pre-Launch Reservation Purchase:</strong> All payments made prior to the official launch date of May 10, 2026 constitute a pre-launch reservation purchase. By making a payment, you are reserving your Founding Member seat, your selected tier, your FM Serial Number, and your FSU™ multiplier at the current price. Full platform access will be granted on the launch date. The platform is currently in development and is not yet available for use. Your payment secures your position in the Founders 5000™ program and guarantees your pricing will never increase.
+  </div>
+
+  <div class="legal-text">
+    <strong>What You Receive Immediately Upon Payment:</strong> (1) A unique Founding Member Serial Number (FM Serial Number); (2) A digital Founding Badge confirming your tier; (3) A confirmation email with your reservation details; (4) Your locked-in pricing guarantee; (5) Your assigned FSU™ multiplier. Full platform access, including all six universes and associated features, will be provided beginning on the launch date.
+  </div>
+
+  <div class="legal-text">
+    <strong>What You Receive on Launch Day (May 10, 2026):</strong> Full access to all platform features included in your selected tier, activation of your FSU™ earnings multiplier, access to DataSovereign™ monetization tools, access to all six universes (NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™), and all other features described for your tier on this page.
+  </div>
+
+  <div class="legal-text">
+    <strong>Refund Policy:</strong> You may request a full 100% refund within 30 calendar days following the official launch date of May 10, 2026. If the official launch date is delayed beyond May 10, 2026, you may request a full refund at any time prior to the revised launch date. Refund requests should be directed to support@4everacy.com. Refunds will be processed within 10 business days to the original payment method.
+  </div>
+
+  <div class="legal-text">
+    <strong>Earnings Disclaimer:</strong> All earnings figures, revenue projections, and income estimates presented on this page are illustrative examples only and represent potential outcomes, not guaranteed results. Actual earnings will vary based on individual usage, engagement, market conditions, and other factors. 4everacy, Inc. does not guarantee any specific level of income or financial return. FSU™ multipliers apply to eligible platform revenue streams as described in the Terms of Service. Past performance of similar platforms does not guarantee future results.
+  </div>
+
+  <div class="legal-text">
+    <strong>No Investment or Security:</strong> A Founding Member seat is a product purchase — not an investment, equity stake, security, or financial instrument. Founding Share Units (FSU™) are platform reward multipliers, not securities or ownership interests. You are purchasing lifetime access to a software platform and its associated features.
+  </div>
+
+  <div class="legal-text">
+    <strong>Platform Availability:</strong> 4everacy, Inc. reserves the right to modify the launch date, platform features, or service specifications prior to launch. In the event of any material changes, existing reservation holders will be notified via email and offered the option of a full refund. The platform is provided "as is" upon launch, subject to the full <a href="terms.html" style="color:rgba(255,255,255,0.45);text-decoration:underline;">Terms of Service</a>.
+  </div>
+
+  <div class="legal-text">
+    <strong>Company Information:</strong> 4everacy, Inc. is operated by Jeffrey W Williams LLC. All trademarks referenced on this page are the property of 4everacy, Inc. For questions about your purchase, contact support@4everacy.com.
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
