@@ -650,6 +650,24 @@
 
     .step-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
 
+    /* ── FEATURE SHOWCASE RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .feature-showcase-card {
+        grid-template-columns: 1fr !important;
+        padding: 28px 20px !important;
+      }
+      .feature-showcase-card > div[style*="order:0"] {
+        order: 1 !important;
+      }
+      .feature-showcase-card > div[style*="order:1"] {
+        order: 0 !important;
+      }
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+      nav { padding: 12px 16px; }
+    }
+
     /* ── WAITLIST ── */
     #waitlist {
       padding: 100px 24px;
@@ -870,9 +888,10 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">4EVERACY™</div>
+  <div class="nav-logo"><img src="images/4everacy-logo.png" alt="4everacy™" style="height:40px;width:auto;vertical-align:middle;" /></div>
   <div class="nav-links">
     <a href="#universes">Platform</a>
+    <a href="#features">Features</a>
     <a href="#founders">Founders 5000</a>
     <a href="#earnings">Earnings</a>
     <a href="#countdown">Launch Date</a>
@@ -884,6 +903,9 @@
 <section id="hero">
   <div class="orb" style="width:600px;height:600px;background:rgba(139,92,246,0.08);top:-100px;left:50%;transform:translateX(-50%);"></div>
   <div class="hero-inner">
+    <div style="text-align:center;margin-bottom:24px;">
+      <img src="images/4everacy-logo.png" alt="4everacy™" style="height:100px;width:auto;filter:drop-shadow(0 0 40px rgba(139,92,246,0.3));" />
+    </div>
     <div style="text-align:center;margin-bottom:16px;">
       <span class="hero-badge">
         <span class="dot"></span>
@@ -951,8 +973,8 @@
       <div class="stat-label">Platform Features</div>
     </div>
     <div>
-      <div class="stat-number">308+</div>
-      <div class="stat-label">Patents Filed</div>
+      <div class="stat-number">4</div>
+      <div class="stat-label">Patents Filed (USPTO)</div>
     </div>
     <div>
       <div class="stat-number">5,000</div>
@@ -975,17 +997,17 @@
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(139,92,246,0.12);">🌌</div>
       <div class="universe-name" style="color:#a78bfa;">NovaSelf™</div>
-      <p class="universe-desc">Your personal universe. Journaling, goals, mood intelligence, life momentum, and the AI that knows your inner world better than any app ever has.</p>
+      <p class="universe-desc">Your personal universe. Journaling, goals, and life momentum — powered by AI that understands you. Track where you've been and where you're going.</p>
     </div>
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(16,185,129,0.12);">👨‍👩‍👧‍👦</div>
       <div class="universe-name" style="color:#10B981;">KinSphere™</div>
-      <p class="universe-desc">Your family universe. Living family trees, TruthMails™ for future generations, ChronoVault™ for memories, and tools that keep every story alive forever.</p>
+      <p class="universe-desc">Your family universe. Living family trees, TruthMails™ to future generations, ChronoVault™ time capsules, and tools that keep every story alive forever.</p>
     </div>
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(59,130,246,0.12);">💼</div>
       <div class="universe-name" style="color:#3B82F6;">BizNova™</div>
-      <p class="universe-desc">Your business universe. Strategy, CRM, pitch tools, financial tracking, and the operating system built for founders who live ten lives at once.</p>
+      <p class="universe-desc">Your business universe. Strategy, CRM, financial tracking, and tools built for founders who live ten lives at once.</p>
     </div>
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(245,158,11,0.12);">👥</div>
@@ -995,13 +1017,113 @@
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(236,72,153,0.12);">📡</div>
       <div class="universe-name" style="color:#EC4899;">SignalVerse™</div>
-      <p class="universe-desc">Your social universe. Your public identity, creator tools, and the network that amplifies your voice — on your terms, not an algorithm's.</p>
+      <p class="universe-desc">Your social universe. Creator tools and a network that amplifies your voice — on your terms, not an algorithm's.</p>
     </div>
     <div class="universe-card">
       <div class="universe-icon" style="background:rgba(139,92,246,0.12);">⏳</div>
       <div class="universe-name" style="color:#a78bfa;">ChronoVault™</div>
-      <p class="universe-desc">Your legacy universe. Time capsules, eternal protocols, AI-preserved memories, and the tools that make sure your story reaches the people who need it — no matter when.</p>
+      <p class="universe-desc">Your legacy universe. Time capsules, EternalProtocol™ delivery, and the tools that make sure your story reaches the people who need it — no matter when.</p>
     </div>
+  </div>
+</section>
+
+<!-- FEATURE SHOWCASE — Patent-Pending Technology -->
+<section id="features" style="padding:100px 24px;">
+  <div class="section-label">Patent-Pending Technology</div>
+  <h2 class="section-title">Built Different. Protected Forever.</h2>
+  <p class="section-sub">4everacy™ is built on patent-pending technology you won't find anywhere else. These aren't features — they're inventions.</p>
+
+  <div style="max-width:1100px;margin:0 auto;display:grid;gap:24px;">
+
+    <!-- TruthMails™ -->
+    <div class="feature-showcase-card" style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;transition:all 0.3s;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#10B981;margin-bottom:16px;">Patent Pending</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;margin-bottom:12px;">TruthMails™</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px;">Write a letter to your children, your grandchildren, or someone who hasn't been born yet. Set it to deliver on a specific date — a birthday, a graduation, a wedding day — or after you're gone. TruthMails™ uses time-locked encrypted delivery to ensure your words arrive exactly when they matter most.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6;">Imagine your great-grandchild opening a message from you on their 18th birthday — hearing your voice, reading your wisdom, feeling your love — even if you never met them. That's TruthMails™.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(139,92,246,0.08));border:1px solid rgba(16,185,129,0.15);border-radius:16px;padding:40px 32px;">
+          <div style="font-size:64px;margin-bottom:16px;">✉️</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:#10B981;letter-spacing:0.05em;margin-bottom:8px;">TIME-LOCKED DELIVERY</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;">Encrypted messages that unlock<br/>on the exact date you choose —<br/>even decades from now.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ChronoVault™ Time Capsules -->
+    <div class="feature-showcase-card" style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;transition:all 0.3s;">
+      <div style="text-align:center;order:0;">
+        <div style="background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(212,175,55,0.08));border:1px solid rgba(139,92,246,0.15);border-radius:16px;padding:40px 32px;">
+          <div style="font-size:64px;margin-bottom:16px;">⏳</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:#a78bfa;letter-spacing:0.05em;margin-bottom:8px;">DIGITAL TIME CAPSULES</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;">Seal your memories today.<br/>They open exactly when you say —<br/>1 year, 10 years, 100 years.</div>
+        </div>
+      </div>
+      <div style="order:1;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#a78bfa;margin-bottom:16px;">Patent Pending</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;margin-bottom:12px;">ChronoVault™ Time Capsules</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px;">Seal photos, videos, voice recordings, documents, and messages into digital time capsules. Set a date — one year, ten years, a century from now — and ChronoVault™ holds them in encrypted storage until the moment you choose. When the seal breaks, your capsule is delivered to exactly who you intended.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6;">Family reunions. Milestone birthdays. Wedding surprises. Or just a note to your future self. ChronoVault™ makes sure the past is never lost.</p>
+      </div>
+    </div>
+
+    <!-- EternalProtocol™ -->
+    <div class="feature-showcase-card" style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;transition:all 0.3s;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#D4AF37;margin-bottom:16px;">Patent Pending</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;margin-bottom:12px;">EternalProtocol™</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px;">What happens to your digital life after you're gone? EternalProtocol™ lets you create a complete posthumous plan — who gets access to what, when messages are released, how your legacy is preserved and shared across generations. You decide everything in advance.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6;">Your story doesn't end. It becomes a treasure map — a digital inheritance that unfolds over time, exactly the way you designed it.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:linear-gradient(135deg,rgba(212,175,55,0.08),rgba(139,92,246,0.08));border:1px solid rgba(212,175,55,0.15);border-radius:16px;padding:40px 32px;">
+          <div style="font-size:64px;margin-bottom:16px;">🏛️</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:0.05em;margin-bottom:8px;">DIGITAL INHERITANCE</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;">Your legacy, your rules.<br/>Messages, media, and memories<br/>delivered across generations.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ChronoScribe™ -->
+    <div class="feature-showcase-card" style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;transition:all 0.3s;">
+      <div style="text-align:center;order:0;">
+        <div style="background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(16,185,129,0.08));border:1px solid rgba(59,130,246,0.15);border-radius:16px;padding:40px 32px;">
+          <div style="font-size:64px;margin-bottom:16px;">📜</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:#3B82F6;letter-spacing:0.05em;margin-bottom:8px;">AI AUTOBIOGRAPHY</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;">Your life story, written by AI<br/>from your own memories and data —<br/>a book only you could author.</div>
+        </div>
+      </div>
+      <div style="order:1;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#3B82F6;margin-bottom:16px;">Patent Pending</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:900;margin-bottom:12px;">ChronoScribe™</h3>
+        <p style="font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px;">ChronoScribe™ turns your life data into a beautiful, AI-generated autobiography — written in your voice, from your memories, photos, and milestones. It's the story of your life, composed for the people who matter most.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6;">Every chapter updates as you live. Every year adds a new page. Your family inherits a living book that grows with you.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Patent stats -->
+  <div style="text-align:center;margin-top:64px;">
+    <div style="display:inline-flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;">
+        <div style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,#10B981,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">4</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">USPTO Patent<br/>Applications Filed</div>
+      </div>
+      <div style="width:1px;height:48px;background:rgba(255,255,255,0.08);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,#a78bfa,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">214+</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Trademarked<br/>Brand Names</div>
+      </div>
+      <div style="width:1px;height:48px;background:rgba(255,255,255,0.08);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,#D4AF37,#B8860B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">USPTO Trademark<br/>Registrations Approved</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.3);max-width:500px;margin:24px auto 0;line-height:1.6;">4everacy™ and DLOS™ are published for opposition at the USPTO. All features referenced on this page are protected by pending patent applications and/or common-law trademark.</p>
   </div>
 </section>
 
@@ -1017,13 +1139,13 @@
       <div class="earning-icon">💰</div>
       <div class="earning-title">DataSovereign™ Earnings</div>
       <div class="earning-amount">$50–$300/mo</div>
-      <p class="earning-desc">Your data is yours. When brands want insights, you set the terms. DataHarvest™ and ListenMode™ let you monetize your digital footprint directly — no middlemen, no exploitation. Average users earn $50–$300/month passively.</p>
+      <p class="earning-desc">Your data is yours. When brands want insights, you set the terms. DataSovereign™ lets you monetize your digital footprint directly — no middlemen, no exploitation. Average users earn $50–$300/month passively.</p>
     </div>
     <div class="earning-card">
       <div class="earning-icon">🚀</div>
       <div class="earning-title">Creator Economy Tools</div>
       <div class="earning-amount">$500–$5K/mo</div>
-      <p class="earning-desc">SignalVerse™ gives you built-in creator monetization — paid content, subscriptions, tipping, and digital product sales. No separate Patreon, Gumroad, or Substack needed. Keep more of what you earn with lower platform fees than anywhere else.</p>
+      <p class="earning-desc">SignalVerse™ gives you built-in creator monetization — paid content, subscriptions, and digital product sales. No separate Patreon, Gumroad, or Substack needed. Keep more of what you earn.</p>
     </div>
     <div class="earning-card">
       <div class="earning-icon">⚡</div>
@@ -1041,7 +1163,7 @@
       <div class="earning-icon">🎓</div>
       <div class="earning-title">MonetizationAcademy™</div>
       <div class="earning-amount">Built-in Courses</div>
-      <p class="earning-desc">OmniGuide™ includes MonetizationAcademy — step-by-step training on how to maximize every revenue stream on the platform. Learn how to turn your data, content, and network into income. Most users double their earnings within 90 days of completing the program.</p>
+      <p class="earning-desc">Step-by-step training on how to maximize every revenue stream on the platform. Learn how to turn your data, content, and network into income.</p>
     </div>
     <div class="earning-card">
       <div class="earning-icon">🌐</div>
@@ -1091,6 +1213,7 @@
   <div class="orb" style="width:500px;height:500px;background:rgba(212,175,55,0.04);top:20%;right:-100px;"></div>
 
   <div style="text-align:center;margin-bottom:24px;">
+    <img src="images/4everacy-logo.png" alt="4everacy™" style="height:50px;width:auto;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(139,92,246,0.2));" /><br/>
     <span class="founders-badge">⚡ Founders 5000™ Program — Now Open</span>
   </div>
   <h2 class="section-title">Lock In Your Legacy.<br/>Before the Seats Are Gone.</h2>
@@ -1205,13 +1328,12 @@
       <div class="tier-multiplier" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:#3B82F6;">⚡ 2.0× FSU™ Multiplier</div>
       <ul class="tier-features">
         <li>Everything in Pioneer, plus:</li>
-        <li>BizNova™ full business suite — CRM, invoicing, client management, pitch tools</li>
+        <li>BizNova™ full business suite — CRM, invoicing, client management</li>
         <li>Advanced DataSovereign™ — premium data monetization tiers</li>
-        <li>SignalVerse™ creator monetization — paid content, subscriptions, tipping</li>
+        <li>SignalVerse™ creator monetization — paid content, subscriptions</li>
         <li>Priority support + early feature access</li>
         <li>2.0× FSU™ multiplier on ALL platform earnings</li>
         <li>Enhanced referral bonuses</li>
-        <li>DigitalBoardOS™ AI executive council access</li>
       </ul>
       <a href="#waitlist" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Reserve Pathfinder Seat — Pay Now</a>
     </div>
@@ -1230,11 +1352,10 @@
       <div class="tier-multiplier" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);color:#a78bfa;">⚡ 3.5× FSU™ Multiplier</div>
       <ul class="tier-features">
         <li>Everything in Pathfinder, plus:</li>
-        <li>Enterprise-tier AI — Nova AI Suite with full customization</li>
         <li>Advanced analytics dashboard + revenue tracking</li>
-        <li>ChronoVault™ unlimited legacy storage — time capsules, eternal protocols</li>
+        <li>ChronoVault™ unlimited legacy storage — time capsules, EternalProtocol™</li>
         <li>TruthMails™ priority delivery for future generations</li>
-        <li>AncestorMind™ AI heritage engine</li>
+        <li>ChronoScribe™ AI-generated life autobiography</li>
         <li>3.5× FSU™ multiplier on ALL platform earnings</li>
         <li>Exclusive Visionary community + founder networking</li>
         <li>White-glove onboarding session</li>
@@ -1260,7 +1381,6 @@
         <li>6.0× FSU™ multiplier — the highest possible, forever</li>
         <li>Direct founder access — private channel with Jeffrey Williams</li>
         <li>First access to every new feature and universe expansion</li>
-        <li>Custom AI model training on your personal data</li>
         <li>GoalForge™ AI strategic planning engine</li>
         <li>CollabForge™ real-time collaboration suite</li>
         <li>Unlimited cloud storage + API access</li>
@@ -1273,7 +1393,7 @@
   <!-- Guarantee -->
   <div class="guarantee-section">
     <h3>🛡️ 30-Day Post-Launch Full Refund Guarantee</h3>
-    <p>If the platform does not meet your expectations after launch, you may request a full 100% refund within 30 days of the launch date (May 10, 2026). No questions asked. If the launch date is delayed for any reason, you may also request a full refund at any time before launch. Your investment is fully protected. We're that confident in what we've built — 308+ patents, 100+ features, and 3+ years of development.</p>
+    <p>If the platform does not meet your expectations after launch, you may request a full 100% refund within 30 days of the launch date (May 10, 2026). No questions asked. If the launch date is delayed for any reason, you may also request a full refund at any time before launch. Your investment is fully protected. We're that confident in what we've built — patent-pending technology, 100+ features, and 3+ years of development.</p>
   </div>
 </section>
 
@@ -1362,14 +1482,14 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">4EVERACY™</div>
+  <div style="margin-bottom:20px;"><img src="images/4everacy-logo.png" alt="4everacy™" style="height:60px;width:auto;filter:drop-shadow(0 0 30px rgba(139,92,246,0.2));" /></div>
   <div style="display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;">
     <a href="privacy.html" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
     <a href="terms.html" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms of Service</a>
   </div>
   <p class="footer-copy">
     © 2024–2026 4everacy, Inc. All Rights Reserved.<br/>
-    4everacy™, NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™, TruthMails™, FSU™, Founders 5000™, DataSovereign™, EarningsEngine™ are trademarks of 4everacy, Inc.<br/>
+    4everacy™, DLOS™, NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™, TruthMails™, ChronoScribe™, EternalProtocol™, AncestorMind™, FSU™, Founders 5000™, DataSovereign™ are trademarks of 4everacy, Inc.<br/>
     <span style="color:rgba(255,255,255,0.15);margin-top:8px;display:inline-block;">4everacy.com · Built to Last Forever</span>
   </p>
 </footer>
