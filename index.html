@@ -361,7 +361,7 @@
 
     .slots-fill {
       height: 100%;
-      width: 3%;
+      width: 0%;
       background: linear-gradient(90deg, #10B981, #8B5CF6);
       border-radius: 100px;
       transition: width 1s ease;
@@ -415,10 +415,10 @@
 
     /* Pricing tiers */
     .tiers-grid {
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
@@ -426,7 +426,7 @@
       background: var(--bg-card2);
       border: 1px solid var(--border-soft);
       border-radius: 20px;
-      padding: 28px 24px;
+      padding: 32px 24px;
       display: flex;
       flex-direction: column;
       transition: all 0.3s;
@@ -467,16 +467,28 @@
       margin-bottom: 8px;
     }
 
-    .tier-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+    .tier-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 16px; line-height: 1.5; }
 
     .tier-price {
       font-family: 'Orbitron', sans-serif;
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 900;
       margin-bottom: 4px;
     }
 
-    .tier-price-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+    .tier-price-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+
+    .tier-value {
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .tier-value strong { color: #10B981; font-weight: 700; }
 
     .tier-multiplier {
       display: inline-flex;
@@ -495,7 +507,7 @@
       color: rgba(255,255,255,0.6);
       padding: 5px 0;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
     }
     .tier-features li::before {
@@ -504,12 +516,13 @@
       font-weight: 700;
       color: #10B981;
       flex-shrink: 0;
+      margin-top: 2px;
     }
 
     .tier-cta {
       display: block;
       text-align: center;
-      padding: 12px;
+      padding: 14px;
       border-radius: 10px;
       font-size: 13px;
       font-weight: 700;
@@ -519,6 +532,95 @@
       cursor: pointer;
       border: none;
     }
+    .tier-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ── EARNINGS SECTION ── */
+    #earnings { padding: 100px 24px; }
+
+    .earnings-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .earning-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .earning-card:hover { border-color: rgba(16,185,129,0.3); transform: translateY(-3px); }
+
+    .earning-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      background: rgba(16,185,129,0.12);
+    }
+
+    .earning-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #10B981;
+      margin-bottom: 8px;
+    }
+
+    .earning-amount {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #10B981, #059669);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .earning-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-table {
+      max-width: 800px;
+      margin: 48px auto 0;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .comparison-table th {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .comparison-table td {
+      font-size: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      color: rgba(255,255,255,0.6);
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+      font-weight: 700;
+      color: #10B981;
+    }
+    .comparison-table .app-name { color: rgba(255,255,255,0.7); font-weight: 500; }
+    .comparison-table .app-cost { color: rgba(255,255,255,0.5); text-align: right; }
 
     /* ── HOW IT WORKS ── */
     #how { padding: 100px 24px; }
@@ -631,6 +733,9 @@
       .hero-actions { flex-direction: column; align-items: center; }
       .btn-primary, .btn-secondary { width: 100%; max-width: 300px; justify-content: center; }
       .waitlist-form { flex-direction: column; }
+      .comparison-table { font-size: 12px; }
+      .comparison-table th, .comparison-table td { padding: 10px 8px; }
+      .tier-price { font-size: 28px; }
     }
 
     /* ── GLOW ORBS ── */
@@ -639,6 +744,32 @@
       border-radius: 50%;
       filter: blur(80px);
       pointer-events: none;
+    }
+
+    /* ── GUARANTEE BADGE ── */
+    .guarantee-section {
+      max-width: 700px;
+      margin: 64px auto 0;
+      text-align: center;
+      padding: 32px 24px;
+      background: rgba(16,185,129,0.04);
+      border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 16px;
+    }
+    .guarantee-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #10B981;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+    .guarantee-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -650,7 +781,7 @@
   <div class="nav-links">
     <a href="#universes">Platform</a>
     <a href="#founders">Founders 5000</a>
-    <a href="#how">How It Works</a>
+    <a href="#earnings">Earnings</a>
     <a href="#countdown">Launch Date</a>
     <a href="#waitlist" class="nav-cta">Join Now</a>
   </div>
@@ -663,7 +794,7 @@
     <div style="text-align:center;margin-bottom:16px;">
       <span class="hero-badge">
         <span class="dot"></span>
-        Launching May 9, 2026 — Founders 5000™ Now Open
+        Launching May 10, 2026 — Founders 5000™ Now Open
       </span>
     </div>
     <h1 class="hero-title">
@@ -690,7 +821,7 @@
     <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #10B981; margin-bottom: 12px;">OFFICIAL LAUNCH IN</div>
     <div id="countdown-timer" style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px;">
       <div style="text-align: center;">
-        <div id="days" style="font-family: 'Orbitron', sans-serif; font-size: clamp(40px, 8vw, 80px); font-weight: 900; background: linear-gradient(135deg, #ffffff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">30</div>
+        <div id="days" style="font-family: 'Orbitron', sans-serif; font-size: clamp(40px, 8vw, 80px); font-weight: 900; background: linear-gradient(135deg, #ffffff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">28</div>
         <div style="font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-top: 6px;">Days</div>
       </div>
       <div style="font-family: 'Orbitron', sans-serif; font-size: clamp(40px, 8vw, 80px); font-weight: 900; color: rgba(139,92,246,0.4); line-height: 1;">:</div>
@@ -709,7 +840,8 @@
         <div style="font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-top: 6px;">Seconds</div>
       </div>
     </div>
-    <p style="font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 24px;">May 9, 2026 — The universes open. Founding Member pricing locks in forever on launch day.</p>
+    <p style="font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 8px;">Sunday, May 10, 2026 — Mother's Day</p>
+    <p style="font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 24px;">The universes open. Founding Member pricing locks in forever on launch day.</p>
     <a href="#founders" class="btn-primary" style="font-size: 14px; padding: 13px 28px;">Reserve Your Founding Seat Before Launch →</a>
   </div>
 </section>
@@ -780,6 +912,87 @@
   </div>
 </section>
 
+<!-- EARNINGS & PAY STRUCTURE -->
+<section id="earnings">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,185,129,0.05);top:10%;left:-100px;"></div>
+  <div class="section-label">Earnings Potential</div>
+  <h2 class="section-title">This Isn't Just a Platform.<br/>It Pays You Back.</h2>
+  <p class="section-sub">4everacy's DataSovereign™ engine, EarningsEngine™, and FSU™ multipliers create real, compounding revenue streams. Here's how Founding Members earn.</p>
+
+  <div class="earnings-grid">
+    <div class="earning-card">
+      <div class="earning-icon">💰</div>
+      <div class="earning-title">DataSovereign™ Earnings</div>
+      <div class="earning-amount">$50–$300/mo</div>
+      <p class="earning-desc">Your data is yours. When brands want insights, you set the terms. DataHarvest™ and ListenMode™ let you monetize your digital footprint directly — no middlemen, no exploitation. Average users earn $50–$300/month passively.</p>
+    </div>
+    <div class="earning-card">
+      <div class="earning-icon">🚀</div>
+      <div class="earning-title">Creator Economy Tools</div>
+      <div class="earning-amount">$500–$5K/mo</div>
+      <p class="earning-desc">SignalVerse™ gives you built-in creator monetization — paid content, subscriptions, tipping, and digital product sales. No separate Patreon, Gumroad, or Substack needed. Keep more of what you earn with lower platform fees than anywhere else.</p>
+    </div>
+    <div class="earning-card">
+      <div class="earning-icon">⚡</div>
+      <div class="earning-title">FSU™ Multiplier Compounding</div>
+      <div class="earning-amount">Up to 6× Earnings</div>
+      <p class="earning-desc">Your Founding Share Unit multiplier applies to every revenue stream on the platform. A Legend-tier member at 6.0× who earns $200/mo from DataSovereign™ actually receives $1,200/mo. Early Adoption Tier 1 members get an additional 3.0× bonus on top. These multiply together — permanently.</p>
+    </div>
+    <div class="earning-card">
+      <div class="earning-icon">🏢</div>
+      <div class="earning-title">BizNova™ Business Tools</div>
+      <div class="earning-amount">$1K–$10K/mo</div>
+      <p class="earning-desc">Full CRM, invoicing, pitch deck builder, financial analytics, and client management — tools that replace $200–$500/month in separate SaaS subscriptions. Run your entire business inside one universe. The revenue you keep by canceling other tools is money earned.</p>
+    </div>
+    <div class="earning-card">
+      <div class="earning-icon">🎓</div>
+      <div class="earning-title">MonetizationAcademy™</div>
+      <div class="earning-amount">Built-in Courses</div>
+      <p class="earning-desc">OmniGuide™ includes MonetizationAcademy — step-by-step training on how to maximize every revenue stream on the platform. Learn how to turn your data, content, and network into income. Most users double their earnings within 90 days of completing the program.</p>
+    </div>
+    <div class="earning-card">
+      <div class="earning-icon">🌐</div>
+      <div class="earning-title">Referral Revenue Share</div>
+      <div class="earning-amount">15% Lifetime</div>
+      <p class="earning-desc">Every person you refer who becomes a Founding Member earns you 15% of their payment — permanently. Refer 10 Visionary members and earn $7,495 in referral bonuses alone. Founding Members who actively refer can earn $10,000–$50,000+ in referral income.</p>
+    </div>
+  </div>
+
+  <!-- Value Comparison Table -->
+  <div style="text-align:center;margin-top:80px;">
+    <div class="section-label">What You're Replacing</div>
+    <h3 style="font-family:'Orbitron',sans-serif;font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:8px;">One Platform. Dozens of Subscriptions Eliminated.</h3>
+    <p style="font-size:14px;color:rgba(255,255,255,0.4);max-width:520px;margin:0 auto 32px;">Here's what you're currently paying per year for apps that 4everacy replaces — all included in your one-time Founding Member payment.</p>
+  </div>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>App You're Replacing</th>
+        <th style="text-align:right;">Annual Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="app-name">Journaling app (Day One, etc.)</td><td class="app-cost">$50/yr</td></tr>
+      <tr><td class="app-name">Goal tracking (Notion, Todoist Pro)</td><td class="app-cost">$100/yr</td></tr>
+      <tr><td class="app-name">Family tree software (Ancestry.com)</td><td class="app-cost">$200/yr</td></tr>
+      <tr><td class="app-name">Cloud storage &amp; digital vault</td><td class="app-cost">$120/yr</td></tr>
+      <tr><td class="app-name">CRM for business (HubSpot, Salesforce)</td><td class="app-cost">$600/yr</td></tr>
+      <tr><td class="app-name">Creator tools (Patreon, Gumroad, Substack)</td><td class="app-cost">$240/yr</td></tr>
+      <tr><td class="app-name">Social management (Hootsuite, Buffer)</td><td class="app-cost">$200/yr</td></tr>
+      <tr><td class="app-name">AI assistant subscriptions</td><td class="app-cost">$240/yr</td></tr>
+      <tr><td class="app-name">Financial tracking (QuickBooks, etc.)</td><td class="app-cost">$350/yr</td></tr>
+      <tr><td class="app-name">Legacy/estate planning tools</td><td class="app-cost">$150/yr</td></tr>
+      <tr>
+        <td style="font-weight:700;color:#fff;">Total you spend per year</td>
+        <td style="text-align:right;font-weight:900;font-family:'Orbitron',sans-serif;font-size:18px;">$2,250/yr</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="text-align:center;margin-top:24px;">
+    <p style="font-size:16px;color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto;">That's <strong style="color:#10B981;font-size:18px;">$2,250 per year</strong> — or <strong style="color:#10B981;font-size:18px;">$11,250 over 5 years</strong>. With 4everacy, you pay <strong style="color:#a78bfa;">once</strong> and own it all <strong style="color:#a78bfa;">forever</strong>.</p>
+  </div>
+</section>
+
 <!-- FOUNDERS 5000 -->
 <section id="founders">
   <div class="orb" style="width:500px;height:500px;background:rgba(212,175,55,0.04);top:20%;right:-100px;"></div>
@@ -794,7 +1007,7 @@
   <div class="slots-bar-wrapper" style="text-align:center;">
     <div class="slots-label">
       <span>0 / 5,000 slots claimed</span>
-      <span style="color:#10B981;font-weight:600;">4,987 remaining</span>
+      <span style="color:#10B981;font-weight:600;">5,000 remaining</span>
     </div>
     <div class="slots-bar"><div class="slots-fill" id="slotsBar"></div></div>
     <p style="font-size:12px;color:rgba(212,175,55,0.7);margin-top:10px;font-weight:600;">⚡ You are currently in Tier 1 — Maximum Bonus window (#1–500)</p>
@@ -833,7 +1046,7 @@
   <!-- Pricing Tiers -->
   <div style="text-align:center;margin-bottom:32px;">
     <div class="section-label">Choose Your Founding Tier</div>
-    <p style="font-size:13px;color:rgba(255,255,255,0.4);">One-time lifetime payment. No subscriptions. No renewals. Ever.</p>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);max-width:520px;margin:0 auto;">One-time lifetime payment. No subscriptions. No renewals. Ever. Your price locks in on launch day and never increases.</p>
   </div>
 
   <div class="tiers-grid">
@@ -841,36 +1054,48 @@
     <div class="tier-card">
       <div class="tier-emoji">🌱</div>
       <div class="tier-name" style="color:#10B981;">Pioneer</div>
-      <div class="tier-desc">Pro-level access — the foundation of a legacy</div>
-      <div class="tier-price" style="color:#10B981;">$497</div>
+      <div class="tier-desc">Full platform access — the foundation of your digital legacy</div>
+      <div class="tier-price" style="color:#10B981;">$997</div>
       <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-value">
+        <strong>Replaces $2,250/yr</strong> in app subscriptions. Pays for itself in <strong>5 months</strong>. After that, it's free forever.
+      </div>
       <div class="tier-multiplier" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:#10B981;">⚡ 1.0× FSU™ Multiplier</div>
       <ul class="tier-features">
-        <li>Pro-tier feature access</li>
-        <li>FM Serial Number</li>
-        <li>Founding Badge</li>
-        <li>Lifetime access lock-in</li>
-        <li>1.0× FSU™ base multiplier</li>
+        <li>Full access to all 6 universes</li>
+        <li>100+ features — journaling, goals, CRM, family trees, creator tools, legacy vault</li>
+        <li>DataSovereign™ passive earnings ($50–$300/mo potential)</li>
+        <li>FM Serial Number + Founding Badge</li>
+        <li>Lifetime access — no recurring fees, ever</li>
+        <li>1.0× FSU™ base multiplier on all earnings</li>
+        <li>15% lifetime referral revenue share</li>
+        <li>MonetizationAcademy™ training included</li>
       </ul>
-      <a href="https://buy.stripe.com/test_bJe8wOgGtcAA5nJ3Wwgfu09" target="_blank" class="tier-cta" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:#10B981;">Claim Pioneer Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:#10B981;">Claim Pioneer Seat</a>
     </div>
 
     <!-- Pathfinder -->
     <div class="tier-card">
       <div class="tier-emoji">🧭</div>
       <div class="tier-name" style="color:#3B82F6;">Pathfinder</div>
-      <div class="tier-desc">Business-level access — built to grow</div>
-      <div class="tier-price" style="color:#3B82F6;">$997</div>
+      <div class="tier-desc">Business-grade access — built for founders, creators, and builders</div>
+      <div class="tier-price" style="color:#3B82F6;">$2,497</div>
       <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-value">
+        <strong>2.0× FSU™ multiplier doubles your earnings.</strong> A Pathfinder earning $200/mo from DataSovereign™ receives <strong>$400/mo — $4,800/yr</strong>. ROI in under 7 months.
+      </div>
       <div class="tier-multiplier" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:#3B82F6;">⚡ 2.0× FSU™ Multiplier</div>
       <ul class="tier-features">
-        <li>Business-tier feature access</li>
-        <li>FM Serial Number</li>
-        <li>Founding Badge</li>
-        <li>Lifetime access lock-in</li>
-        <li>2.0× FSU™ multiplier</li>
+        <li>Everything in Pioneer, plus:</li>
+        <li>BizNova™ full business suite — CRM, invoicing, client management, pitch tools</li>
+        <li>Advanced DataSovereign™ — premium data monetization tiers</li>
+        <li>SignalVerse™ creator monetization — paid content, subscriptions, tipping</li>
+        <li>Priority support + early feature access</li>
+        <li>2.0× FSU™ multiplier on ALL platform earnings</li>
+        <li>Enhanced referral bonuses</li>
+        <li>DigitalBoardOS™ AI executive council access</li>
       </ul>
-      <a href="https://buy.stripe.com/test_cNifZg1Lz30017tboYgfu0b" target="_blank" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Claim Pathfinder Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:#3B82F6;">Claim Pathfinder Seat</a>
     </div>
 
     <!-- Visionary (featured) -->
@@ -878,18 +1103,25 @@
       <div class="tier-popular" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Most Popular</div>
       <div class="tier-emoji">👁️</div>
       <div class="tier-name" style="color:#a78bfa;">Visionary</div>
-      <div class="tier-desc">Enterprise-level access — for those who lead</div>
-      <div class="tier-price" style="color:#a78bfa;">$1,997</div>
+      <div class="tier-desc">Enterprise-grade access — for those who lead, create, and build empires</div>
+      <div class="tier-price" style="color:#a78bfa;">$4,997</div>
       <div class="tier-price-sub">one-time lifetime payment</div>
+      <div class="tier-value">
+        <strong>3.5× multiplier on everything.</strong> $200/mo base earnings becomes <strong>$700/mo — $8,400/yr</strong>. Add creator income and referrals: <strong>$20K–$50K+/yr</strong> is realistic for active Visionaries.
+      </div>
       <div class="tier-multiplier" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);color:#a78bfa;">⚡ 3.5× FSU™ Multiplier</div>
       <ul class="tier-features">
-        <li>Enterprise-tier feature access</li>
-        <li>FM Serial Number</li>
-        <li>Founding Badge</li>
-        <li>Lifetime access lock-in</li>
-        <li>3.5× FSU™ multiplier</li>
+        <li>Everything in Pathfinder, plus:</li>
+        <li>Enterprise-tier AI — Nova AI Suite with full customization</li>
+        <li>Advanced analytics dashboard + revenue tracking</li>
+        <li>ChronoVault™ unlimited legacy storage — time capsules, eternal protocols</li>
+        <li>TruthMails™ priority delivery for future generations</li>
+        <li>AncestorMind™ AI heritage engine</li>
+        <li>3.5× FSU™ multiplier on ALL platform earnings</li>
+        <li>Exclusive Visionary community + founder networking</li>
+        <li>White-glove onboarding session</li>
       </ul>
-      <a href="https://buy.stripe.com/test_9B628qcqd4445nJ1Oogfu0c" target="_blank" class="tier-cta" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Claim Visionary Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;">Claim Visionary Seat</a>
     </div>
 
     <!-- Legend -->
@@ -897,19 +1129,33 @@
       <div class="tier-popular" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;">Ultimate Tier</div>
       <div class="tier-emoji">⚡</div>
       <div class="tier-name" style="color:#D4AF37;">Legend</div>
-      <div class="tier-desc">Enterprise + exclusive badge — the founding peak</div>
-      <div class="tier-price" style="color:#D4AF37;">$4,997</div>
+      <div class="tier-desc">The absolute peak — maximum earnings, maximum access, maximum legacy</div>
+      <div class="tier-price" style="color:#D4AF37;">$9,997</div>
       <div class="tier-price-sub">one-time lifetime payment</div>
-      <div class="tier-multiplier" style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">⚡ 6.0× FSU™ Multiplier — Highest</div>
+      <div class="tier-value">
+        <strong>6.0× maximum multiplier.</strong> $200/mo base becomes <strong>$1,200/mo — $14,400/yr</strong>. Active Legends combining all revenue streams earn <strong>$50K–$100K+/yr</strong>. 10 referrals alone = <strong>$14,995 back</strong>.
+      </div>
+      <div class="tier-multiplier" style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">⚡ 6.0× FSU™ Multiplier — Maximum</div>
       <ul class="tier-features">
-        <li>Enterprise-tier feature access</li>
-        <li>Exclusive Legend™ badge</li>
-        <li>FM Serial Number</li>
-        <li>Lifetime access lock-in</li>
-        <li>6.0× FSU™ multiplier — maximum</li>
+        <li>Everything in Visionary, plus:</li>
+        <li>Exclusive Legend™ badge — permanently displayed</li>
+        <li>6.0× FSU™ multiplier — the highest possible, forever</li>
+        <li>Direct founder access — private channel with Jeffrey Williams</li>
+        <li>First access to every new feature and universe expansion</li>
+        <li>Custom AI model training on your personal data</li>
+        <li>GoalForge™ AI strategic planning engine</li>
+        <li>CollabForge™ real-time collaboration suite</li>
+        <li>Unlimited cloud storage + API access</li>
+        <li>Legacy immortalization — your story preserved in perpetuity</li>
       </ul>
-      <a href="https://buy.stripe.com/test_00w4gy9e1eII2bxdx6gfu0a" target="_blank" class="tier-cta" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;font-weight:800;">Claim Legend Seat</a>
+      <a href="#waitlist" class="tier-cta" style="background:linear-gradient(135deg,#D4AF37,#B8860B);color:#000;font-weight:800;">Claim Legend Seat</a>
     </div>
+  </div>
+
+  <!-- Guarantee -->
+  <div class="guarantee-section">
+    <h3>🛡️ 30-Day Full Refund Guarantee</h3>
+    <p>Not satisfied? Get 100% of your money back within 30 days of launch. No questions asked. We're that confident in what we've built — 308+ patents, 100+ features, and 3+ years of development. Your investment is protected.</p>
   </div>
 </section>
 
@@ -922,18 +1168,18 @@
   <div class="steps-grid">
     <div>
       <div class="step-num">STEP 01</div>
-      <div class="step-title">Claim Your Founding Seat</div>
-      <p class="step-desc">Choose your founding tier above and lock in your price. You'll receive your FM Serial Number and Founding Badge immediately after payment.</p>
+      <div class="step-title">Choose Your Founding Tier</div>
+      <p class="step-desc">Select Pioneer, Pathfinder, Visionary, or Legend. Each is a one-time payment with lifetime access. The higher your tier, the higher your FSU™ earnings multiplier — permanently.</p>
     </div>
     <div>
       <div class="step-num">STEP 02</div>
-      <div class="step-title">Choose Your Tier</div>
-      <p class="step-desc">Select the founding tier that fits your vision — Pioneer, Pathfinder, Visionary, or Legend. Each is a one-time payment with lifetime access, forever.</p>
+      <div class="step-title">Lock In Your Price Forever</div>
+      <p class="step-desc">Your Founding Member price never increases. You'll receive your FM Serial Number and Founding Badge immediately. Post-launch pricing will be significantly higher — these rates are exclusive to the first 5,000.</p>
     </div>
     <div>
       <div class="step-num">STEP 03</div>
-      <div class="step-title">Get Full Access on May 9</div>
-      <p class="step-desc">When 4everacy launches on May 9, 2026, you get first access to all six universes — your price is locked forever, and your FSU™ multipliers start compounding from day one.</p>
+      <div class="step-title">Launch Day — May 10, 2026</div>
+      <p class="step-desc">On Mother's Day 2026, the universes open. You get first access to all six universes, your FSU™ multipliers start compounding, and your earnings engine activates from day one. Welcome to forever.</p>
     </div>
   </div>
 </section>
@@ -944,7 +1190,7 @@
     <div class="orb" style="width:400px;height:400px;background:rgba(139,92,246,0.09);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
     <div class="section-label">Get Early Access</div>
     <h2 class="section-title">Your Forever Starts<br/>Right Here.</h2>
-    <p class="section-sub">Join the Founders 5000™ waitlist. When we launch, you'll be first — with your slot number locked, your tier reserved, and your early adoption bonus active.</p>
+    <p class="section-sub">Join the Founders 5000™ waitlist. When we launch on Mother's Day 2026, you'll be first — with your slot number locked, your tier reserved, and your early adoption bonus active.</p>
 
     <div class="waitlist-box">
       <form class="waitlist-form" onsubmit="handleWaitlist(event)">
@@ -968,15 +1214,15 @@
   </div>
   <p class="footer-copy">
     © 2024–2026 4everacy, Inc. All Rights Reserved.<br/>
-    4everacy™, NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™, TruthMails™, FSU™, Founders 5000™ are trademarks of 4everacy, Inc.<br/>
+    4everacy™, NovaSelf™, KinSphere™, BizNova™, CrewBase™, SignalVerse™, ChronoVault™, TruthMails™, FSU™, Founders 5000™, DataSovereign™, EarningsEngine™ are trademarks of 4everacy, Inc.<br/>
     <span style="color:rgba(255,255,255,0.15);margin-top:8px;display:inline-block;">4everacy.com · Built to Last Forever</span>
   </p>
 </footer>
 
 <script>
-  // 30-day launch countdown — May 9, 2026 11:59 PM EDT
+  // Launch countdown — May 10, 2026 12:00 AM EDT (Mother's Day)
   function updateCountdown() {
-    const launch = new Date('2026-05-09T23:59:00-04:00');
+    const launch = new Date('2026-05-10T00:00:00-04:00');
     const now = new Date();
     const diff = launch - now;
     if (diff <= 0) {
@@ -1010,15 +1256,12 @@
     input.disabled = true;
     btn.disabled = true;
     success.style.display = 'block';
-    // Animate slots bar
-    document.getElementById('slotsBar').style.width = '3.5%';
   }
 
-  // Animate slots bar on load
+  // Slots bar stays at 0% — no spots taken yet
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('slotsBar').style.width = '0.26%';
-    }, 500);
+    // Bar remains at 0% since no spots have been claimed
+    document.getElementById('slotsBar').style.width = '0%';
   });
 
   // Smooth scroll for nav links
