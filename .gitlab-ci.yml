@@ -327,7 +327,7 @@ load-test:smoke:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
     - echo "═══ 4everacy™ Smoke Test (5 Users) ═══"
-    - echo "Target: $BASE_URL"
+    - 'echo "Target: $BASE_URL"'
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/smoke-raw.json load-tests/smoke-test.js
     - echo "═══ Smoke Test Complete ═══"
@@ -350,8 +350,8 @@ load-test:standard:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
     - echo "═══ 4everacy™ Load Test (500 Users) ═══"
-    - echo "Target: $BASE_URL"
-    - echo "Duration: ~15 minutes"
+    - 'echo "Target: $BASE_URL"'
+    - 'echo "Duration: ~15 minutes"'
     - echo ""
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/load-raw.json load-tests/load-test.js
@@ -378,9 +378,9 @@ load-test:stress:
   script:
     - echo "═══════════════════════════════════════════════════════"
     - echo "  4EVERACY™ STRESS TEST — Finding the Breaking Point  "
-    - echo "  Target: $BASE_URL"
-    - echo "  Max Users: 5,000 concurrent"
-    - echo "  Duration: ~16 minutes"
+    - 'echo "  Target: $BASE_URL"'
+    - 'echo "  Max Users: 5,000 concurrent"'
+    - 'echo "  Duration: ~16 minutes"'
     - echo "═══════════════════════════════════════════════════════"
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/stress-raw.json load-tests/stress-test.js
@@ -409,9 +409,9 @@ load-test:spike:
   script:
     - echo "═══════════════════════════════════════════════════════"
     - echo "  4EVERACY™ SPIKE TEST — Viral Traffic Simulation     "
-    - echo "  Target: $BASE_URL"
-    - echo "  Peak: 5,000 users (sudden burst)"
-    - echo "  Duration: ~8 minutes"
+    - 'echo "  Target: $BASE_URL"'
+    - 'echo "  Peak: 5,000 users (sudden burst)"'
+    - 'echo "  Duration: ~8 minutes"'
     - echo "═══════════════════════════════════════════════════════"
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/spike-raw.json load-tests/spike-test.js
