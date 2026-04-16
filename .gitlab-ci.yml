@@ -2,6 +2,7 @@
 # 4EVERACY™ — GitLab CI/CD → Netlify Deployment Pipeline
 # OmniDLOS Digital Life Operating System
 # Integrates GitLab CI/CD with Netlify Pro for automated deployments
+# Pipeline Version: 1.1 — sh/ash compatible
 # ═══════════════════════════════════════════════════════════════════════════════
 
 stages:
