@@ -118,19 +118,17 @@ security:secrets:
     - echo "═══ Secret Detection Scan ═══"
     - |
       SECRETS_FOUND=0
-      # Check for common secret patterns
-      PATTERNS=(
-        "AKIA[0-9A-Z]{16}"
-        "sk_live_[0-9a-zA-Z]{24}"
-        "sk_test_[0-9a-zA-Z]{24}"
-        "ghp_[0-9a-zA-Z]{36}"
-        "glpat-[0-9a-zA-Z\-]{20}"
-        "password\s*=\s*['\"][^'\"]*['\"]"
-        "api_key\s*=\s*['\"][^'\"]*['\"]"
-        "secret\s*=\s*['\"][^'\"]*['\"]"
-      )
-      for pattern in "${PATTERNS[@]}"; do
-        if grep -rE "$pattern" --include="*.html" --include="*.js" --include="*.mjs" --include="*.toml" --include="*.json" . 2>/dev/null | grep -v node_modules | grep -v .git; then
+      # Check for common secret patterns (sh-compatible — no bash arrays)
+      for pattern in \
+        'AKIA[0-9A-Z]{16}' \
+        'sk_live_[0-9a-zA-Z]{24}' \
+        'sk_test_[0-9a-zA-Z]{24}' \
+        'ghp_[0-9a-zA-Z]{36}' \
+        'glpat-[0-9a-zA-Z-]{20}' \
+        'password[[:space:]]*=[[:space:]]*.' \
+        'api_key[[:space:]]*=[[:space:]]*.' \
+        'secret_key[[:space:]]*=[[:space:]]*.'; do
+        if grep -rE "$pattern" --include='*.html' --include='*.js' --include='*.mjs' --include='*.toml' --include='*.json' . 2>/dev/null | grep -v node_modules | grep -v .git; then
           echo "⚠ Potential secret found matching: $pattern"
           SECRETS_FOUND=1
         fi
@@ -151,15 +149,13 @@ security:headers:
   script:
     - echo "═══ Security Headers Verification ═══"
     - |
-      REQUIRED_HEADERS=(
-        "X-Frame-Options"
-        "X-Content-Type-Options"
-        "Strict-Transport-Security"
-        "Content-Security-Policy"
-        "Referrer-Policy"
-        "Permissions-Policy"
-      )
-      for header in "${REQUIRED_HEADERS[@]}"; do
+      for header in \
+        X-Frame-Options \
+        X-Content-Type-Options \
+        Strict-Transport-Security \
+        Content-Security-Policy \
+        Referrer-Policy \
+        Permissions-Policy; do
         if grep -q "$header" netlify.toml; then
           echo "✓ $header configured"
         else
