@@ -45,10 +45,35 @@
   to = "/terms.html"
   status = 200
 
+# ── App Redirects (landing → platform) ────────────────────────────────────────
+[[redirects]]
+  from = "/app"
+  to = "https://4everacy.app"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/login"
+  to = "https://4everacy.app/auth"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/register"
+  to = "https://4everacy.app/register"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/signup"
+  to = "https://4everacy.app/register"
+  status = 302
+  force = true
+
 # ── Marketing Shortlinks ─────────────────────────────────────────────────────
 [[redirects]]
   from = "/founders"
-  to = "/#waitlist"
+  to = "/#founders"
   status = 302
 
 [[redirects]]
@@ -112,7 +137,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com https://4everacy.app; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
     X-Powered-By = "4everacy OmniDLOS"
