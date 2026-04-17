@@ -123,8 +123,10 @@ clear AAA (7:1) as well.
 - **Focus outlines.** Every interactive element has a visible focus ring on this dark theme (see toggle table).
 - **Hover/active/disabled states.** `:disabled` rule added for `.btn-primary` / `.btn-secondary` that disables translate and reduces opacity — previously, disabled buttons still pulled the hover-lift transform.
 - **Footer link hover via inline `onmouseover`** replaced with a CSS class (`.footer-link:hover`). Keeps JS out of presentational concerns and makes keyboard focus styles consistent.
-- **Reduced motion** handled globally.
+- **Reduced motion** handled globally — and now in `404.html` as well (the standalone error page was previously excluded; its 100-star twinkle generator now honors `prefers-reduced-motion`).
 - **Inline `!important`** occurrences were left in place where the tool itself introduced them intentionally inside mobile overrides (`.tier-cta` display, `.feature-showcase-card` grid collapse); no new `!important` introduced unless the original selector already used one.
+- **Waitlist failure UX.** On a non-2xx response from `/api/waitlist`, the form now reveals a distinct `role="alert"` error banner with retry guidance, re-enables the input and button, and exposes a "Try again" action. The optimistic success banner only shows for 2xx responses; genuine outages are no longer hidden behind a fake success state. Failures are still logged to `console.warn` for support.
+- **Light inline-style refactor (legal pages).** The most-duplicated inline color patterns in `privacy.html` and `terms.html` were extracted to utility classes: `.text-85` / `.text-60` (replacing `color: rgba(255,255,255,0.85|0.6)` — 15 uses across the two files) and `.text-purple` / `.text-teal` / `.text-blue` / `.text-gold` in `terms.html` for the tier-name/tier-price blocks (23 replacements). No visual change. Left intentionally targeted at 3+-occurrence patterns rather than a full rewrite.
 
 ---
 
@@ -134,11 +136,9 @@ clear AAA (7:1) as well.
 - **Gradient text on near-black.** The hero title's `.gradient-text` span uses `-webkit-background-clip:text` with a white→purple gradient. Contrast at the purple end (`#8B5CF6` ≈ 6.4:1 on `#030508`) still clears AA, so retained. Same for stat numbers and `.footer-logo`.
 - **Hero subtitle & earning-amount colored gradients.** Each meets AA at worst point.
 - **Tier color tokens (`#10B981`, `#3B82F6`, `#D4AF37`, `#a78bfa`).** All clear 4.5:1 on `#030508` and `bg-card`. Kept as-is to preserve branding.
-- **Inline `style="…"` throughout markup.** The project is a single-file static HTML with zero build tooling — refactoring inline styles into classes is a multi-hour cosmetic change with no user-visible benefit and a non-trivial risk of breakage. Left in place; only the *values* inside styles were updated.
+- **Inline `style="…"` in `index.html`.** A full pass was explicitly out of scope. A *light* pass was done on `privacy.html` / `terms.html` where a handful of color utilities were repeated ≥3× (see Fixed list). `index.html` was left alone because its inline styles are one-off layout tweaks that would each need their own class — high churn, no user-visible benefit.
 - **`.ea-tier` animation of the "ACTIVE NOW" badge dot.** The `pulse-dot` animation exists but the dot only appears in the hero badge. No vestibular-sensitive motion is unreasonably persistent, and reduced-motion now disables it anyway.
-- **`404.html` stars particle generator.** Creates 100 animated stars; kept, but now honors `prefers-reduced-motion` globally via the new media query.
-- **Waitlist graceful-degradation on API failure.** The original code deliberately shows success even when the API fails (so an email captured in server logs isn't lost to the user's experience). Behavior preserved; only the UX around it (aria-live, validity guard) was improved. Flagging: if the waitlist endpoint goes 100% down, users will see success but not be signed up — still the original intent, but worth a second look from the product owner.
-- **`index.html` inline `<style>` size.** The `<style>` block is ~1000 lines. Splitting into external CSS would save repeat-visit bandwidth but costs a render-blocking request. Out of scope for this audit.
+- **External CSS extraction / `index.html` inline `<style>` size.** The `<style>` block is ~1000 lines. Splitting into external CSS would save repeat-visit bandwidth but costs a render-blocking request on first paint, and this is a single-page launch site where the first-paint cost matters more than the cache-reuse win. Intentionally kept single-file for this launch.
 
 ---
 
@@ -146,14 +146,16 @@ clear AAA (7:1) as well.
 
 - `grep` search confirms **no remaining** `color:rgba(255,255,255,0.x)` with `x < 0.5` in `index.html`, `privacy.html`, or `terms.html` except in decorative borders / backgrounds (not text).
 - HTML structure: `<main>` / `</main>` and `<section>` / `</section>` counts balanced.
-- No build, lint, or test scripts exist in the repo (confirmed: no `package.json`, no CI test runner referenced in `.gitlab-ci.yml` for HTML linting). Nothing to run.
+- `npx html-validate` run across `index.html`, `privacy.html`, `terms.html`, `404.html` with `no-inline-style` and `void-style` turned off (both are stylistic, not structural). **0 structural errors.** Duplicate-attribute, unclosed-tag, and mismatched-element checks all pass.
+- Structural grep checks: no duplicate `id=` values per file, no `javascript:` hrefs, all form controls have `<label>` associations.
+- No build, lint, or test scripts exist in the repo itself (no `package.json`); validation is run ad-hoc via `npx` without adding a dependency.
 
 ---
 
 ## Files Changed
 
-- `index.html` — bulk of fixes
-- `privacy.html` — contrast bumps only
-- `terms.html` — contrast bumps only
-- `404.html` — no changes required (already uses high-contrast colors and reduced-motion inherits globally from the site — note: 404.html is standalone so its own `prefers-reduced-motion` should be considered; not changed to stay within a tight scope)
+- `index.html` — bulk of fixes; waitlist error banner + retry UX added on top of the original audit
+- `privacy.html` — contrast bumps + light inline-style refactor (2 utility classes, 15 replacements)
+- `terms.html` — contrast bumps + light inline-style refactor (6 utility classes, 23 replacements)
+- `404.html` — reduced-motion media query added so the 100-star twinkle animation is suppressed for users who opt out of motion
 - `CHANGES.md` — this file
