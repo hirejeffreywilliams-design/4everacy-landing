@@ -1,2 +1,492 @@
-<!doctype html><meta charset="utf-8"><title>Unavailable</title>
-<meta http-equiv="refresh" content="0; url=/">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — 4everacy™</title>
+  <meta name="description" content="Privacy Policy for 4everacy, Inc. Learn how we collect, use, and protect your personal information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep: #030508;
+      --bg-card: #080d14;
+      --bg-card2: #060a10;
+      --purple: #8B5CF6;
+      --purple-light: #a78bfa;
+      --teal: #10B981;
+      --blue: #3B82F6;
+      --gold: #D4AF37;
+      --white: #ffffff;
+      --gray: rgba(255,255,255,0.55);
+      --border: rgba(139,92,246,0.15);
+      --border-soft: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── Stars background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139,92,246,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16,185,129,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 20% 60%, rgba(59,130,246,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,5,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(139,92,246,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      color: #fff !important;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s !important;
+      letter-spacing: 0.03em !important;
+    }
+    .nav-cta:hover { opacity: 0.85; color: #fff !important; }
+
+    /* ── LEGAL PAGE LAYOUT ── */
+    .legal-container {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 140px 32px 100px;
+    }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 60%, #8B5CF6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-meta {
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    /* ── LEGAL CONTENT ── */
+    .legal-section {
+      margin-bottom: 52px;
+    }
+
+    .legal-section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(139,92,246,0.12);
+    }
+
+    .legal-section h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .legal-section p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .legal-section ul, .legal-section ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .legal-section li {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+
+    .legal-section li::marker {
+      color: var(--purple-light);
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .info-card p {
+      margin-bottom: 6px;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-box {
+      background: rgba(139,92,246,0.06);
+      border: 1px solid rgba(139,92,246,0.18);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 20px;
+    }
+
+    .highlight-box p {
+      color: rgba(255,255,255,0.75) !important;
+      font-size: 14px !important;
+      margin-bottom: 0 !important;
+    }
+
+    a.inline-link {
+      color: var(--purple-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(167,139,250,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    a.inline-link:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.78);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-links a.active { color: var(--purple-light); }
+
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.8; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .legal-container { padding: 100px 20px 80px; }
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* Repeated inline-style utilities */
+    .text-85 { color: rgba(255,255,255,0.85); }
+    .text-60 { color: rgba(255,255,255,0.6); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">4EVERACY™</a>
+  <div class="nav-links">
+    <a href="index.html#universes">Platform</a>
+    <a href="index.html#founders">Founders 5000</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#countdown">Launch Date</a>
+    <a href="index.html#waitlist" class="nav-cta">Join Now</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="legal-container">
+  <div class="orb" style="width:500px;height:500px;background:rgba(139,92,246,0.07);top:-80px;left:50%;transform:translateX(-50%);"></div>
+
+  <div class="page-label">Legal</div>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-meta">Last updated: April 9, 2026 &nbsp;·&nbsp; 4everacy, Inc. &nbsp;·&nbsp; 4everacy.com</p>
+
+  <div class="legal-section">
+    <h2>1. Who We Are</h2>
+    <div class="info-card">
+      <p><strong class="text-85">Company:</strong> <span class="text-60">4everacy, Inc. (C-Corporation)</span></p>
+      <p><strong class="text-85">EIN:</strong> <span class="text-60">41-5209097</span></p>
+      <p><strong class="text-85">Registered Address:</strong> <span class="text-60">8 The Green, Suite B, Dover, DE 19901</span></p>
+      <p><strong class="text-85">Website:</strong> <span class="text-60">https://4everacy.com</span></p>
+      <p><strong class="text-85">Contact:</strong> <a href="mailto:hirejeffreywilliams@gmail.com" class="inline-link">hirejeffreywilliams@gmail.com</a></p>
+      <p><strong class="text-85">Phone:</strong> <span class="text-60">650-644-2288</span></p>
+    </div>
+    <p>4everacy, Inc. ("4everacy," "we," "us," or "our") operates the website at 4everacy.com and provides the Digital Life Operating System product and the Founders 5000™ founding membership program. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or purchase a founding membership.</p>
+    <p>By using our website or services, you agree to the collection and use of information in accordance with this policy. If you do not agree, please discontinue use of our services.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Information We Collect</h2>
+    <p>We collect only the minimum information necessary to provide our services and fulfill your founding membership.</p>
+
+    <h3>Information You Provide Directly</h3>
+    <ul>
+      <li><strong>Name</strong> — provided during account creation or purchase checkout</li>
+      <li><strong>Email address</strong> — used to send your FM Serial Number, founding badge confirmation, product updates, and launch communications</li>
+      <li><strong>Payment information</strong> — collected and processed by our third-party payment processor, Stripe, Inc. We do not store full credit card numbers, CVV codes, or payment credentials on our servers</li>
+      <li><strong>Phone number</strong> — if voluntarily provided for account recovery or support purposes</li>
+    </ul>
+
+    <h3>Information Collected Automatically</h3>
+    <ul>
+      <li><strong>IP address</strong> — used for security, fraud prevention, and geographic compliance</li>
+      <li><strong>Browser type and version</strong> — used to ensure compatibility and improve user experience</li>
+      <li><strong>Pages visited and time spent</strong> — used to understand engagement and improve the website</li>
+      <li><strong>Referring URLs</strong> — used to understand how visitors discover 4everacy</li>
+    </ul>
+
+    <h3>Information We Do Not Collect</h3>
+    <p>We do not collect sensitive personal data such as government-issued identification numbers, biometric data, medical information, or financial account credentials (beyond what Stripe collects for payment processing).</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li><strong>To fulfill your founding membership</strong> — issuing your FM Serial Number, founding badge, and tier confirmation</li>
+      <li><strong>To deliver product updates and launch communications</strong> — notifying you about development milestones, the May 9, 2026 beta access date, and platform news</li>
+      <li><strong>To process payments securely</strong> — transmitting transaction data to Stripe for payment processing</li>
+      <li><strong>To provide customer support</strong> — responding to inquiries submitted to <a href="mailto:hirejeffreywilliams@gmail.com" class="inline-link">hirejeffreywilliams@gmail.com</a></li>
+      <li><strong>To improve our website and product</strong> — analyzing usage patterns to enhance the user experience</li>
+      <li><strong>To comply with legal obligations</strong> — retaining records as required by applicable law</li>
+      <li><strong>To prevent fraud and abuse</strong> — monitoring for unauthorized access or misuse of our services</li>
+    </ul>
+    <p>We do not sell, rent, or trade your personal information to third parties for marketing purposes.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Third-Party Service Processors</h2>
+    <p>We work with a limited number of trusted third-party service providers to operate our website and process transactions. Each processor handles your data only as necessary to perform their specific function.</p>
+
+    <h3>Stripe, Inc. (Payment Processing)</h3>
+    <div class="highlight-box">
+      <p>All payment transactions are processed by <strong>Stripe, Inc.</strong> Stripe collects and stores your payment card details, billing address, and transaction history. We receive only a transaction confirmation token. Stripe's privacy policy is available at <a href="https://stripe.com/privacy" class="inline-link" target="_blank" rel="noopener">stripe.com/privacy</a>. Stripe is PCI DSS Level 1 certified.</p>
+    </div>
+
+    <h3>GitHub Pages (Website Hosting)</h3>
+    <div class="highlight-box">
+      <p>The 4everacy website is hosted on <strong>GitHub Pages</strong>, a service operated by GitHub, Inc. (a subsidiary of Microsoft Corporation). GitHub may collect server-side access logs, including IP addresses and browser information, as part of standard web hosting operations. GitHub's privacy policy is available at <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" class="inline-link" target="_blank" rel="noopener">docs.github.com/en/site-policy/privacy-policies</a>.</p>
+    </div>
+
+    <p>We do not currently use third-party advertising networks, behavioral tracking pixels, or data brokers. If this changes, we will update this Privacy Policy before any such processors are activated.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Cookies and Tracking Technologies</h2>
+    <p>Our website uses minimal tracking technologies:</p>
+
+    <h3>Essential Cookies</h3>
+    <p>We may set session cookies required for the website to function correctly, such as preserving form state. These cookies are strictly necessary and cannot be opted out of while using the site.</p>
+
+    <h3>Analytics</h3>
+    <p>If analytics tools are activated on our website, they may set first-party cookies to measure page views, session duration, and referral sources. These analytics are used solely to improve the website experience and are not shared with advertising platforms. You may opt out by adjusting your browser's cookie settings or by using a browser extension such as uBlock Origin.</p>
+
+    <h3>Third-Party Cookies</h3>
+    <p>Stripe's payment widget may set third-party cookies for fraud prevention and session security during the checkout process. These cookies are governed by Stripe's privacy policy.</p>
+
+    <h3>Do Not Track</h3>
+    <p>We respect Do Not Track (DNT) browser signals. When DNT is enabled, we limit any non-essential tracking to the extent technically feasible.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Data Retention</h2>
+    <p>We retain your personal information for as long as necessary to:</p>
+    <ul>
+      <li>Maintain your founding membership account and deliver lifetime access benefits</li>
+      <li>Comply with legal, tax, and accounting obligations (typically 7 years for financial records)</li>
+      <li>Resolve disputes and enforce our agreements</li>
+    </ul>
+    <p>Email addresses collected via the waitlist are retained until you unsubscribe or request deletion. Purchase records are retained in accordance with applicable financial recordkeeping requirements.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Your Rights and Choices</h2>
+    <p>Depending on your jurisdiction, you may have the following rights with respect to your personal information:</p>
+    <ul>
+      <li><strong>Right to Access</strong> — request a copy of the personal data we hold about you</li>
+      <li><strong>Right to Correction</strong> — request correction of inaccurate or incomplete personal data</li>
+      <li><strong>Right to Deletion</strong> — request deletion of your personal data, subject to legal retention requirements</li>
+      <li><strong>Right to Restriction</strong> — request that we limit processing of your personal data in certain circumstances</li>
+      <li><strong>Right to Portability</strong> — request your data in a structured, machine-readable format</li>
+      <li><strong>Right to Opt Out of Marketing</strong> — unsubscribe from marketing emails at any time using the unsubscribe link in each email</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p>To exercise any of these rights, contact us at <a href="mailto:hirejeffreywilliams@gmail.com" class="inline-link">hirejeffreywilliams@gmail.com</a>. We will respond to verified requests within 30 days. We may need to verify your identity before processing your request.</p>
+    </div>
+
+    <p>Please note that deleting your personal data may affect our ability to deliver founding membership benefits, as your account information is necessary to authenticate your access.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Data Security</h2>
+    <p>We implement commercially reasonable technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+    <ul>
+      <li>HTTPS encryption for all data transmitted between your browser and our website</li>
+      <li>Restricted access to personal data on a need-to-know basis</li>
+      <li>Use of PCI-compliant payment processors (Stripe) — we never handle raw payment card data</li>
+    </ul>
+    <p>No method of transmission over the internet or electronic storage is 100% secure. While we strive to protect your personal information, we cannot guarantee its absolute security. In the event of a data breach that affects your rights and freedoms, we will notify you as required by applicable law.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Children's Privacy</h2>
+    <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a minor, please contact us at <a href="mailto:hirejeffreywilliams@gmail.com" class="inline-link">hirejeffreywilliams@gmail.com</a> and we will promptly delete it.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>10. International Data Transfers</h2>
+    <p>4everacy, Inc. is incorporated in Delaware, United States. If you are accessing our services from outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States. By using our services, you consent to this transfer. We take steps to ensure that any international transfers of personal data are handled in accordance with applicable law.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>11. Links to Third-Party Websites</h2>
+    <p>Our website may contain links to third-party websites (such as Stripe's checkout page or GitHub). We are not responsible for the privacy practices or content of those sites. We encourage you to review the privacy policy of any third-party site you visit.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>12. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. If we make material changes that affect your rights, we will notify you via the email address associated with your account. Your continued use of our website or services after any changes constitutes acceptance of the updated policy.</p>
+    <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>13. Contact Us</h2>
+    <div class="info-card">
+      <p style="color: rgba(255,255,255,0.75);font-weight:600;margin-bottom:12px;">Privacy Inquiries &amp; Data Requests</p>
+      <p><strong class="text-85">4everacy, Inc.</strong></p>
+      <p class="text-60">8 The Green, Suite B</p>
+      <p class="text-60">Dover, DE 19901</p>
+      <p style="margin-top:12px;"><a href="mailto:hirejeffreywilliams@gmail.com" class="inline-link">hirejeffreywilliams@gmail.com</a></p>
+      <p><span class="text-60">650-644-2288</span></p>
+    </div>
+    <p>We aim to respond to all privacy-related inquiries within 30 business days.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">4EVERACY™</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html" class="active">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </div>
+  <p class="footer-copy">
+    © 2024–2026 4everacy, Inc. All Rights Reserved.<br/>
+    4everacy™, Founders 5000™, FSU™ are trademarks of 4everacy, Inc.<br/>
+    <span style="color: rgba(255,255,255,0.72);margin-top:8px;display:inline-block;">8 The Green, Suite B, Dover, DE 19901 &nbsp;·&nbsp; EIN: 41-5209097</span>
+  </p>
+</footer>
+
+</body>
+</html>
