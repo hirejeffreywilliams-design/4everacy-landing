@@ -17,6 +17,23 @@
 
 # ── API Proxy to Serverless Functions ─────────────────────────────────────────
 
+# ── SHIELD: Canary token receiver ────────────────────────────────────────────
+# Any request to /api/_shield/canary/* is handled by the shield-canary function.
+# Decoy files (.env.sample-suspicious, admin-legacy, security.txt) embed these URLs.
+[[redirects]]
+  from = "/api/_shield/canary/*"
+  to = "/.netlify/functions/shield-canary"
+  status = 200
+  force = true
+
+# Beacon endpoint (short URL for embedding in decoy files)
+[[redirects]]
+  from = "/b/*"
+  to = "/.netlify/functions/shield-canary"
+  status = 200
+  force = true
+
+
 
 [[redirects]]
   from = "/privacy"

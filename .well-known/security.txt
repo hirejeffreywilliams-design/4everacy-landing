@@ -1,0 +1,24 @@
+# ────────────────────────────────────────────────────────────────────────────
+# 4everacy Security Policy
+# Contact: security@4everacy.com
+# Expires: 2026-12-31T23:59:59.000Z
+# Preferred-Languages: en
+# Canonical: https://4everacy.com/.well-known/security.txt
+# ────────────────────────────────────────────────────────────────────────────
+#
+# RESPONSIBLE DISCLOSURE
+# We welcome responsible disclosure of security vulnerabilities.
+# Please email security@4everacy.com with details.
+# Do NOT publish without giving us 90 days to remediate.
+#
+# Bug bounty: No formal program yet. We will thank you publicly and consider
+# compensation for significant findings.
+#
+# NOTICE: This file is monitored. Any unauthorized scanning, probing, or
+# automated access to /.well-known/ paths may be logged and reported.
+# Internal reference: https://4everacy.com/api/_shield/canary/SEC-TXT-v1-MONITOR
+#
+Contact: mailto:security@4everacy.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://4everacy.com/.well-known/security.txt
