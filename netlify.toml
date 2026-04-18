@@ -81,7 +81,7 @@
   to = "/#investor"
   status = 302
 
-# ── OmniDLOS Ecosystem App Redirects ─────────────────────────────────────────
+# ──  Ecosystem App Redirects ─────────────────────────────────────────
 [[redirects]]
   from = "/app/sors-maxima"
   to = "https://sors-maxima.4everacy.com"
@@ -135,7 +135,7 @@
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com https://4everacy.app; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
-    X-Powered-By = "4everacy OmniDLOS"
+    X-Powered-By = "4everacy "
     X-Robots-Tag = "index, follow"
 
 # ── HTML Pages — No Cache ─────────────────────────────────────────────────────

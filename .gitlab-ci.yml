@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════════════════════
-# 4EVERACY™ LANDING PAGE — Enhanced GitLab CI/CD Pipeline
-# OmniDLOS Digital Life Operating System
+# 4EVERACY LANDING PAGE — Enhanced GitLab CI/CD Pipeline
+#  Digital Life Operating System
 # NOW WITH FULL GitLab Ultimate Security Suite
 # Pipeline Version: 2.0 — Maximized for Ultimate Trial
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -44,7 +44,7 @@ validate:config:
   stage: validate
   image: node:20-alpine
   script:
-    - echo "═══ 4everacy™ Pipeline v2.0 Starting ═══"
+    - echo "═══ 4everacy Pipeline v2.0 Starting ═══"
     - echo "Commit → $CI_COMMIT_SHA"
     - echo "Branch → $CI_COMMIT_REF_NAME"
     - echo "Author → $CI_COMMIT_AUTHOR"
@@ -308,7 +308,7 @@ build:
   stage: build
   image: node:20-alpine
   script:
-    - echo "═══ Building 4everacy™ Deploy Bundle ═══"
+    - echo "═══ Building 4everacy Deploy Bundle ═══"
     - echo "Static site — cataloging files..."
     - |
       echo "Files to deploy:"
@@ -385,7 +385,7 @@ deploy:production:
   before_script:
     - npm install -g netlify-cli@${NETLIFY_CLI_VERSION}
   script:
-    - echo "═══ Deploying 4everacy™ to PRODUCTION ═══"
+    - echo "═══ Deploying 4everacy to PRODUCTION ═══"
     - |
       netlify deploy \
         --dir=. \
@@ -419,7 +419,7 @@ load-test:smoke:
   variables:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
-    - echo "═══ 4everacy™ Smoke Test (5 Users) ═══"
+    - echo "═══ 4everacy Smoke Test (5 Users) ═══"
     - 'echo "Target: $BASE_URL"'
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/smoke-raw.json load-tests/smoke-test.js
@@ -441,7 +441,7 @@ load-test:standard:
   variables:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
-    - echo "═══ 4everacy™ Load Test (500 Users) ═══"
+    - echo "═══ 4everacy Load Test (500 Users) ═══"
     - 'echo "Target: $BASE_URL"'
     - 'echo "Duration: ~15 minutes"'
     - mkdir -p load-tests/results
@@ -466,7 +466,7 @@ load-test:stress:
   variables:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
-    - echo "═══ 4EVERACY™ STRESS TEST — 5,000 Users ═══"
+    - echo "═══ 4EVERACY STRESS TEST — 5,000 Users ═══"
     - 'echo "Target: $BASE_URL"'
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/stress-raw.json load-tests/stress-test.js
@@ -492,7 +492,7 @@ load-test:spike:
   variables:
     BASE_URL: "https://relaxed-selkie-a77e89.netlify.app"
   script:
-    - echo "═══ 4EVERACY™ SPIKE TEST — Viral Traffic ═══"
+    - echo "═══ 4EVERACY SPIKE TEST — Viral Traffic ═══"
     - 'echo "Target: $BASE_URL"'
     - mkdir -p load-tests/results
     - k6 run --out json=load-tests/results/spike-raw.json load-tests/spike-test.js
