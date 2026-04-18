@@ -1,10 +1,5 @@
-# ═══════════════════════════════════════════════════════════════════════════════
-# 4EVERACY™ — NETLIFY CONFIGURATION (Pro Plan)
-# OmniDLOS Digital Life Operating System
-# Founder: Jeffrey W. Williams | 4everacy, Inc.
-# ═══════════════════════════════════════════════════════════════════════════════
+# Netlify configuration
 
-# ── Build Settings ────────────────────────────────────────────────────────────
 [build]
   publish = "."
   functions = "netlify/functions"

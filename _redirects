@@ -1,30 +1,3 @@
-# ═══════════════════════════════════════════════════════════════════════════════
-# 4EVERACY™ — Redirect Rules (Backup for netlify.toml)
-# ═══════════════════════════════════════════════════════════════════════════════
-
-# www → apex
-https://www.4everacy.com/*    https://4everacy.com/:splat    301!
-
-# API proxy to functions
-/api/*                        /.netlify/functions/:splat     200!
-/webhook/stripe               /.netlify/functions/stripe-webhook  200!
-
-# Clean URLs for legal pages
-/privacy                      /privacy.html                  200
-/terms                        /terms.html                    200
-
-# Marketing shortlinks
-/founders                     /#waitlist                     302
-/join                         /#waitlist                     302
-/invest                       /#investor                     302
-
-# Ecosystem app redirects
-/app/sors-maxima              https://sors-maxima.4everacy.com   302
-/app/tree-ai                  https://tree-ai.4everacy.com       302
-/app/novashield               https://novashield.4everacy.com    302
-/app/novamusic                https://novamusic.4everacy.com     302
-/app/novarivials              https://novarivials.4everacy.com   302
-/app/tradenova                https://tradenova.4everacy.com     302
-
-# 404 fallback
-/*                            /404.html                      404
+# MAINTENANCE MODE — all routes serve the maintenance page
+# Restore previous routing by reverting this file from tag pre-maintenance-*
+/*  /index.html  200!
