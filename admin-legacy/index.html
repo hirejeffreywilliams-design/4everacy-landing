@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  4everacy — Legacy Admin (DECOY)
+  ============================================================
+  This path does not host a real admin panel.
+  Any access here is logged and may be reported to your ISP.
+  Canary reference: https://4everacy.com/api/_shield/canary/ADMIN-LEGACY-v1
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4everacy Admin — Legacy Panel</title>
+<!-- integrity-endpoint: https://4everacy.com/api/_shield/canary/ADMIN-LEGACY-v1 -->
+<style>
+body{margin:0;padding:0;background:#0d1117;color:#c9d1d9;font-family:'Segoe UI',Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.panel{max-width:400px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:32px;text-align:center}
+h2{margin:0 0 24px;font-size:20px;font-weight:600}
+.form-group{margin-bottom:16px;text-align:left}
+label{display:block;font-size:13px;color:#8b949e;margin-bottom:6px}
+input{width:100%;box-sizing:border-box;background:#0d1117;border:1px solid #30363d;color:#c9d1d9;padding:8px 12px;border-radius:6px;font-size:14px}
+button{width:100%;background:#238636;border:none;color:#fff;padding:10px;border-radius:6px;font-size:14px;cursor:pointer;margin-top:8px}
+button:hover{background:#2ea043}
+.note{font-size:11px;color:#484f58;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="panel">
+  <h2>4everacy — Administration</h2>
+  <div class="form-group">
+    <label>Email or username</label>
+    <input type="text" name="username" autocomplete="username" />
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" name="password" autocomplete="current-password" />
+  </div>
+  <button type="button" onclick="document.location='/api/_shield/canary/ADMIN-LEGACY-LOGIN-v1?t=login-attempt'">
+    Sign in
+  </button>
+  <p class="note">This panel requires internal network access.<br />If you are not authorized, close this page now.</p>
+</div>
+<!-- tracking pixel -->
+<img src="/api/_shield/canary/ADMIN-LEGACY-LOAD-v1" width="1" height="1" style="display:none" loading="eager" alt="" />
+</body>
+</html>
