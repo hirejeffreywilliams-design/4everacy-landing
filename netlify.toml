@@ -2,7 +2,7 @@
 
 [build]
   publish = "."
-  functions = "netlify/functions"
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # REDIRECTS — URL Routing & API Proxies
@@ -16,20 +16,8 @@
   force = true
 
 # ── API Proxy to Serverless Functions ─────────────────────────────────────────
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
 
-# ── Stripe Webhook Proxy ─────────────────────────────────────────────────────
-[[redirects]]
-  from = "/webhook/stripe"
-  to = "/.netlify/functions/stripe-webhook"
-  status = 200
-  force = true
 
-# ── Clean URLs for Legal Pages ────────────────────────────────────────────────
 [[redirects]]
   from = "/privacy"
   to = "/privacy.html"
