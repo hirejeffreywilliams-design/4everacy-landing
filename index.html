@@ -200,15 +200,46 @@
 
     /* HERO */
     #hero {
+      position: relative;
       min-height: 92vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 140px 24px 80px;
+      overflow: hidden;
+      isolation: isolate;
     }
 
-    .hero-inner { max-width: 880px; }
+    /* Background video layer — subtle, behind hero content */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* Gradient wash for legibility over the video */
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at center, rgba(3,5,8,0.25) 0%, rgba(3,5,8,0.7) 55%, rgba(3,5,8,0.95) 100%),
+        linear-gradient(180deg, rgba(3,5,8,0.4) 0%, rgba(3,5,8,0.2) 40%, rgba(3,5,8,0.85) 100%);
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video { display: none; }
+      .hero-video-overlay { display: none; }
+    }
+
+    .hero-inner { max-width: 880px; position: relative; z-index: 1; }
 
     .hero-logo {
       display: block;
@@ -710,6 +741,21 @@
 
 <!-- HERO -->
 <section id="hero">
+  <!-- Ambient background video loop (muted, autoplay, looped). Hidden for users who prefer reduced motion. -->
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="assets/video/hero-poster.jpg"
+    aria-hidden="true"
+  >
+    <source src="assets/video/hero-loop.webm" type="video/webm" />
+    <source src="assets/video/hero-loop.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-video-overlay" aria-hidden="true"></div>
   <div class="hero-inner">
     <img class="hero-logo" src="images/4everacy-logo.png" alt="4everacy" width="400" height="100" fetchpriority="high" decoding="async" />
     <div>
