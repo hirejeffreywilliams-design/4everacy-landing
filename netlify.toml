@@ -52,6 +52,15 @@
   status = 302
   force = true
 
+# ── Admin Redirect (landing → admin service on .io) ──────────────────────────
+# Real admin panel lives at 4everacy.io. /admin-legacy/ is a decoy tripwire;
+# do NOT use it for login.
+[[redirects]]
+  from = "/admin"
+  to = "https://4everacy.io"
+  status = 302
+  force = true
+
 [[redirects]]
   from = "/login"
   to = "https://4everacy.app/auth"
