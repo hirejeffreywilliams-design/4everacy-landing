@@ -1,3 +1,4 @@
-# MAINTENANCE MODE — all routes serve the maintenance page
-# Restore previous routing by reverting this file from tag pre-maintenance-*
-/*  /index.html  200!
+# SPA-style fallback: serve index.html for unmatched paths.
+# The landing page is intentionally a single teaser page; privacy.html
+# and terms.html are served normally. All other unknown paths fall back.
+/*  /index.html  200
