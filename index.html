@@ -167,11 +167,16 @@
       display: none;
       background: transparent;
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 6px;
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
       color: #fff;
       cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
     }
+    .nav-toggle:hover { border-color: rgba(34,211,238,0.4); background: rgba(34,211,238,0.05); }
+    .nav-toggle:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
     .nav-toggle .icon-close { display: none; }
     .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
     .nav-toggle[aria-expanded="true"] .icon-close { display: inline; }
