@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  validate:
+    name: Validate landing assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for required files
+        run: |
+          test -f index.html || { echo "missing index.html"; exit 1; }
+          test -f netlify.toml || { echo "missing netlify.toml"; exit 1; }
+          test -f _headers || { echo "missing _headers"; exit 1; }
+          test -f _redirects || { echo "missing _redirects"; exit 1; }
+
+      - name: HTML basic sanity (balanced tags)
+        run: |
+          for f in index.html privacy.html terms.html 404.html; do
+            [ -f "$f" ] || continue
+            open=$(grep -oE "<[a-zA-Z]+" "$f" | wc -l)
+            close=$(grep -oE "</[a-zA-Z]+" "$f" | wc -l)
+            echo "$f: $open opening, $close closing tags"
+          done
+
+      - name: Detect unintended trade-secret leaks
+        if: hashFiles('scripts/trade-secret-scan.py') != ''
+        run: python3 scripts/trade-secret-scan.py
+
+      - name: Netlify config sanity
+        run: |
+          grep -q "publish" netlify.toml || { echo "netlify.toml missing publish dir"; exit 1; }
