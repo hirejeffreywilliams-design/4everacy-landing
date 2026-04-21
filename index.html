@@ -2414,6 +2414,9 @@
      local state so the experience never breaks.
      ===================================================================== */
   const FOUNDERS_TOTAL_SEATS = 5000;
+  // Remote admin API base. All real signups are recorded here; stats + public feed
+  // are polled live so the numbers you see match what the admin dashboard shows.
+  const API_BASE = 'https://4everacy-admin-production.up.railway.app';
   // Storage keys are versioned (v2). Older v1 keys (which seeded fake entries) are
   // explicitly purged on load so every browser starts from a clean, real-only state.
   const LS_COUNT = '4ev:founders:count:v2';
@@ -2564,19 +2567,46 @@
     nameInput.disabled = true;
     emailInput.disabled = true;
 
-    // Try the API first. If it responds with { seatNum, total } we use those.
-    // Otherwise we fall back to purely local state.
-    let serverSeat = null, serverTotal = null;
+    // Collect UTM/referrer attribution so the admin can see where signups come from.
+    const qs = new URLSearchParams(location.search);
+    const attribution = {
+      utm_source:   qs.get('utm_source')   || '',
+      utm_medium:   qs.get('utm_medium')   || '',
+      utm_campaign: qs.get('utm_campaign') || '',
+      utm_term:     qs.get('utm_term')     || '',
+      utm_content:  qs.get('utm_content')  || '',
+      referrer:     document.referrer || '',
+      landing_path: location.pathname + location.search,
+    };
+
+    // POST to the admin API. If reachable the server is the source of truth —
+    // it assigns the seat number, pass id, and global total. On failure we fall
+    // back to local state so the visitor still gets an immediate response.
+    let serverSeat = null, serverTotal = null, serverPassId = null;
     try {
-      const response = await fetch('/api/waitlist', {
+      const response = await fetch(API_BASE + '/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, source: 'landing-page-founders5000' })
+        body: JSON.stringify({
+          name,
+          email,
+          source: 'landing-page-founders5000',
+          ...attribution,
+        })
       });
       if (response.ok) {
         const data = await response.json().catch(() => ({}));
         if (typeof data.seatNum === 'number') serverSeat = data.seatNum;
         if (typeof data.total === 'number')   serverTotal = data.total;
+        if (typeof data.passId === 'string')  serverPassId = data.passId;
+      } else if (response.status === 429) {
+        error.textContent = 'Too many requests from your network. Please try again in a minute.';
+        error.style.display = 'block';
+        btn.textContent = 'Reserve my seat →';
+        btn.disabled = false;
+        nameInput.disabled = false;
+        emailInput.disabled = false;
+        return;
       }
     } catch (err) {
       // Silently continue to local fallback — the list is still real for this user.
@@ -2596,8 +2626,14 @@
     feed.push({ firstName, lastInitial, seatNum, ts: Date.now() });
     setFeed(feed);
 
-    // Issue the pass
-    const me = { seatNum, name, email, passId: genPassId(seatNum), issuedAt: Date.now() };
+    // Issue the pass (prefer server-issued passId when available)
+    const me = {
+      seatNum,
+      name,
+      email,
+      passId: serverPassId || genPassId(seatNum),
+      issuedAt: Date.now()
+    };
     setMe(me);
 
     // UI updates
@@ -2693,9 +2729,44 @@
     }, 'image/png');
   }
 
+  // Poll the admin API for the live global count + recent public feed so the
+  // landing page always reflects the same total the admin dashboard sees. Falls
+  // back silently to whatever is in local storage if the API is unreachable.
+  async function refreshFromServer() {
+    try {
+      const [statsRes, feedRes] = await Promise.all([
+        fetch(API_BASE + '/api/waitlist/stats',       { cache: 'no-store' }),
+        fetch(API_BASE + '/api/waitlist/feed?limit=5', { cache: 'no-store' }),
+      ]);
+      if (statsRes.ok) {
+        const stats = await statsRes.json();
+        if (typeof stats.total === 'number') setCount(stats.total);
+      }
+      if (feedRes.ok) {
+        const data = await feedRes.json();
+        const arr = Array.isArray(data.feed) ? data.feed
+                  : Array.isArray(data.items) ? data.items : null;
+        if (arr) {
+          // Server items supply the real public feed; renderLive will add the
+          // local 'me' entry on top automatically if it isn't already there.
+          const serverFeed = arr.map(it => ({
+            firstName:   it.firstName   || it.first_name   || '?',
+            lastInitial: it.lastInitial || it.last_initial || '•',
+            seatNum:     it.seatNum     || it.seat_num,
+            ts:          new Date(it.createdAt || it.created_at || Date.now()).getTime(),
+          })).filter(it => typeof it.seatNum === 'number');
+          setFeed(serverFeed);
+        }
+      }
+      renderLive();
+    } catch (_) { /* offline — silent */ }
+  }
+
   // Wire up pass buttons
   document.addEventListener('DOMContentLoaded', () => {
     renderLive();
+    refreshFromServer();
+    setInterval(refreshFromServer, 20000);
     const me = getMe();
     if (me) renderPass(me);
 
