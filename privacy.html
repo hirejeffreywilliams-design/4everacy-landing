@@ -63,28 +63,25 @@
       border-bottom: 1px solid rgba(139,92,246,0.1);
     }
 
-    .nav-logo {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: 0.08em;
-      background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-    }
+    .nav-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
 
-    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.82);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-links a:focus-visible {
+      outline: 2px solid #a78bfa;
+      outline-offset: 4px;
+      border-radius: 4px;
+      color: #fff;
+    }
 
     .nav-cta {
       background: linear-gradient(135deg, #8B5CF6, #6D28D9);
@@ -97,6 +94,26 @@
       letter-spacing: 0.03em !important;
     }
     .nav-cta:hover { opacity: 0.85; color: #fff !important; }
+    .nav-cta:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
+      color: #fff;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .nav-toggle:hover { border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.05); }
+    .nav-toggle:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }
+    .nav-toggle .icon-close { display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-close { display: inline; }
+    .nav-toggle svg { width: 22px; height: 22px; }
 
     /* ── LEGAL PAGE LAYOUT ── */
     .legal-container {
@@ -269,9 +286,22 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.8; }
 
     /* ── MOBILE ── */
-    @media (max-width: 640px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(3,5,8,0.98);
+        border-bottom: 1px solid rgba(139,92,246,0.12);
+        padding: 12px 20px 20px;
+      }
+      .nav-links[data-open="true"] { display: flex; }
+      .nav-links a { padding: 10px 0; width: 100%; }
+      .nav-cta { display: inline-flex; justify-content: center; margin-top: 6px; }
       .legal-container { padding: 100px 20px 80px; }
     }
 
@@ -291,14 +321,20 @@
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">4EVERACY™</a>
-  <div class="nav-links">
-    <a href="index.html#universes">Platform</a>
-    <a href="index.html#founders">Founders 5000</a>
-    <a href="index.html#how">How It Works</a>
-    <a href="index.html#countdown">Launch Date</a>
-    <a href="index.html#waitlist" class="nav-cta">Join Now</a>
+<nav aria-label="Primary">
+  <a href="index.html" class="nav-logo" aria-label="4everacy home">
+    <img src="images/4everacy-logo.png" alt="4everacy" width="160" height="40" decoding="async" />
+  </a>
+  <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#pillars">What it is</a>
+    <a href="index.html#proof">Progress</a>
+    <a href="index.html#founder">Founder</a>
+    <a href="https://4everacy.app" target="_blank" rel="noopener">Launch App ↗</a>
+    <a href="index.html#waitlist" class="nav-cta">Join the list</a>
   </div>
 </nav>
 
@@ -476,17 +512,48 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">4EVERACY™</div>
-  <div class="footer-links">
+  <nav class="footer-links" aria-label="Footer">
     <a href="index.html">Home</a>
+    <a href="https://4everacy.app" target="_blank" rel="noopener">App ↗</a>
     <a href="privacy.html" class="active">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
-  </div>
+    <a href="mailto:hirejeffreywilliams@gmail.com">Contact</a>
+  </nav>
   <p class="footer-copy">
     © 2024–2026 4everacy, Inc. All Rights Reserved.<br/>
     4everacy™, Founders 5000™, FSU™ are trademarks of 4everacy, Inc.<br/>
     <span style="color: rgba(255,255,255,0.72);margin-top:8px;display:inline-block;">8 The Green, Suite B, Dover, DE 19901 &nbsp;·&nbsp; EIN: 41-5209097</span>
   </p>
 </footer>
+
+<script>
+  // Mobile nav toggle
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+    const setOpen = (open) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      links.setAttribute('data-open', String(open));
+    };
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
+    });
+    links.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    const mq = window.matchMedia('(min-width: 769px)');
+    const onMqChange = () => { if (mq.matches) setOpen(false); };
+    (mq.addEventListener ? mq.addEventListener('change', onMqChange) : mq.addListener(onMqChange));
+  })();
+</script>
 
 </body>
 </html>
