@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4everacy — A Digital Life Operating System</title>
-  <meta name="description" content="4everacy is building a digital life operating system for humans. Private beta begins Mother's Day, May 9, 2026, for close family and friends. Public launch later in 2026. Join the Founders 5000 list." />
+  <meta name="description" content="4everacy is a digital life operating system organized into Eight Universes — NovaSelf (MyWorld), KinSphere, BizNova, CrewBase, CreatorSphere, SignalVerse, ChronoVault, and NovaMind · NovaVault. Personalize it with MakeMine. Private beta opens Mother's Day weekend, Saturday, May 9, 2026, for close family and friends. Public launch follows later in 2026. Join the Founders 5000 list." />
   <meta name="robots" content="index,follow" />
   <meta property="og:title" content="4everacy — A Digital Life Operating System" />
-  <meta property="og:description" content="A digital life operating system for humans. Private beta Mother's Day 2026. Public launch later this year." />
+  <meta property="og:description" content="Eight Universes. One life, finally organized. MyWorld · KinSphere · BizNova · CrewBase · CreatorSphere · SignalVerse · ChronoVault · NovaMind. Private beta opens Mother's Day weekend, May 9, 2026." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://4everacy.com/images/4everacy-logo.png" />
   <meta property="og:url" content="https://4everacy.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="4everacy — A Digital Life Operating System" />
-  <meta name="twitter:description" content="A digital life operating system for humans. Private beta Mother's Day 2026. Public launch later this year." />
+  <meta name="twitter:description" content="Eight Universes. One life, finally organized. MyWorld · KinSphere · BizNova · CrewBase · CreatorSphere · SignalVerse · ChronoVault · NovaMind. Private beta opens Mother's Day weekend, May 9, 2026." />
   <meta name="twitter:image" content="https://4everacy.com/images/4everacy-logo.png" />
   <meta name="theme-color" content="#030508" />
   <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
@@ -456,28 +456,46 @@
       line-height: 1.65;
     }
 
-    /* PILLARS */
-    #pillars { padding: 90px 24px; }
-    .pillars-grid {
-      max-width: 1100px;
+    /* UNIVERSES (Eight Universes — product architecture) */
+    #universes { padding: 100px 24px 70px; }
+    .universes-grid {
+      max-width: 1180px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 22px;
     }
-    .pillar-card {
+    .universe-card {
+      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
       border-radius: 18px;
-      padding: 32px 26px;
-      transition: transform 0.25s, border-color 0.25s, background 0.25s;
+      padding: 32px 26px 30px;
+      transition: transform 0.25s, border-color 0.25s, background 0.25s, box-shadow 0.25s;
+      overflow: hidden;
     }
-    .pillar-card:hover {
+    .universe-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--u-accent, #8B5CF6) 0%, transparent 70%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0.35;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .universe-card:hover {
       transform: translateY(-4px);
       border-color: rgba(139,92,246,0.35);
       background: rgba(139,92,246,0.04);
+      box-shadow: 0 20px 48px -24px var(--u-accent, rgba(139,92,246,0.5));
     }
-    .pillar-icon {
+    .universe-card:hover::before { opacity: 0.75; }
+    .universe-orb {
       width: 54px; height: 54px;
       border-radius: 14px;
       display: inline-flex;
@@ -485,18 +503,369 @@
       justify-content: center;
       font-size: 26px;
       margin-bottom: 18px;
+      background: color-mix(in srgb, var(--u-accent, #8B5CF6) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--u-accent, #8B5CF6) 30%, transparent);
     }
-    .pillar-title {
+    .universe-index {
       font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-      margin-bottom: 10px;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--u-accent, #8B5CF6) 100%, white 0%);
+      font-weight: 800;
+      margin-bottom: 8px;
+      opacity: 0.9;
     }
-    .pillar-desc {
+    .universe-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.01em;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .universe-tag {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 14px;
+    }
+    .universe-desc {
       font-size: 14.5px;
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.78);
       line-height: 1.65;
+    }
+
+    /* Per-universe accent colors — meaning-based palette from the product */
+    .u-novaself    { --u-accent: #F5B84B; }  /* amber-gold — MyWorld / self */
+    .u-kinsphere   { --u-accent: #EC4899; }  /* pink-fuchsia — family / love */
+    .u-biznova     { --u-accent: #10B981; }  /* emerald — business / growth */
+    .u-crewbase    { --u-accent: #FB923C; }  /* coral-orange — friends / crew */
+    .u-creator     { --u-accent: #FDE68A; }  /* gold-platinum / holographic — creators */
+    .u-signal      { --u-accent: #38BDF8; }  /* sky-blue — broadcast / social */
+    .u-chrono      { --u-accent: #8B5CF6; }  /* deep purple — time / memory */
+    .u-novamind    { --u-accent: #C4B5FD; }  /* lavender-silver — intelligence / data */
+
+    /* Ring eyebrow + MyWorld hub accent on card 01 */
+    .universe-ring {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.52);
+      margin-top: 12px;
+    }
+    .universe-ring::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--u-accent);
+      box-shadow: 0 0 8px var(--u-accent);
+    }
+    .universe-card.is-hub {
+      background: linear-gradient(180deg, rgba(245,184,75,0.06), var(--bg-card));
+    }
+    .hub-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--u-accent);
+      border: 1px solid color-mix(in srgb, var(--u-accent) 50%, transparent);
+      border-radius: 999px;
+      margin-left: 8px;
+      vertical-align: 2px;
+    }
+
+    /* Animated orb pulse — replaces the flat emoji box feel */
+    .universe-orb {
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--u-accent) 45%, transparent), transparent 60%),
+        color-mix(in srgb, var(--u-accent) 10%, transparent);
+    }
+    .universe-orb::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: inherit;
+      background: radial-gradient(circle, color-mix(in srgb, var(--u-accent) 35%, transparent), transparent 70%);
+      filter: blur(8px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    /* MakeMine signature callout */
+    .makemine-band {
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding: 28px 32px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(ellipse 80% 80% at 0% 0%, rgba(139,92,246,0.12), transparent 60%),
+        radial-gradient(ellipse 80% 80% at 100% 100%, rgba(56,189,248,0.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+    .makemine-orb {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(167,139,250,0.5), transparent 60%),
+        rgba(139,92,246,0.15);
+      border: 1px solid rgba(167,139,250,0.4);
+      box-shadow: 0 0 24px -6px rgba(139,92,246,0.5);
+    }
+    .makemine-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .makemine-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .makemine-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(167,139,250,0.9);
+      white-space: nowrap;
+    }
+    @media (max-width: 720px) {
+      .makemine-band {
+        grid-template-columns: auto 1fr;
+        padding: 22px 22px;
+      }
+      .makemine-tag { grid-column: 1 / -1; text-align: right; }
+    }
+
+    /* Cosmic backdrop behind the Universes section */
+    #universes {
+      position: relative;
+      isolation: isolate;
+    }
+    #universes::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 60% 45% at 25% 20%, rgba(139,92,246,0.10), transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 65%, rgba(56,189,248,0.07), transparent 60%),
+        radial-gradient(ellipse 40% 30% at 50% 100%, rgba(236,72,153,0.06), transparent 60%);
+      pointer-events: none;
+    }
+
+    /* ORBITAL STAGE — the eight universes circling the 4everacy hub */
+    .orbit-stage {
+      --stage-size: 680px;
+      --orbit-radius: 280px;
+      --orb-size: 108px;
+      position: relative;
+      width: var(--stage-size);
+      height: var(--stage-size);
+      max-width: 92vw;
+      margin: 60px auto 56px;
+    }
+    @media (max-width: 980px) {
+      .orbit-stage {
+        --stage-size: 560px;
+        --orbit-radius: 228px;
+        --orb-size: 92px;
+      }
+    }
+
+    /* Faint orbit rings — two concentric circles to match the "two orbital rings" copy */
+    .orbit-stage::before,
+    .orbit-stage::after {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.10);
+      pointer-events: none;
+    }
+    .orbit-stage::before {
+      width: calc(var(--orbit-radius) * 2);
+      height: calc(var(--orbit-radius) * 2);
+    }
+    .orbit-stage::after {
+      width: calc(var(--orbit-radius) * 2 - 80px);
+      height: calc(var(--orbit-radius) * 2 - 80px);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    /* Central 4everacy hub — logo + halo */
+    .orbit-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(34,211,238,0.22), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.18), transparent 70%);
+      box-shadow:
+        0 0 60px -10px rgba(34,211,238,0.5),
+        0 0 100px -30px rgba(139,92,246,0.6);
+      border: 1px solid rgba(34,211,238,0.25);
+    }
+    .orbit-core img {
+      width: 110px;
+      height: auto;
+      filter: drop-shadow(0 0 12px rgba(34,211,238,0.6));
+      opacity: 0.95;
+    }
+    .orbit-core-label {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(34,211,238,0.85);
+      white-space: nowrap;
+    }
+
+    /* One orb positioned at its angle */
+    .orbit-orb {
+      --angle: 0deg;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--orb-size);
+      height: var(--orb-size);
+      margin-top: calc(var(--orb-size) / -2);
+      margin-left: calc(var(--orb-size) / -2);
+      transform: rotate(var(--angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--angle)));
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--u-accent) 55%, transparent), transparent 65%),
+        color-mix(in srgb, var(--u-accent) 14%, rgba(5,8,14,0.85));
+      border: 1px solid color-mix(in srgb, var(--u-accent) 45%, transparent);
+      box-shadow:
+        0 0 24px -4px color-mix(in srgb, var(--u-accent) 60%, transparent),
+        inset 0 0 18px -4px color-mix(in srgb, var(--u-accent) 35%, transparent);
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 3;
+    }
+    .orbit-orb:hover,
+    .orbit-orb:focus-visible {
+      transform: rotate(var(--angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--angle))) scale(1.08);
+      box-shadow:
+        0 0 36px -2px color-mix(in srgb, var(--u-accent) 75%, transparent),
+        inset 0 0 22px -2px color-mix(in srgb, var(--u-accent) 50%, transparent);
+      outline: none;
+    }
+    .orbit-orb-icon {
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 2px;
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--u-accent) 50%, transparent));
+    }
+    .orbit-orb-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 0 6px;
+      color: #fff;
+    }
+    .orbit-orb-num {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: color-mix(in srgb, var(--u-accent) 100%, white 0%);
+      opacity: 0.85;
+    }
+
+    /* Legend heading above the universe cards */
+    .legend-heading {
+      max-width: 1180px;
+      margin: 36px auto 18px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      position: relative;
+    }
+    .legend-heading::before,
+    .legend-heading::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      vertical-align: middle;
+      margin: 0 14px;
+    }
+
+    /* Mobile fallback — hide the stage, show the legend-grid fully */
+    .orbit-stage-wrapper { display: block; }
+    @media (max-width: 720px) {
+      .orbit-stage-wrapper { display: none; }
+      .orbit-mobile-intro { display: block; }
+    }
+    .orbit-mobile-intro {
+      display: none;
+      text-align: center;
+      padding: 8px 0 28px;
+    }
+    .orbit-mobile-intro .logo-mini {
+      width: 120px;
+      filter: drop-shadow(0 0 10px rgba(34,211,238,0.5));
+      margin-bottom: 12px;
+    }
+    .orbit-mobile-intro-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(34,211,238,0.85);
     }
 
     /* PROOF */
@@ -735,7 +1104,7 @@
     <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
   </button>
   <div class="nav-links" id="navLinks">
-    <a href="#pillars">What it is</a>
+    <a href="#universes">Universes</a>
     <a href="#proof">Progress</a>
     <a href="#founder">Founder</a>
     <a href="#waitlist" class="nav-cta">Join the list</a>
@@ -766,7 +1135,7 @@
     <div>
       <span class="hero-badge">
         <span class="dot" aria-hidden="true"></span>
-        Private Beta · Mother's Day, May 9, 2026
+        Private Beta opens Mother's Day · Saturday, May 9
       </span>
     </div>
     <h1 class="hero-title">
@@ -774,11 +1143,11 @@
       It is a universe.
     </h1>
     <p class="hero-subtitle">
-      4everacy is a digital life operating system for humans — a calm, unified home for the parts of your life the internet keeps scattering. Built by one founder, over many years. Shipped with intention.
+      4everacy is a digital life operating system for humans — organized into <strong>Eight Universes</strong> plus your own <strong>MyWorld</strong> hub and a <strong>MakeMine</strong> personalization layer. Your self, your family, your work, your crew, your creators, your voice, your legacy, and your intelligence — in one calm place. Built by one founder, over many years. The private beta opens to close family and friends on Mother's Day weekend; public launch follows later this year.
     </p>
     <div class="hero-actions">
       <a href="#waitlist" class="btn-primary">Join the Founders 5000 list</a>
-      <a href="#pillars" class="btn-secondary">What it is →</a>
+      <a href="#universes" class="btn-secondary">The Eight Universes →</a>
     </div>
   </div>
 </section>
@@ -786,7 +1155,7 @@
 <!-- COUNTDOWN -->
 <section id="countdown" aria-labelledby="countdown-heading">
   <div class="countdown-inner">
-    <div id="countdown-heading" class="countdown-label">Private beta begins in</div>
+    <div id="countdown-heading" class="countdown-label">Mother's Day beta launch in</div>
     <div class="countdown-grid" role="timer" aria-live="off">
       <div class="countdown-cell">
         <div id="days" class="countdown-num">00</div>
@@ -808,52 +1177,166 @@
         <div class="countdown-unit">Seconds</div>
       </div>
     </div>
-    <p class="countdown-date">Saturday, May 9, 2026 — Mother's Day weekend</p>
+    <p class="countdown-date">Saturday, May 9, 2026 — Mother's Day weekend · In honor of the mothers who made us</p>
     <p class="countdown-note">
       A closed, invitation-only beta for family and friends. No payments, no commitments — just early feedback from the people closest to me. Public launch will follow later in 2026.
     </p>
   </div>
 </section>
 
-<!-- PILLARS -->
-<section id="pillars">
-  <div class="section-label">What it is</div>
-  <h2 class="section-title">One place for the life you actually&nbsp;live.</h2>
+<!-- THE EIGHT UNIVERSES -->
+<section id="universes" aria-labelledby="universes-heading">
+  <div class="section-label">The product architecture</div>
+  <h2 id="universes-heading" class="section-title">Eight Universes. One life, finally organized.</h2>
   <p class="section-sub">
-    Most apps hand you a feed and call it a life. 4everacy organizes the dimensions that matter — your self, your family, your work, your friends, your voice, and the legacy you leave behind.
+    Most apps hand you a feed and call it a life. 4everacy organizes your whole life into eight distinct Universes across two orbital rings — each a self-contained dimension with its own intelligence, its own data, and its own quiet kind of power. Every Universe speaks to the others. None of them harvests you.
   </p>
 
-  <div class="pillars-grid">
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(139,92,246,0.12);">🌌</div>
-      <div class="pillar-title">A calm home for you</div>
-      <p class="pillar-desc">Journal, reflect, and track the goals that actually move your life forward — without the noise of a social feed.</p>
+  <!-- ORBITAL STAGE: 8 universes circling the 4everacy hub. Hidden on mobile; the card grid below is the fallback. -->
+  <div class="orbit-stage-wrapper">
+    <div class="orbit-stage" role="img" aria-label="Eight Universes orbiting the 4everacy hub">
+      <div class="orbit-core">
+        <img src="images/4everacy-logo.png" alt="" aria-hidden="true" />
+        <div class="orbit-core-label">MyWorld hub</div>
+      </div>
+
+      <!-- TOP HALF (upper ring orbs) — angles from -157.5° to -22.5° -->
+      <a href="#u-card-novaself" class="orbit-orb u-novaself" style="--angle:-157.5deg" aria-label="NovaSelf, Universe 01">
+        <span class="orbit-orb-num">01</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🌟</span>
+        <span class="orbit-orb-label">NovaSelf</span>
+      </a>
+      <a href="#u-card-kinsphere" class="orbit-orb u-kinsphere" style="--angle:-112.5deg" aria-label="KinSphere, Universe 02">
+        <span class="orbit-orb-num">02</span>
+        <span class="orbit-orb-icon" aria-hidden="true">💞</span>
+        <span class="orbit-orb-label">KinSphere</span>
+      </a>
+      <a href="#u-card-biznova" class="orbit-orb u-biznova" style="--angle:-67.5deg" aria-label="BizNova, Universe 03">
+        <span class="orbit-orb-num">03</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🌱</span>
+        <span class="orbit-orb-label">BizNova</span>
+      </a>
+      <a href="#u-card-crewbase" class="orbit-orb u-crewbase" style="--angle:-22.5deg" aria-label="CrewBase, Universe 04">
+        <span class="orbit-orb-num">04</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🔥</span>
+        <span class="orbit-orb-label">CrewBase</span>
+      </a>
+
+      <!-- BOTTOM HALF (lower ring orbs) — angles from 22.5° to 157.5° -->
+      <a href="#u-card-creator" class="orbit-orb u-creator" style="--angle:22.5deg" aria-label="CreatorSphere, Universe 05">
+        <span class="orbit-orb-num">05</span>
+        <span class="orbit-orb-icon" aria-hidden="true">✨</span>
+        <span class="orbit-orb-label">CreatorSphere</span>
+      </a>
+      <a href="#u-card-signal" class="orbit-orb u-signal" style="--angle:67.5deg" aria-label="SignalVerse, Universe 06">
+        <span class="orbit-orb-num">06</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🛰️</span>
+        <span class="orbit-orb-label">SignalVerse</span>
+      </a>
+      <a href="#u-card-chrono" class="orbit-orb u-chrono" style="--angle:112.5deg" aria-label="ChronoVault, Universe 07">
+        <span class="orbit-orb-num">07</span>
+        <span class="orbit-orb-icon" aria-hidden="true">⏳</span>
+        <span class="orbit-orb-label">ChronoVault</span>
+      </a>
+      <a href="#u-card-novamind" class="orbit-orb u-novamind" style="--angle:157.5deg" aria-label="NovaMind and NovaVault, Universe 08">
+        <span class="orbit-orb-num">08</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🔮</span>
+        <span class="orbit-orb-label">NovaMind</span>
+      </a>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(16,185,129,0.12);">👨‍👩‍👧‍👦</div>
-      <div class="pillar-title">The people who matter</div>
-      <p class="pillar-desc">Keep family and close friends connected around real moments, shared memories, and stories that outlast any platform.</p>
+  </div>
+
+  <!-- Mobile-only intro: shown instead of the orbit stage on phones -->
+  <div class="orbit-mobile-intro" aria-hidden="false">
+    <img class="logo-mini" src="images/4everacy-logo.png" alt="4everacy" />
+    <div class="orbit-mobile-intro-text">Eight Universes orbit your MyWorld hub</div>
+  </div>
+
+  <h3 class="legend-heading" id="universes-legend-heading">Each universe, explained</h3>
+  <div class="universes-grid">
+
+    <div class="universe-card u-novaself is-hub" id="u-card-novaself">
+      <div class="universe-orb" aria-hidden="true">🌟</div>
+      <div class="universe-index">Universe 01</div>
+      <div class="universe-name">NovaSelf&trade;<span class="hub-badge">MyWorld hub</span></div>
+      <div class="universe-tag">Personal command center</div>
+      <p class="universe-desc">The home your whole universe orbits. Journal, reflect, track goals, and grow — your MyWorld hub, backed by an intelligence that actually learns who you are, without selling what it sees.</p>
+      <div class="universe-ring">Upper ring</div>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(59,130,246,0.12);">💼</div>
-      <div class="pillar-title">Your work, organized</div>
-      <p class="pillar-desc">A quiet workspace for the founder, the freelancer, the builder — your ideas, projects, and progress in one place.</p>
+
+    <div class="universe-card u-kinsphere" id="u-card-kinsphere">
+      <div class="universe-orb" aria-hidden="true">💞</div>
+      <div class="universe-index">Universe 02</div>
+      <div class="universe-name">KinSphere&trade;</div>
+      <div class="universe-tag">Family · love</div>
+      <p class="universe-desc">Family, kept close. Shared memories, multi-generational messages, and the quiet continuity of a family that stays connected across time — long after any single platform is gone.</p>
+      <div class="universe-ring">Upper ring</div>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(236,72,153,0.12);">📡</div>
-      <div class="pillar-title">Your voice, on your terms</div>
-      <p class="pillar-desc">A creator space that amplifies what you actually want to say — not what an algorithm decides to show.</p>
+
+    <div class="universe-card u-biznova" id="u-card-biznova">
+      <div class="universe-orb" aria-hidden="true">🌱</div>
+      <div class="universe-index">Universe 03</div>
+      <div class="universe-name">BizNova&trade;</div>
+      <div class="universe-tag">Business · growth</div>
+      <p class="universe-desc">A founder’s operating system. Your ventures, decisions, and money in one quiet workspace — with an intelligence layer that reasons alongside you, not around you.</p>
+      <div class="universe-ring">Upper ring</div>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(167,139,250,0.12);">⏳</div>
-      <div class="pillar-title">A legacy that lasts</div>
-      <p class="pillar-desc">Preserve the stories, values, and truths you want to reach the people who come after you — reliably, and for a long time.</p>
+
+    <div class="universe-card u-crewbase" id="u-card-crewbase">
+      <div class="universe-orb" aria-hidden="true">🔥</div>
+      <div class="universe-index">Universe 04</div>
+      <div class="universe-name">CrewBase&trade;</div>
+      <div class="universe-tag">Friends · social energy</div>
+      <p class="universe-desc">The people who show up. Friends, collaborators, and crews — organized by trust and the signal of real relationships, not by who shouts loudest on a feed.</p>
+      <div class="universe-ring">Upper ring</div>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-icon" style="background:rgba(212,175,55,0.12);">🛡️</div>
-      <div class="pillar-title">Your data, yours</div>
-      <p class="pillar-desc">Privacy-first by design. You own your data, you control who sees it, and you decide what happens to it over time.</p>
+
+    <div class="universe-card u-creator" id="u-card-creator">
+      <div class="universe-orb" aria-hidden="true">✨</div>
+      <div class="universe-index">Universe 05</div>
+      <div class="universe-name">CreatorSphere&trade;</div>
+      <div class="universe-tag">Creators · monetization</div>
+      <p class="universe-desc">For the people who make the moments. Streams, clips, drops, and fan economies — with a creator-first revenue split and lifetime Founders tiers for those who got here early.</p>
+      <div class="universe-ring">Upper ring</div>
     </div>
+
+    <div class="universe-card u-signal" id="u-card-signal">
+      <div class="universe-orb" aria-hidden="true">🛰️</div>
+      <div class="universe-index">Universe 06</div>
+      <div class="universe-name">SignalVerse&trade;</div>
+      <div class="universe-tag">Broadcast · TruthMails&trade;</div>
+      <p class="universe-desc">Your voice, on your terms. Signal-scored communication and TruthMails™ — a social layer that rewards honesty and meaning over engagement bait.</p>
+      <div class="universe-ring">Lower ring</div>
+    </div>
+
+    <div class="universe-card u-chrono" id="u-card-chrono">
+      <div class="universe-orb" aria-hidden="true">⏳</div>
+      <div class="universe-index">Universe 07</div>
+      <div class="universe-name">ChronoVault&trade;</div>
+      <div class="universe-tag">Memory · time capsules</div>
+      <p class="universe-desc">A legacy that lasts. Time capsules, future-dated messages, and century-scale preservation — so the truths, values, and stories you want to send forward actually arrive.</p>
+      <div class="universe-ring">Lower ring</div>
+    </div>
+
+    <div class="universe-card u-novamind" id="u-card-novamind">
+      <div class="universe-orb" aria-hidden="true">🔮</div>
+      <div class="universe-index">Universe 08</div>
+      <div class="universe-name">NovaMind&trade; · NovaVault&trade;</div>
+      <div class="universe-tag">Intelligence · private data vault</div>
+      <p class="universe-desc">The quiet brain behind it all. Your personal intelligence layer and encrypted vault — where your life’s data lives, reasons, and remains yours. Not a feed. Not a product. Yours.</p>
+      <div class="universe-ring">Lower ring</div>
+    </div>
+
+  </div>
+
+  <!-- MakeMine signature callout -->
+  <div class="makemine-band">
+    <div class="makemine-orb" aria-hidden="true">🎨</div>
+    <div>
+      <div class="makemine-title">MakeMine&trade; — your universe, your signature.</div>
+      <p class="makemine-sub">Every universe is tunable. Pick your palette, your orbs, your rhythms, your rituals — MakeMine is the personalization layer that turns eight universes into <em>your</em> universe.</p>
+    </div>
+    <div class="makemine-tag">Personalization layer</div>
   </div>
 </section>
 
@@ -862,16 +1345,32 @@
   <div class="section-label">Build progress</div>
   <h2 id="proof-heading" class="section-title">Built, not promised.</h2>
   <p class="section-sub">
-    4everacy has been in serious development for years. These are the numbers behind the work — shipped by one founder, funded out of pocket, without outside investors.
+    4everacy has been in serious development for years. Eight Universes across two orbital rings. Thirteen life domains. Seventy-seven features. An in-house intelligence layer. Shipped by one founder, funded out of pocket, without outside investors — and weeks from the private beta.
   </p>
   <div class="proof-grid">
     <div class="proof-cell">
-      <div class="proof-num">1M+</div>
-      <div class="proof-label">Lines of code written</div>
+      <div class="proof-num">8</div>
+      <div class="proof-label">Universes</div>
     </div>
     <div class="proof-cell">
-      <div class="proof-num">50+</div>
-      <div class="proof-label">Repositories</div>
+      <div class="proof-num">13</div>
+      <div class="proof-label">Life domains</div>
+    </div>
+    <div class="proof-cell">
+      <div class="proof-num">77</div>
+      <div class="proof-label">Integrated features</div>
+    </div>
+    <div class="proof-cell">
+      <div class="proof-num">12</div>
+      <div class="proof-label">In-house engines</div>
+    </div>
+    <div class="proof-cell">
+      <div class="proof-num">1M+</div>
+      <div class="proof-label">Lines of code</div>
+    </div>
+    <div class="proof-cell">
+      <div class="proof-num">88</div>
+      <div class="proof-label">Repositories shipped</div>
     </div>
     <div class="proof-cell">
       <div class="proof-num">1,800+</div>
@@ -896,7 +1395,7 @@
     <div class="founder-eyebrow">Founder &amp; CEO</div>
     <div class="founder-name">Jeffrey W. Williams</div>
     <p class="founder-bio">
-      Washington, D.C. Solo technical founder. I've spent the last several years building 4everacy from first principles — writing the code, designing the system, and funding it myself. I work as a home health aide for my aunt and godmother, which pays the bills while I ship. Private beta opens to family and friends on Mother's Day. Public launch follows later this year.
+      Washington, D.C. Solo technical founder. I've spent the last several years designing and building 4everacy from first principles — eight Universes, thirteen life domains, one intelligence layer, all written, architected, and funded by me. I work as a home health aide for my aunt and godmother, which pays the bills while I ship. The private beta opens to family and friends on Mother's Day. Public launch follows later this year.
     </p>
     <div class="founder-links">
       <a href="https://www.linkedin.com/in/jeffrey-williams-110a9225a" target="_blank" rel="noopener">LinkedIn</a>
@@ -913,7 +1412,7 @@
     </div>
     <h2 id="waitlist-heading" class="waitlist-title">Get notified when the doors open.</h2>
     <p class="waitlist-sub">
-      The private beta is for family and friends only. When 4everacy opens to the public later in 2026, the first 5,000 people on this list get the first invitations. No spam. One email, when it's time.
+      The private beta opens Mother's Day weekend — for family and friends only. When 4everacy opens to the public later in 2026, the first 5,000 people on this list get the first invitations. No spam. One email, when it's time.
     </p>
     <form class="waitlist-form" onsubmit="handleWaitlist(event)" novalidate>
       <label for="waitlistEmail" class="sr-only">Email address</label>
