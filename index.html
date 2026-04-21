@@ -680,6 +680,194 @@
       pointer-events: none;
     }
 
+    /* ORBITAL STAGE — the eight universes circling the 4everacy hub */
+    .orbit-stage {
+      --stage-size: 680px;
+      --orbit-radius: 280px;
+      --orb-size: 108px;
+      position: relative;
+      width: var(--stage-size);
+      height: var(--stage-size);
+      max-width: 92vw;
+      margin: 60px auto 56px;
+    }
+    @media (max-width: 980px) {
+      .orbit-stage {
+        --stage-size: 560px;
+        --orbit-radius: 228px;
+        --orb-size: 92px;
+      }
+    }
+
+    /* Faint orbit rings — two concentric circles to match the "two orbital rings" copy */
+    .orbit-stage::before,
+    .orbit-stage::after {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.10);
+      pointer-events: none;
+    }
+    .orbit-stage::before {
+      width: calc(var(--orbit-radius) * 2);
+      height: calc(var(--orbit-radius) * 2);
+    }
+    .orbit-stage::after {
+      width: calc(var(--orbit-radius) * 2 - 80px);
+      height: calc(var(--orbit-radius) * 2 - 80px);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    /* Central 4everacy hub — logo + halo */
+    .orbit-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(34,211,238,0.22), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.18), transparent 70%);
+      box-shadow:
+        0 0 60px -10px rgba(34,211,238,0.5),
+        0 0 100px -30px rgba(139,92,246,0.6);
+      border: 1px solid rgba(34,211,238,0.25);
+    }
+    .orbit-core img {
+      width: 110px;
+      height: auto;
+      filter: drop-shadow(0 0 12px rgba(34,211,238,0.6));
+      opacity: 0.95;
+    }
+    .orbit-core-label {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(34,211,238,0.85);
+      white-space: nowrap;
+    }
+
+    /* One orb positioned at its angle */
+    .orbit-orb {
+      --angle: 0deg;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--orb-size);
+      height: var(--orb-size);
+      margin-top: calc(var(--orb-size) / -2);
+      margin-left: calc(var(--orb-size) / -2);
+      transform: rotate(var(--angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--angle)));
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--u-accent) 55%, transparent), transparent 65%),
+        color-mix(in srgb, var(--u-accent) 14%, rgba(5,8,14,0.85));
+      border: 1px solid color-mix(in srgb, var(--u-accent) 45%, transparent);
+      box-shadow:
+        0 0 24px -4px color-mix(in srgb, var(--u-accent) 60%, transparent),
+        inset 0 0 18px -4px color-mix(in srgb, var(--u-accent) 35%, transparent);
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 3;
+    }
+    .orbit-orb:hover,
+    .orbit-orb:focus-visible {
+      transform: rotate(var(--angle)) translate(var(--orbit-radius)) rotate(calc(-1 * var(--angle))) scale(1.08);
+      box-shadow:
+        0 0 36px -2px color-mix(in srgb, var(--u-accent) 75%, transparent),
+        inset 0 0 22px -2px color-mix(in srgb, var(--u-accent) 50%, transparent);
+      outline: none;
+    }
+    .orbit-orb-icon {
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 2px;
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--u-accent) 50%, transparent));
+    }
+    .orbit-orb-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 0 6px;
+      color: #fff;
+    }
+    .orbit-orb-num {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: color-mix(in srgb, var(--u-accent) 100%, white 0%);
+      opacity: 0.85;
+    }
+
+    /* Legend heading above the universe cards */
+    .legend-heading {
+      max-width: 1180px;
+      margin: 36px auto 18px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      position: relative;
+    }
+    .legend-heading::before,
+    .legend-heading::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      vertical-align: middle;
+      margin: 0 14px;
+    }
+
+    /* Mobile fallback — hide the stage, show the legend-grid fully */
+    .orbit-stage-wrapper { display: block; }
+    @media (max-width: 720px) {
+      .orbit-stage-wrapper { display: none; }
+      .orbit-mobile-intro { display: block; }
+    }
+    .orbit-mobile-intro {
+      display: none;
+      text-align: center;
+      padding: 8px 0 28px;
+    }
+    .orbit-mobile-intro .logo-mini {
+      width: 120px;
+      filter: drop-shadow(0 0 10px rgba(34,211,238,0.5));
+      margin-bottom: 12px;
+    }
+    .orbit-mobile-intro-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(34,211,238,0.85);
+    }
+
     /* PROOF */
     #proof {
       padding: 80px 24px;
@@ -1004,9 +1192,70 @@
     Most apps hand you a feed and call it a life. 4everacy organizes your whole life into eight distinct Universes across two orbital rings — each a self-contained dimension with its own intelligence, its own data, and its own quiet kind of power. Every Universe speaks to the others. None of them harvests you.
   </p>
 
+  <!-- ORBITAL STAGE: 8 universes circling the 4everacy hub. Hidden on mobile; the card grid below is the fallback. -->
+  <div class="orbit-stage-wrapper">
+    <div class="orbit-stage" role="img" aria-label="Eight Universes orbiting the 4everacy hub">
+      <div class="orbit-core">
+        <img src="images/4everacy-logo.png" alt="" aria-hidden="true" />
+        <div class="orbit-core-label">MyWorld hub</div>
+      </div>
+
+      <!-- TOP HALF (upper ring orbs) — angles from -157.5° to -22.5° -->
+      <a href="#u-card-novaself" class="orbit-orb u-novaself" style="--angle:-157.5deg" aria-label="NovaSelf, Universe 01">
+        <span class="orbit-orb-num">01</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🌟</span>
+        <span class="orbit-orb-label">NovaSelf</span>
+      </a>
+      <a href="#u-card-kinsphere" class="orbit-orb u-kinsphere" style="--angle:-112.5deg" aria-label="KinSphere, Universe 02">
+        <span class="orbit-orb-num">02</span>
+        <span class="orbit-orb-icon" aria-hidden="true">💞</span>
+        <span class="orbit-orb-label">KinSphere</span>
+      </a>
+      <a href="#u-card-biznova" class="orbit-orb u-biznova" style="--angle:-67.5deg" aria-label="BizNova, Universe 03">
+        <span class="orbit-orb-num">03</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🌱</span>
+        <span class="orbit-orb-label">BizNova</span>
+      </a>
+      <a href="#u-card-crewbase" class="orbit-orb u-crewbase" style="--angle:-22.5deg" aria-label="CrewBase, Universe 04">
+        <span class="orbit-orb-num">04</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🔥</span>
+        <span class="orbit-orb-label">CrewBase</span>
+      </a>
+
+      <!-- BOTTOM HALF (lower ring orbs) — angles from 22.5° to 157.5° -->
+      <a href="#u-card-creator" class="orbit-orb u-creator" style="--angle:22.5deg" aria-label="CreatorSphere, Universe 05">
+        <span class="orbit-orb-num">05</span>
+        <span class="orbit-orb-icon" aria-hidden="true">✨</span>
+        <span class="orbit-orb-label">CreatorSphere</span>
+      </a>
+      <a href="#u-card-signal" class="orbit-orb u-signal" style="--angle:67.5deg" aria-label="SignalVerse, Universe 06">
+        <span class="orbit-orb-num">06</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🛰️</span>
+        <span class="orbit-orb-label">SignalVerse</span>
+      </a>
+      <a href="#u-card-chrono" class="orbit-orb u-chrono" style="--angle:112.5deg" aria-label="ChronoVault, Universe 07">
+        <span class="orbit-orb-num">07</span>
+        <span class="orbit-orb-icon" aria-hidden="true">⏳</span>
+        <span class="orbit-orb-label">ChronoVault</span>
+      </a>
+      <a href="#u-card-novamind" class="orbit-orb u-novamind" style="--angle:157.5deg" aria-label="NovaMind and NovaVault, Universe 08">
+        <span class="orbit-orb-num">08</span>
+        <span class="orbit-orb-icon" aria-hidden="true">🔮</span>
+        <span class="orbit-orb-label">NovaMind</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile-only intro: shown instead of the orbit stage on phones -->
+  <div class="orbit-mobile-intro" aria-hidden="false">
+    <img class="logo-mini" src="images/4everacy-logo.png" alt="4everacy" />
+    <div class="orbit-mobile-intro-text">Eight Universes orbit your MyWorld hub</div>
+  </div>
+
+  <h3 class="legend-heading" id="universes-legend-heading">Each universe, explained</h3>
   <div class="universes-grid">
 
-    <div class="universe-card u-novaself is-hub">
+    <div class="universe-card u-novaself is-hub" id="u-card-novaself">
       <div class="universe-orb" aria-hidden="true">🌟</div>
       <div class="universe-index">Universe 01</div>
       <div class="universe-name">NovaSelf&trade;<span class="hub-badge">MyWorld hub</span></div>
@@ -1015,7 +1264,7 @@
       <div class="universe-ring">Upper ring</div>
     </div>
 
-    <div class="universe-card u-kinsphere">
+    <div class="universe-card u-kinsphere" id="u-card-kinsphere">
       <div class="universe-orb" aria-hidden="true">💞</div>
       <div class="universe-index">Universe 02</div>
       <div class="universe-name">KinSphere&trade;</div>
@@ -1024,7 +1273,7 @@
       <div class="universe-ring">Upper ring</div>
     </div>
 
-    <div class="universe-card u-biznova">
+    <div class="universe-card u-biznova" id="u-card-biznova">
       <div class="universe-orb" aria-hidden="true">🌱</div>
       <div class="universe-index">Universe 03</div>
       <div class="universe-name">BizNova&trade;</div>
@@ -1033,7 +1282,7 @@
       <div class="universe-ring">Upper ring</div>
     </div>
 
-    <div class="universe-card u-crewbase">
+    <div class="universe-card u-crewbase" id="u-card-crewbase">
       <div class="universe-orb" aria-hidden="true">🔥</div>
       <div class="universe-index">Universe 04</div>
       <div class="universe-name">CrewBase&trade;</div>
@@ -1042,7 +1291,7 @@
       <div class="universe-ring">Upper ring</div>
     </div>
 
-    <div class="universe-card u-creator">
+    <div class="universe-card u-creator" id="u-card-creator">
       <div class="universe-orb" aria-hidden="true">✨</div>
       <div class="universe-index">Universe 05</div>
       <div class="universe-name">CreatorSphere&trade;</div>
@@ -1051,7 +1300,7 @@
       <div class="universe-ring">Upper ring</div>
     </div>
 
-    <div class="universe-card u-signal">
+    <div class="universe-card u-signal" id="u-card-signal">
       <div class="universe-orb" aria-hidden="true">🛰️</div>
       <div class="universe-index">Universe 06</div>
       <div class="universe-name">SignalVerse&trade;</div>
@@ -1060,7 +1309,7 @@
       <div class="universe-ring">Lower ring</div>
     </div>
 
-    <div class="universe-card u-chrono">
+    <div class="universe-card u-chrono" id="u-card-chrono">
       <div class="universe-orb" aria-hidden="true">⏳</div>
       <div class="universe-index">Universe 07</div>
       <div class="universe-name">ChronoVault&trade;</div>
@@ -1069,7 +1318,7 @@
       <div class="universe-ring">Lower ring</div>
     </div>
 
-    <div class="universe-card u-novamind">
+    <div class="universe-card u-novamind" id="u-card-novamind">
       <div class="universe-orb" aria-hidden="true">🔮</div>
       <div class="universe-index">Universe 08</div>
       <div class="universe-name">NovaMind&trade; · NovaVault&trade;</div>
