@@ -2753,7 +2753,9 @@
             firstName:   it.firstName   || it.first_name   || '?',
             lastInitial: it.lastInitial || it.last_initial || '•',
             seatNum:     it.seatNum     || it.seat_num,
-            ts:          new Date(it.createdAt || it.created_at || Date.now()).getTime(),
+            ts:          (typeof it.ts === 'number')
+              ? it.ts
+              : new Date(it.createdAt || it.created_at || Date.now()).getTime(),
           })).filter(it => typeof it.seatNum === 'number');
           setFeed(serverFeed);
         }
