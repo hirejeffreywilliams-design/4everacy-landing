@@ -1169,6 +1169,201 @@
     }
 
     /* ==========================================================
+       FOUNDERS 5000 — TIERS, BENEFITS, FSU
+       ========================================================== */
+    #founders {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .founders-intro {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+      margin: 24px 0 36px;
+    }
+    @media (max-width: 840px) { .founders-intro { grid-template-columns: 1fr; } }
+    .founders-card {
+      background: linear-gradient(180deg, rgba(167,139,250,0.08), rgba(34,211,238,0.04));
+      border: 1px solid rgba(167,139,250,0.22);
+      border-radius: 18px;
+      padding: 26px 26px 22px;
+    }
+    .founders-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      margin: 0 0 10px;
+      color: #fff;
+      letter-spacing: 0.4px;
+    }
+    .founders-card p { color: rgba(255,255,255,0.78); margin: 0 0 10px; line-height: 1.6; }
+    .founders-card ul { margin: 8px 0 0; padding: 0 0 0 18px; color: rgba(255,255,255,0.82); }
+    .founders-card li { margin: 6px 0; line-height: 1.55; }
+    .founders-card strong.accent { color: #c4b5fd; }
+
+    .fsu-card {
+      background: linear-gradient(180deg, rgba(34,211,238,0.08), rgba(16,185,129,0.04));
+      border: 1px solid rgba(34,211,238,0.22);
+      border-radius: 18px;
+      padding: 26px;
+    }
+    .fsu-badge {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 1.6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(34,211,238,0.14);
+      color: #a5f3fc;
+      border: 1px solid rgba(34,211,238,0.28);
+      margin-bottom: 10px;
+    }
+    .fsu-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      margin: 0 0 10px;
+      color: #fff;
+    }
+    .fsu-card p { color: rgba(255,255,255,0.78); margin: 0 0 10px; line-height: 1.6; }
+    .fsu-math {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .fsu-chip {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.82rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 1024px) { .tiers-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px)  { .tiers-grid { grid-template-columns: 1fr; } }
+
+    .tier-card {
+      position: relative;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 22px 20px 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .tier-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.05);
+    }
+    .tier-card.tier-pioneer   { border-color: rgba(167,139,250,0.35); }
+    .tier-card.tier-pathfinder{ border-color: rgba(16,185,129,0.35); }
+    .tier-card.tier-visionary { border-color: rgba(59,130,246,0.35); }
+    .tier-card.tier-legend    { border-color: rgba(212,175,55,0.45); }
+
+    .tier-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .tier-pioneer   .tier-name { color: #c4b5fd; }
+    .tier-pathfinder .tier-name { color: #6ee7b7; }
+    .tier-visionary .tier-name { color: #93c5fd; }
+    .tier-legend    .tier-name { color: #fcd34d; }
+
+    .tier-price {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 2.1rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .tier-one-time {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .tier-mult {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.4px;
+    }
+    .tier-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.82);
+    }
+    .tier-list li {
+      padding: 6px 0 6px 20px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .tier-list li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 13px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa, #22d3ee);
+      opacity: 0.9;
+    }
+    .tier-ribbon {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 1.4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #a78bfa, #22d3ee);
+      color: #0a0613;
+      font-weight: 800;
+    }
+
+    .tiers-note {
+      margin-top: 22px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 14px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+    .tiers-note strong { color: #fff; }
+
+    /* ==========================================================
        LIVE FOUNDERS 5000 LIST
        ========================================================== */
     #live-list {
@@ -1567,6 +1762,7 @@
     <a href="#universes">Universes</a>
     <a href="#why">Why it matters</a>
     <a href="#see">See it</a>
+    <a href="#founders">Founders</a>
     <a href="#live-list">The List</a>
     <a href="#founder">Founder</a>
     <a href="#waitlist" class="nav-cta">Join the list</a>
@@ -1609,7 +1805,7 @@
     </p>
     <div class="hero-actions">
       <a href="#waitlist" class="btn-primary">Join the Founders 5000 list</a>
-      <a href="#universes" class="btn-secondary">The Eight Universes →</a>
+      <a href="#founders" class="btn-secondary">See Founder tiers →</a>
     </div>
   </div>
 </section>
@@ -1908,12 +2104,108 @@
   </div>
 </section>
 
+<!-- FOUNDERS 5000 — TIERS, BENEFITS, FSU -->
+<section id="founders" aria-labelledby="founders-heading">
+  <div class="section-label">The Founders 5000™</div>
+  <h2 id="founders-heading" class="section-title">Become one of the first 5,000.</h2>
+  <p class="section-sub">
+    The Founders 5000™ is a one-time, lifetime membership program. Only 5,000 seats exist — worldwide, ever. Founders lock in their tier price for life, receive a permanent FM Serial Number, and are the first to enter the platform when the private beta opens on Mother's Day weekend, May 9, 2026.
+  </p>
+
+  <div class="founders-intro">
+    <div class="founders-card">
+      <h3>What you get as a Founder</h3>
+      <p>One payment. Zero subscriptions. Locked for life.</p>
+      <ul>
+        <li><strong class="accent">FM Serial Number</strong> — a permanent founding-member ID, issued the moment you join</li>
+        <li><strong class="accent">Lifetime Access Lock-In</strong> — your tier price is locked forever; future subscribers pay more</li>
+        <li><strong class="accent">Founding Badge</strong> — a digital badge on your profile that never expires</li>
+        <li><strong class="accent">Beta Access May 9, 2026</strong> — inside before the public launch</li>
+        <li><strong class="accent">FSU™ Multiplier</strong> — a permanent benefit multiplier on your account (explained →)</li>
+        <li><strong class="accent">Tier-specific platform features</strong> — higher tiers unlock more across the Eight Universes</li>
+      </ul>
+    </div>
+    <div class="fsu-card">
+      <span class="fsu-badge">FSU™ · Founding Status Unit</span>
+      <h3>What FSU™ actually means</h3>
+      <p>FSU™ stands for <strong>Founding Status Unit</strong> — a permanent multiplier attached to your account. It amplifies the benefits you receive across the platform (storage, feature allowances, CreatorSphere revenue splits, MakeMine customization tiers, priority access, and more) compared to what standard future subscribers will get.</p>
+      <p>The higher your tier, the higher your multiplier. It is attached to your account for life and cannot be purchased later — only by joining the Founders 5000.</p>
+      <div class="fsu-math" aria-label="Founding Status Unit multipliers by tier">
+        <span class="fsu-chip">Pioneer · 1.0×</span>
+        <span class="fsu-chip">Pathfinder · 2.0×</span>
+        <span class="fsu-chip">Visionary · 4.0×</span>
+        <span class="fsu-chip">Legend · 6.0×</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tiers-grid" role="list" aria-label="Founding membership tiers">
+    <div class="tier-card tier-pioneer" role="listitem">
+      <div class="tier-name">Pioneer</div>
+      <div class="tier-price">$997</div>
+      <div class="tier-one-time">One-time · lifetime</div>
+      <span class="tier-mult">1.0× FSU™</span>
+      <ul class="tier-list">
+        <li>FM Serial Number</li>
+        <li>Founding Badge</li>
+        <li>Lifetime access, price locked</li>
+        <li>Beta access May 9, 2026</li>
+        <li>Base platform features</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-pathfinder" role="listitem">
+      <div class="tier-name">Pathfinder</div>
+      <div class="tier-price">$2,497</div>
+      <div class="tier-one-time">One-time · lifetime</div>
+      <span class="tier-mult">2.0× FSU™</span>
+      <ul class="tier-list">
+        <li>Everything in Pioneer</li>
+        <li>2.0× benefits across all universes</li>
+        <li>Expanded MakeMine customization</li>
+        <li>Priority founding-member support</li>
+        <li>Early feature drops</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-visionary" role="listitem">
+      <span class="tier-ribbon">Popular</span>
+      <div class="tier-name">Visionary</div>
+      <div class="tier-price">$4,997</div>
+      <div class="tier-one-time">One-time · lifetime</div>
+      <span class="tier-mult">4.0× FSU™</span>
+      <ul class="tier-list">
+        <li>Everything in Pathfinder</li>
+        <li>4.0× benefits across all universes</li>
+        <li>CreatorSphere revenue-split priority</li>
+        <li>Extended storage &amp; ChronoVault depth</li>
+        <li>Founder roundtables &amp; beta input</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-legend" role="listitem">
+      <div class="tier-name">Legend</div>
+      <div class="tier-price">$9,997</div>
+      <div class="tier-one-time">One-time · lifetime</div>
+      <span class="tier-mult">6.0× FSU™</span>
+      <ul class="tier-list">
+        <li>Everything in Visionary</li>
+        <li>6.0× benefits — the highest multiplier</li>
+        <li>Top-of-queue for every new universe</li>
+        <li>Direct line to the founder</li>
+        <li>Legacy recognition in-platform</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="tiers-note">
+    <strong>Payment processing opens soon.</strong> Founding-tier checkout is temporarily paused while we finalize secure processing for the public launch. Join the list below to lock your seat number — we'll email you the moment Founding checkout goes live so you can secure your tier before the 5,000 seats sell out. No card required to reserve your seat. All sales will be final, one-time, no recurring charges, in USD. Full terms: <a href="terms.html" style="color:#a5f3fc;text-decoration:underline;">Terms of Service</a>.
+  </p>
+</section>
+
 <!-- LIVE FOUNDERS 5000 LIST -->
 <section id="live-list" aria-labelledby="live-heading">
   <div class="section-label">The living list</div>
-  <h2 id="live-heading" class="section-title">Watch the family fill up in real time.</h2>
+  <h2 id="live-heading" class="section-title">Watch the family fill up, one real seat at a time.</h2>
   <p class="section-sub">
-    The Founders 5000 is a numbered seat — when you join, you get a permanent position. Your full name and email stay private; only your first name, last-initial, and position number appear here. Save your number. Screenshot it. One day it'll be proof you were here first.
+    The Founders 5000 is a numbered seat — when you join, you get a permanent position. Your full name and email stay private; only your first name, last-initial, and position number appear here. Save your number. Screenshot it. One day it'll be proof you were here first. Every name below is a real person who just joined.
   </p>
   <div class="live-wrap">
     <div class="live-counter-card">
@@ -1922,7 +2214,7 @@
       <div class="live-of">of 5,000 seats claimed</div>
       <div class="live-bar" aria-hidden="true"><div id="liveBarFill" class="live-bar-fill"></div></div>
       <p class="live-caption">
-        <strong>What the seat gets you:</strong> founding-member status, early-access invites before public launch, a permanent lifetime Founder badge in your universe, and priority access to MakeMine tiers and CreatorSphere revenue splits.
+        Every seat is a real person. Reserving a seat is free — your tier (Pioneer, Pathfinder, Visionary, or Legend) is selected when Founding checkout opens. <a href="#founders" style="color:#a5f3fc;text-decoration:underline;">See the tiers ↑</a>
       </p>
     </div>
     <div class="live-feed-card">
@@ -2122,10 +2414,17 @@
      local state so the experience never breaks.
      ===================================================================== */
   const FOUNDERS_TOTAL_SEATS = 5000;
-  const LS_COUNT = '4ev:founders:count';
-  const LS_FEED  = '4ev:founders:feed';
-  const LS_ME    = '4ev:founders:me';
-  const BASELINE_MIN = 127; // optimistic baseline so the counter doesn't say "0"
+  // Storage keys are versioned (v2). Older v1 keys (which seeded fake entries) are
+  // explicitly purged on load so every browser starts from a clean, real-only state.
+  const LS_COUNT = '4ev:founders:count:v2';
+  const LS_FEED  = '4ev:founders:feed:v2';
+  const LS_ME    = '4ev:founders:me:v2';
+  // Purge legacy v1 seeded data (Maya/Andre/Priya/Jordan/Camille) if present.
+  try {
+    localStorage.removeItem('4ev:founders:count');
+    localStorage.removeItem('4ev:founders:feed');
+    localStorage.removeItem('4ev:founders:me');
+  } catch (_) {}
 
   const el = (id) => document.getElementById(id);
   const getCount = () => {
@@ -2143,22 +2442,6 @@
     catch { return null; }
   };
   const setMe    = (me) => localStorage.setItem(LS_ME, JSON.stringify(me));
-
-  // Seed the feed with a few visually-interesting placeholder entries on first visit,
-  // so the list never feels empty. These are clearly labeled as "early supporters".
-  function seedFeedIfEmpty() {
-    const feed = getFeed();
-    if (feed.length) return;
-    const seeds = [
-      { firstName: 'Maya',    lastInitial: 'R', seatNum: 87,  ts: Date.now() - 1000*60*60*6 },
-      { firstName: 'Andre',   lastInitial: 'T', seatNum: 91,  ts: Date.now() - 1000*60*60*4 },
-      { firstName: 'Priya',   lastInitial: 'S', seatNum: 104, ts: Date.now() - 1000*60*60*2 },
-      { firstName: 'Jordan',  lastInitial: 'L', seatNum: 118, ts: Date.now() - 1000*60*45 },
-      { firstName: 'Camille', lastInitial: 'W', seatNum: 126, ts: Date.now() - 1000*60*12 }
-    ];
-    setFeed(seeds);
-    if (getCount() < BASELINE_MIN) setCount(BASELINE_MIN);
-  }
 
   function animateNumber(node, from, to, durMs = 1100) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -2218,7 +2501,7 @@
         list.appendChild(li);
       });
       if (!items.length) {
-        list.innerHTML = '<li class="live-feed-item"><div class="feed-body"><div class="feed-name" style="opacity:0.6;">Be the first.</div></div></li>';
+        list.innerHTML = '<li class="live-feed-item" style="justify-content:center;text-align:center;"><div class="feed-body"><div class="feed-name" style="opacity:0.85;">Be the first Founder.</div><div class="feed-meta">Seat #0001 is still open — claim it below.</div></div></li>';
       }
     }
   }
@@ -2412,7 +2695,6 @@
 
   // Wire up pass buttons
   document.addEventListener('DOMContentLoaded', () => {
-    seedFeedIfEmpty();
     renderLive();
     const me = getMe();
     if (me) renderPass(me);
