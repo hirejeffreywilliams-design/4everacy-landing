@@ -1,0 +1,104 @@
+# 4everacy — Banned Terms Registry
+# One term per line. Comments start with `#`. Matched case-insensitively with word boundaries.
+# Source: Master Trade Secret Register + Pioneer Moat Doctrine + Narrative Firewall.
+# Updating this file? Any term added/removed requires a PR that also re-runs the scanner in CI.
+# Last aligned: 2026-04-18
+
+OmniScript
+InceptionVault
+Consciousness Stack
+SubconsciOS
+NovaOrchestration
+DigitalBoardOS
+Nova-AgentTeam
+OmniNexus
+ADIIS
+SovereignCloud
+Irreducibility Score
+Universe Resonance Engine
+Contextual Intelligence Router
+Sovereign AI Agent Framework
+TruthMails Core
+VoiceDNA
+LegacyNova
+BondForge
+AethosLegacy
+AnchorStrata
+SecretVault
+OmniPulse
+JurisWave
+CradleVox
+CryPulse
+EmotiWeave
+DevTrack
+AcoustiCore
+FusionNexus
+AutonomicPulse
+Subconscious Alignment Index
+EarningsEngine
+Shamir's Secret Sharing
+CarbonTrace
+ImpactMap
+SustainabilityScore
+HoloPresence
+OmniGuide
+FounderSovereignty
+LinguaCore
+CultureAdapter
+SomnaWeave
+SonisForge
+ChromaVault
+BondPaw
+CraftNexus
+LifeStream Intelligence
+USIP
+PolySynth
+ZKP Schnorr
+Paillier PHE
+Lattice-LWE
+Pedersen commitment
+BLAKE3 fingerprinting
+GenesisSeal
+OmniNexus Pipeline Guardian
+omnivex-monorepo
+omnivex-formula-validation
+OmniCipher
+OmniShield
+Omnivex-Hardware
+OmniCortex
+Master Trade Secret Register
+Master Technical Vault
+Pioneer Moat Doctrine
+Omnivex Bakery Framework
+9.3/10
+$400M
+$1.5B
+308+ patents
+308 patents
+six patent-pending
+six patent pending
+JWW-
+NC-0
+NC-1
+NC-2
+NC-3
+NC-4
+NC-5
+NC-6
+NC-7
+NC-8
+NC-9
+NC-10
+NC-80
+NC-81
+NC-82
+CDC-
+DataSovereign-Advanced
+FounderSovereignty-Intelligence
+NexusCivic
+Nova-FinVault
+SafeNexus
+SecretVault-Advanced
+4everacy-admin
+4everacy-vault
+NovaVerify
