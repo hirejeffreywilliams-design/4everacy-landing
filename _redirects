@@ -1,3 +1,4 @@
-# Serve known pages first, then SPA fallback.
-/founders-ledger  /founders-ledger.html  200
+# SPA-style fallback: serve index.html for unmatched paths.
+# The landing page is intentionally a single teaser page; privacy.html
+# and terms.html are served normally. All other unknown paths fall back.
 /*  /index.html  200
