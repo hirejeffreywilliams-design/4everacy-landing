@@ -82,7 +82,14 @@ REPO_INTERNAL_EXT = {".md", ".txt", ".yml", ".yaml", ".toml"}
 # Paths to skip entirely
 # `security/` holds the scanner's own banned-list + documentation which
 # legitimately references the banned terms; skipping it avoids self-hits.
-SKIP_DIRS = {".git", "node_modules", "dist", "build", ".next", "images", "admin-legacy", "security"}
+SKIP_DIRS = {
+    ".git", "node_modules", "dist", "build", ".next",
+    "images", "admin-legacy", "security",
+    "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache",
+    "venv", ".venv", "env", ".tox",
+}
+# File extensions / suffixes to skip (compiled / binary / lockfiles)
+SKIP_SUFFIXES = {".pyc", ".pyo", ".pyd", ".so", ".dylib", ".dll", ".class", ".o"}
 # Self-exclusions — the scanner itself and its CI config
 SELF_PATHS = {
     "scripts/trade-secret-scan.py",
@@ -93,10 +100,12 @@ SELF_PATHS = {
 
 def iter_files(root: Path) -> Iterable[Path]:
     for dirpath, dirnames, filenames in os.walk(root):
-        # prune
+        # prune: drop SKIP_DIRS and dotdirs (preserves prior behavior for .git, etc.)
         dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and not d.startswith(".")]
         for fname in filenames:
             p = Path(dirpath) / fname
+            if p.suffix.lower() in SKIP_SUFFIXES:
+                continue
             rel = p.relative_to(root).as_posix()
             if rel in SELF_PATHS:
                 continue

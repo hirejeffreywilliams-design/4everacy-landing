@@ -1,6 +1,6 @@
 # Toggle system initiative — Landing scope
 
-**Initiative**: `feat/login-redesign-toggle-system` (runs across `4everacy-platform`, `4everacy-admin`, and this repo).
+**Initiative**: `feat/login-redesign-toggle-system` (runs across `4everacy-platform`, `4everacy admin repo`, and this repo).
 
 ## Landing-repo changes
 
@@ -16,7 +16,7 @@ applied for consistency with the new OmniDare cyan-accent design system:
 ## Out of scope for landing
 
 - Login redesign — lives on `4everacy-platform` (`client/src/pages/auth-page.tsx`).
-- Admin login redesign — lives on `4everacy-admin` (`client/src/pages/admin-login.tsx`).
+- Admin login redesign — lives on `4everacy admin repo` (`client/src/pages/admin-login.tsx`).
 - Professional `<Toggle4E/>` component + unit tests — lives on platform + admin.
 - Privacy-settings toggle fixes — lives on platform (`privacy-center.tsx`, `advanced-privacy-controls.tsx`).
 
