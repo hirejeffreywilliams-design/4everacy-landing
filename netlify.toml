@@ -17,6 +17,16 @@
 
 # ── API Proxy to Serverless Functions ─────────────────────────────────────────
 
+# ── Waitlist API proxy (landing → admin backend) ─────────────────────────────
+# Client HTML/JS calls same-origin /api/waitlist/*. The actual upstream is
+# configured via the WAITLIST_API_BASE environment variable in Netlify so the
+# production hostname is not committed to the repo.
+[[redirects]]
+  from = "/api/waitlist/*"
+  to = "https://${WAITLIST_API_BASE}/api/waitlist/:splat"
+  status = 200
+  force = true
+
 # ── SHIELD: Canary token receiver ────────────────────────────────────────────
 # Any request to /api/_shield/canary/* is handled by the shield-canary function.
 # Decoy files (.env.sample-suspicious, admin-legacy, security.txt) embed these URLs.
@@ -146,7 +156,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com https://4everacy.app https://4everacy-admin-production.up.railway.app; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.netlify.app https://*.4everacy.com https://4everacy.app; frame-src https://js.stripe.com; base-uri 'self'; form-action 'self'"
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
     X-Powered-By = "4everacy "
